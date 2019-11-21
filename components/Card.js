@@ -32,6 +32,11 @@ class Card extends React.Component {
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
           <Block flex space="between" style={styles.cardDescription}>
             <Text size={14} style={styles.cardTitle}>{item.title}</Text>
+            <Block flex style={styles.cardSubDescription}>
+              <Text size={14} style={styles.cardTitle}>{item.distance}</Text>
+              <Text size={14} style={styles.cardTitle}>{item.activity}</Text>
+              <Text size={14} style={styles.cardTitle}>{item.attending}</Text>
+            </Block>
             <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>{item.cta}</Text>
           </Block>
         </TouchableWithoutFeedback>
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.fire,
     marginVertical: theme.SIZES.BASE,
     borderWidth: 0,
-    minHeight: 114,
+    minHeight: 100,
     marginBottom: 16
   },
   cardTitle: {
@@ -65,17 +70,19 @@ const styles = StyleSheet.create({
   cardDescription: {
     padding: theme.SIZES.BASE / 2
   },
+  cardSubDescription: {
+    flexDirection: "row",
+  },
   imageContainer: {
-    borderRadius: 3,
-    elevation: 1,
+    margin: theme.SIZES.BASE / 2,
+    maxWidth: 70,
+    alignItems: 'center',
     overflow: 'hidden',
   },
-  image: {
-    // borderRadius: 3,
-  },
   horizontalImage: {
-    height: 122,
-    width: 'auto',
+    width: 70,
+    height: 70,
+    borderRadius: 70/2,
   },
   horizontalStyles: {
     borderTopRightRadius: 0,
