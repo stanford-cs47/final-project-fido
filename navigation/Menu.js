@@ -7,6 +7,7 @@ import {
   Image
 } from "react-native";
 import { Block, theme } from "galio-framework";
+import { Colors, Metrics } from '../Themes'
 
 import Images from "../constants/Images";
 
