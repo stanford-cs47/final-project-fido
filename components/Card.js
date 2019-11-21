@@ -3,10 +3,10 @@ import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
-import { Colors, Metrics } from '../Themes'
+import { Colors, Metrics } from '../Themes';
+import { Entypo } from '@expo/vector-icons';
 
 import { argonTheme } from '../constants';
-
 
 class Card extends React.Component {
   render() {
@@ -40,6 +40,12 @@ class Card extends React.Component {
             <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>{item.cta}</Text>
           </Block>
         </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+          <Block style={styles.rightIcon}>
+            <Entypo name="chevron-small-down"
+              size={Metrics.icons.medium}/>
+          </Block>
+        </TouchableWithoutFeedback>
       </Block>
     );
   }
@@ -57,7 +63,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.COLORS.WHITE,
     borderWidth: 0,
-    minHeight: 100,
+    minHeight: 80,
     marginBottom: 16
   },
   cardTitle: {
@@ -73,14 +79,14 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     margin: theme.SIZES.BASE / 2,
-    maxWidth: 70,
+    maxWidth: 60,
     alignItems: 'center',
     overflow: 'hidden',
   },
   horizontalImage: {
-    width: 70,
-    height: 70,
-    borderRadius: 70/2,
+    width: 60,
+    height: 60,
+    borderRadius: 60/2,
   },
   horizontalStyles: {
     borderTopRightRadius: 0,
@@ -92,6 +98,9 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOpacity: 0.1,
     elevation: 2,
+  },
+  rightIcon: {
+    justifyContent: "center"
   },
 });
 
