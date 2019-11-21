@@ -201,6 +201,12 @@ MyEventsStack.navigationOptions = ({ navigation }) => {
   };
 };
 
+Home.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Happening Now',
+  };
+};
+
 HomeTab.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Home',
