@@ -4,7 +4,8 @@ import {
   createStackNavigator,
   createDrawerNavigator,
   createAppContainer,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createMaterialTopTabNavigator
 } from "react-navigation";
 import { Entypo } from '@expo/vector-icons';
 import { Block } from "galio-framework";
@@ -20,6 +21,7 @@ import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 import Bookmarks from "../screens/Bookmarks"
 import MyEvents from "../screens/MyEvents"
+import HappeningLater from "../screens/HappeningLater"
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -130,17 +132,26 @@ const MyEventsStack = createStackNavigator({
   initialRouteName: 'MyEvents',
 })
 
-const MainTab = createBottomTabNavigator({
-  MyEventsStack: {screen: MyEventsStack},
+const HomeTab = createMaterialTopTabNavigator({
   Home: {screen: Home},
-  BookmarkStack: {screen: BookmarkStack},
+  HappeningLater: {screen: HappeningLater},
 },
 {
   headerMode: 'float',
   initialRouteName: 'Home',
-  tabBarOptions: {activeTintColor: Colors.orange}
+  tabBarOptions: {activeTintColor: Colors.orange, inactiveTintColor: "black", style: {backgroundColor: '#FFFFFF'}},
 })
 
+const MainTab = createBottomTabNavigator({
+  MyEventsStack: {screen: MyEventsStack},
+  HomeTab: {screen: HomeTab},
+  BookmarkStack: {screen: BookmarkStack},
+},
+{
+  headerMode: 'float',
+  initialRouteName: 'HomeTab',
+  tabBarOptions: {activeTintColor: Colors.orange}
+})
 
 const HomeStack = createStackNavigator(
   {
@@ -190,7 +201,7 @@ MyEventsStack.navigationOptions = ({ navigation }) => {
   };
 };
 
-Home.navigationOptions = ({ navigation }) => {
+HomeTab.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => (
