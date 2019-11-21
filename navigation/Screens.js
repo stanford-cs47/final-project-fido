@@ -3,7 +3,8 @@ import { Easing, Animated } from "react-native";
 import {
   createStackNavigator,
   createDrawerNavigator,
-  createAppContainer
+  createAppContainer,
+  createBottomTabNavigator
 } from "react-navigation";
 
 import { Block } from "galio-framework";
@@ -16,6 +17,8 @@ import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import Bookmarks from "../screens/Bookmarks"
+import MyEvents from "../screens/MyEvents"
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -107,10 +110,20 @@ const ProfileStack = createStackNavigator(
   }
 );
 
+const MainTab = createBottomTabNavigator({
+  MyEvents: {screen: MyEvents},
+  Home: {screen: Home},
+  Bookmarks: {screen: Bookmarks},
+},
+{
+  headerMode: 'float',
+  initialRouteName: 'Home',
+})
+
 const HomeStack = createStackNavigator(
   {
     Home: {
-      screen: Home,
+      screen: MainTab,
       navigationOptions: ({ navigation }) => ({
         header: <Header search options title="Home" navigation={navigation} />
       })
