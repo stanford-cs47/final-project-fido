@@ -18,7 +18,7 @@ const BellButton = ({isWhite, style, navigation}) => (
       family="ArgonExtra"
       size={16}
       name="bell"
-      color= {fidoTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color= "#FFFFFF"
     />
     <Block middle style={styles.notify} />
   </TouchableOpacity>
@@ -30,7 +30,7 @@ const BasketButton = ({isWhite, style, navigation}) => (
       family="ArgonExtra"
       size={16}
       name="basket"
-      color={fidoTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color= "#FFFFFF"
     />
   </TouchableOpacity>
 );
@@ -41,7 +41,7 @@ const SearchButton = ({isWhite, style, navigation}) => (
       size={16}
       family="Galio"
       name="search-zoom-in"
-      color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color= 'WHITE'
     />
   </TouchableOpacity>
 );
@@ -158,7 +158,7 @@ class Header extends React.Component {
             <Icon
               name={back ? 'nav-left' : "menu-8"} family="ArgonExtra"
               size={14} onPress={this.handleLeftPress}
-              color={iconColor || fidoTheme.COLORS.ICON}/>
+              color="#FFFFFF"/>
           }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   notify: {
-    backgroundColor: Colors.ember,
+    backgroundColor: Colors.black,
     borderRadius: 4,
     height: theme.SIZES.BASE / 2,
     width: theme.SIZES.BASE / 2,

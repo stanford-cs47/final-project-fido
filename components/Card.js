@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     margin: theme.SIZES.BASE / 2,
     maxWidth: 70,
     alignItems: 'center',
+    justifyContent: 'center',
     overflow: 'hidden',
   },
   horizontalImage: {
