@@ -55,7 +55,6 @@ Card.propTypes = {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.COLORS.WHITE,
-    marginVertical: theme.SIZES.BASE,
     borderWidth: 0,
     minHeight: 100,
     marginBottom: 16
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     paddingBottom: 6
   },
   cardDescription: {
-    padding: theme.SIZES.BASE / 2
+    padding: theme.SIZES.BASE / 2,
   },
   cardSubDescription: {
     flexDirection: "row",
