@@ -19,7 +19,7 @@ const BellButton = ({isWhite, style, navigation}) => (
       family="ArgonExtra"
       size={16}
       name="bell"
-      color={fidoTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color= {fidoTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
     <Block middle style={styles.notify} />
   </TouchableOpacity>
@@ -138,12 +138,12 @@ class Header extends React.Component {
     const noShadow = ['Search', 'Categories', 'Deals', 'Pro', 'Profile'].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
-      transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,
+      transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null, //rgba(0,0,0,0)
     ];
 
     const navbarStyles = [
       styles.navbar,
-      bgColor && { backgroundColor: Colors.ember }
+      //bgColor && { backgroundColor: Colors.ember }
     ];
 
     return (
@@ -164,7 +164,7 @@ class Header extends React.Component {
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[
             styles.title,
-            { color: fidoTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
+            { color: Colors.snow}, //fidoTheme.COLORS[white ? 'WHITE' : 'HEADER']
             titleColor && { color: titleColor }
           ]}
           {...props}
@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
   },
   navbar: {
     paddingVertical: 0,
+    backgroundColor: Colors.orange,
     paddingBottom: theme.SIZES.BASE * 1.5,
     paddingTop: iPhoneX ? theme.SIZES.BASE * 4 : theme.SIZES.BASE,
     zIndex: 5,
