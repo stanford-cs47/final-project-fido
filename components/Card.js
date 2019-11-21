@@ -10,14 +10,14 @@ import { argonTheme } from '../constants';
 class Card extends React.Component {
   render() {
     const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
-    
+
     const imageStyles = [
-      full ? styles.fullImage : styles.horizontalImage,
+      styles.horizontalImage,
       imageStyle
     ];
     const cardContainer = [styles.card, styles.shadow, style];
     const imgContainer = [styles.imageContainer,
-      horizontal ? styles.horizontalStyles : styles.verticalStyles,
+      styles.horizontalStyles,
       styles.shadow
     ];
 
@@ -78,13 +78,6 @@ const styles = StyleSheet.create({
   horizontalStyles: {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
-  },
-  verticalStyles: {
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0
-  },
-  fullImage: {
-    height: 215
   },
   shadow: {
     shadowColor: theme.COLORS.BLACK,
