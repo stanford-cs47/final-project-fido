@@ -6,8 +6,9 @@ import {
   createAppContainer,
   createBottomTabNavigator
 } from "react-navigation";
-
+import { Entypo } from '@expo/vector-icons';
 import { Block } from "galio-framework";
+import { Colors, Metrics } from '../Themes'
 
 // screens
 import Home from "../screens/Home";
@@ -110,22 +111,48 @@ const ProfileStack = createStackNavigator(
   }
 );
 
-const MainTab = createBottomTabNavigator({
-  MyEvents: {screen: MyEvents},
-  Home: {screen: Home},
+const BookmarkStack = createStackNavigator({
   Bookmarks: {screen: Bookmarks},
+  Meh2: {screen: MyEvents}
+},
+{
+  headerMode: 'float',
+  initialRouteName: 'Bookmarks',
+})
+
+
+const MyEventsStack = createStackNavigator({
+  MyEvents: {screen: MyEvents},
+  Meh: {screen: Bookmarks}
+},
+{
+  headerMode: 'float',
+  initialRouteName: 'MyEvents',
+})
+
+const MainTab = createBottomTabNavigator({
+  MyEventsStack: {screen: MyEventsStack},
+  Home: {screen: Home},
+  BookmarkStack: {screen: BookmarkStack},
 },
 {
   headerMode: 'float',
   initialRouteName: 'Home',
 })
 
+
 const HomeStack = createStackNavigator(
   {
     Home: {
       screen: MainTab,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Home" navigation={navigation} />
+        header: <Header search options title="Home" navigation={navigation} />,
+        // tabBarLabel: 'Home',
+        // tabBarIcon: ({ tintColor }) => (
+        //   <Entypo name="home"
+        //     size={Metrics.icons.medium}
+        //     color={tintColor} />
+        // ),
       })
     },
     Pro: {
@@ -145,6 +172,39 @@ const HomeStack = createStackNavigator(
     transitionConfig
   }
 );
+
+BookmarkStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Bookmarks',
+    tabBarIcon: ({ tintColor }) => (
+      <Entypo name="bookmark"
+        size={Metrics.icons.medium}
+        color={tintColor} />
+    ),
+  };
+};
+
+MyEventsStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'MyEvents',
+    tabBarIcon: ({ tintColor }) => (
+      <Entypo name="user"
+        size={Metrics.icons.medium}
+        color={tintColor} />
+    ),
+  };
+};
+
+HomeStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Home',
+    tabBarIcon: ({ tintColor }) => (
+      <Entypo name="home"
+        size={Metrics.icons.medium}
+        color={tintColor} />
+    ),
+  };
+};
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
   {
