@@ -7,6 +7,7 @@ import Icon from './Icon';
 import Input from './Input';
 import Tabs from './Tabs';
 import fidoTheme from '../constants/Theme';
+import { Colors, Metrics } from '../Themes'
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
@@ -141,7 +142,7 @@ class Header extends React.Component {
 
     const navbarStyles = [
       styles.navbar,
-      bgColor && { backgroundColor: bgColor }
+      bgColor && { backgroundColor: Colors.ember }
     ];
 
     return (
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
   shadow: {
-    backgroundColor: theme.COLORS.WHITE,
+    backgroundColor: Colors.ember,
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   notify: {
-    backgroundColor: fidoTheme.COLORS.LABEL,
+    backgroundColor: Colors.ember,
     borderRadius: 4,
     height: theme.SIZES.BASE / 2,
     width: theme.SIZES.BASE / 2,
@@ -207,11 +208,11 @@ const styles = StyleSheet.create({
     right: 12,
   },
   header: {
-    backgroundColor: theme.COLORS.WHITE,
+    backgroundColor: Colors.ember //theme.COLORS.WHITE,
   },
   divider: {
     borderRightWidth: 0.3,
-    borderRightColor: theme.COLORS.ICON,
+    borderRightColor: Colors.ember
   },
   options: {
     marginBottom: 24,
@@ -219,7 +220,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   tab: {
-    backgroundColor: theme.COLORS.TRANSPARENT,
+    backgroundColor: Colors.ember,
     width: width * 0.35,
     borderRadius: 0,
     borderWidth: 0,
@@ -229,7 +230,7 @@ const styles = StyleSheet.create({
   tabTitle: {
     lineHeight: 19,
     fontWeight: '400',
-    color: fidoTheme.COLORS.HEADER
+    color: Colors.ember
   },
 });
 

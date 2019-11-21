@@ -147,13 +147,7 @@ const HomeStack = createStackNavigator(
       screen: MainTab,
       navigationOptions: ({ navigation }) => ({
         header: <Header search options title="Home" navigation={navigation} />,
-        // tabBarLabel: 'Home',
-        // tabBarIcon: ({ tintColor }) => (
-        //   <Entypo name="home"
-        //     size={Metrics.icons.medium}
-        //     color={tintColor} />
-        // ),
-      })
+      }),
     },
     Pro: {
       screen: Pro,
@@ -195,7 +189,7 @@ MyEventsStack.navigationOptions = ({ navigation }) => {
   };
 };
 
-HomeStack.navigationOptions = ({ navigation }) => {
+Home.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => (
@@ -205,6 +199,7 @@ HomeStack.navigationOptions = ({ navigation }) => {
     ),
   };
 };
+
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
   {
