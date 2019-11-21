@@ -6,7 +6,7 @@ import { Button, Block, NavBar, Text, theme } from 'galio-framework';
 import Icon from './Icon';
 import Input from './Input';
 import Tabs from './Tabs';
-import argonTheme from '../constants/Theme';
+import fidoTheme from '../constants/Theme';
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
@@ -17,7 +17,7 @@ const BellButton = ({isWhite, style, navigation}) => (
       family="ArgonExtra"
       size={16}
       name="bell"
-      color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color={fidoTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
     <Block middle style={styles.notify} />
   </TouchableOpacity>
@@ -29,7 +29,7 @@ const BasketButton = ({isWhite, style, navigation}) => (
       family="ArgonExtra"
       size={16}
       name="basket"
-      color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color={fidoTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
 );
@@ -106,38 +106,7 @@ class Header extends React.Component {
         break;
     }
   }
-  renderSearch = () => {
-    const { navigation } = this.props;
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        placeholder="What are you looking for?"
-        placeholderTextColor={'#8898AA'}
-        onFocus={() => navigation.navigate('Pro')}
-        iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
-      />
-    );
-  }
-  renderOptions = () => {
-    const { navigation, optionLeft, optionRight } = this.props;
 
-    return (
-      <Block row style={styles.options}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Text size={16} style={styles.tabTitle}>{optionLeft || 'Active Now'}</Text>
-          </Block>
-        </Button>
-        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Text size={16} style={styles.tabTitle}>{optionRight || 'Happening Soon'}</Text>
-          </Block>
-        </Button>
-      </Block>
-    );
-  }
   renderTabs = () => {
     const { tabs, tabIndex, navigation } = this.props;
     const defaultTab = tabs && tabs[0] && tabs[0].id;
@@ -152,12 +121,10 @@ class Header extends React.Component {
     )
   }
   renderHeader = () => {
-    const { search, options, tabs } = this.props;
-    if (search || tabs || options) {
+    const { options, tabs } = this.props;
+    if (tabs || options) {
       return (
         <Block center>
-          {search ? this.renderSearch() : null}
-          {options ? this.renderOptions() : null}
           {tabs ? this.renderTabs() : null}
         </Block>
       );
@@ -190,12 +157,12 @@ class Header extends React.Component {
             <Icon
               name={back ? 'nav-left' : "menu-8"} family="ArgonExtra"
               size={14} onPress={this.handleLeftPress}
-              color={iconColor || argonTheme.COLORS.ICON}/>
+              color={iconColor || fidoTheme.COLORS.ICON}/>
           }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[
             styles.title,
-            { color: argonTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
+            { color: fidoTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
             titleColor && { color: titleColor }
           ]}
           {...props}
@@ -231,7 +198,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   notify: {
-    backgroundColor: argonTheme.COLORS.LABEL,
+    backgroundColor: fidoTheme.COLORS.LABEL,
     borderRadius: 4,
     height: theme.SIZES.BASE / 2,
     width: theme.SIZES.BASE / 2,
@@ -245,14 +212,6 @@ const styles = StyleSheet.create({
   divider: {
     borderRightWidth: 0.3,
     borderRightColor: theme.COLORS.ICON,
-  },
-  search: {
-    height: 48,
-    width: width - 32,
-    marginHorizontal: 16,
-    borderWidth: 1,
-    borderRadius: 3,
-    borderColor: argonTheme.COLORS.BORDER
   },
   options: {
     marginBottom: 24,
@@ -270,7 +229,7 @@ const styles = StyleSheet.create({
   tabTitle: {
     lineHeight: 19,
     fontWeight: '400',
-    color: argonTheme.COLORS.HEADER
+    color: fidoTheme.COLORS.HEADER
   },
 });
 
