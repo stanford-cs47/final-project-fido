@@ -138,6 +138,7 @@ const MainTab = createBottomTabNavigator({
 {
   headerMode: 'float',
   initialRouteName: 'Home',
+  tabBarOptions: {activeTintColor: Colors.orange}
 })
 
 
