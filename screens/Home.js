@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
-import { Card } from '../components';
+import { Card, FloatingActionButton } from '../components';
 import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 
@@ -28,8 +28,11 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Block flex center style={styles.home}>
-        {this.renderArticles()}
+      <Block>
+        <Block style={styles.home}>
+          {this.renderArticles()}
+        </Block>
+        <FloatingActionButton/>
       </Block>
     );
   }
@@ -38,6 +41,7 @@ class Home extends React.Component {
 const styles = StyleSheet.create({
   home: {
     width: width,
+    alignItems: "center"
   },
   articles: {
     width: width - theme.SIZES.BASE * 2,

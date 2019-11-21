@@ -6,6 +6,7 @@ import Header from './Header';
 import Input from './Input';
 import Switch from './Switch';
 import Select from './Select';
+import FloatingActionButton from './FloatingActionButton'
 
 export {
   Button,
@@ -14,6 +15,7 @@ export {
   Icon,
   Input,
   Header,
-  Switch, 
-  Select
+  Switch,
+  Select,
+  FloatingActionButton
 };
