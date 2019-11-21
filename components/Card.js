@@ -3,6 +3,7 @@ import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
+import { Colors, Metrics } from '../Themes'
 
 import { argonTheme } from '../constants';
 
@@ -50,6 +51,7 @@ Card.propTypes = {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.COLORS.WHITE,
+    borderColor: Colors.fire,
     marginVertical: theme.SIZES.BASE,
     borderWidth: 0,
     minHeight: 114,
