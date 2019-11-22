@@ -56,10 +56,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     padding: 10,
-    marginTop: -300,
   },
   container: {
-
     justifyContent: "space-around",
     padding: 10,
   },
