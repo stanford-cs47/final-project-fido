@@ -20,7 +20,6 @@ const BellButton = ({isWhite, style, navigation}) => (
       name="search"
       color= "#FFFFFF"
     />
-    <Block middle style={styles.notify} />
   </TouchableOpacity>
 );
 

@@ -153,12 +153,12 @@ const HomeTab = createMaterialTopTabNavigator({
 })
 
 const HomeTab2 = createMaterialTopTabNavigator({
-  Home: {screen: Home2},
+  Home2: {screen: Home2},
   HappeningLater: {screen: HappeningLater},
 },
 {
   headerMode: 'float',
-  initialRouteName: 'Home',
+  initialRouteName: 'Home2',
   tabBarOptions: {
     activeTintColor: Colors.orange,
     inactiveTintColor: "black",
@@ -180,12 +180,12 @@ const MainTab = createBottomTabNavigator({
 
 const AltTab = createBottomTabNavigator({
   MyEventsStack: {screen: MyEventsStack},
-  HomeTab: {screen: HomeTab2},
+  HomeTab2: {screen: HomeTab2},
   BookmarkStack: {screen: BookmarkStack},
 },
 {
   headerMode: 'float',
-  initialRouteName: 'HomeTab',
+  initialRouteName: 'HomeTab2',
   tabBarOptions: {activeTintColor: Colors.orange}
 })
 
@@ -206,6 +206,12 @@ const HomeStack = createStackNavigator(
         headerTransparent: true
       })
     },
+    Home2: {
+      screen: AltTab,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search options title="Home" navigation={navigation} />,
+      }),
+    },
     Register: {
       screen: Register,
       navigationOptions: ({ navigation }) => ({
@@ -216,12 +222,6 @@ const HomeStack = createStackNavigator(
     NotImplemented: {
       screen: NotImplemented,
       navigationOptions: ({ navigation }) => ({
-      }),
-    },
-    Home2: {
-      screen: AltTab,
-      navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Home" navigation={navigation} />,
       }),
     },
   },
@@ -260,7 +260,11 @@ MyEventsStack.navigationOptions = ({ navigation }) => {
     ),
   };
 };
-
+Home2.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Happening Now',
+  };
+};
 Home.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Happening Now',
@@ -274,6 +278,19 @@ HappeningLater.navigationOptions = ({ navigation }) => {
 };
 
 HomeTab.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Home',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        family="feather"
+        size={30}
+        name="home"
+        color= {tintColor}
+      />
+    ),
+  };
+};
+HomeTab2.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => (
