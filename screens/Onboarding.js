@@ -22,30 +22,25 @@ class Onboarding extends React.Component {
       <Block flex style={styles.container}>
         <StatusBar hidden />
         <Block flex center>
-        <ImageBackground
+        <Image
             source={Images.Onboarding}
-            style={{ height, width, zIndex: 1 }}
+            style= {styles.bg}
           />
         </Block>
         <Block center>
-          <Image source={Images.LogoOnboarding} style={styles.logo} />
+          <Image source={Images.NewPaw} style={styles.logo} />
         </Block>
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 2 }}>
               <Block style={styles.title}>
                 <Block>
-                  <Text color="#FF5722" size={60}>
+                  <Text color="#FF5722" size={60} fontWeight= 'bold'>
                     FIDO
                   </Text>
                 </Block>
-                <Block>
-                  <Text color="#FF5722" size={60}>
-                    YEET
-                  </Text>
-                </Block>
                 <Block style={styles.subTitle}>
-                  <Text color="#FF5722" size={16}>
-                    Eddie and Irene are beasts
+                  <Text color="#FF5722" size={16} fontWeight= 'bold'>
+                    Team 3 Hi-Fi Prototype
                   </Text>
                 </Block>
               </Block>
@@ -69,6 +64,14 @@ class Onboarding extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.COLORS.BLACK
+  },
+  bg:{
+     height,
+     width,
+     zIndex: 1,
+     tintColor: "#FF5722",
+     backgroundColor: "#FF5722",
+     opacity: .35,
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 2,

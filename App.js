@@ -35,11 +35,12 @@ export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   }
-  
+
   render() {
     if(!this.state.isLoadingComplete) {
       return (
         <AppLoading
+          autoHideSplash={false}
           startAsync={this._loadResourcesAsync}
           onError={this._handleLoadingError}
           onFinish={this._handleFinishLoading}
