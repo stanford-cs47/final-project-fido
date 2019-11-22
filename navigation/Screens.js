@@ -228,6 +228,11 @@ Home.navigationOptions = ({ navigation }) => {
     tabBarLabel: 'Happening Now',
   };
 };
+HappeningLater.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Happening Later',
+  };
+};
 
 HomeTab.navigationOptions = ({ navigation }) => {
   return {
