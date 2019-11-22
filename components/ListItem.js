@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { Colors, Metrics } from '../Themes';
-import { List } from 'react-native-paper';
+import { List, Button } from 'react-native-paper';
 
 
 class ListItem extends React.Component {
@@ -17,10 +17,24 @@ class ListItem extends React.Component {
         description={item.description}
         left={ props => <Image source={{uri: item.image}} style={styles.image} />}
       >
-        <Block style={styles.card}>
-          <Text size={14} >Where: {item.location}</Text>
-          <Text size={14} >When: {item.activity}</Text>
-          <Text size={14} >Who: {item.attending}</Text>
+        <Block flex space="between" style={styles.card} >
+          <Block>
+            <Text size={14} >Where: {item.location}</Text>
+            <Text size={14} >When: {item.activity}</Text>
+            <Text size={14} >Who: {item.attending}</Text>
+          </Block>
+          <Block flex style={styles.buttons}>
+            <Button
+              mode="contained"
+              compact={true}
+              uppercase={false}
+              color={Colors.orange}
+              labelStyle={styles.buttonText}
+              onPress={() => console.log('Pressed')}
+            >
+              Navigate
+            </Button>
+          </Block>
         </Block>
       </List.Accordion>
     );
@@ -29,7 +43,17 @@ class ListItem extends React.Component {
 
 const styles = StyleSheet.create({
   card: {
-    marginBottom: theme.SIZES.BASE
+    marginBottom: theme.SIZES.BASE,
+    flexDirection: "row",
+    alignItems: "flex-end",
+  },
+  buttons: {
+    flexDirection: "column",
+    alignItems: "flex-end",
+    marginRight: theme.SIZES.BASE
+  },
+  buttonText: {
+    color: "white",
   },
   cardSubDescription: {
     flexDirection: "row",
