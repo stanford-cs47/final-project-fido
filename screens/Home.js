@@ -6,6 +6,7 @@ import { Card, FloatingActionButton, ListItem } from '../components';
 import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 import { List, Checkbox } from 'react-native-paper';
+import { Colors, Metrics } from '../Themes';
 
 class Home extends React.Component {
   state = {

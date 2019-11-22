@@ -1,5 +1,5 @@
 import React from "react";
-import { Easing, Animated } from "react-native";
+import { Easing, Animated, StyleSheet } from "react-native";
 import {
   createStackNavigator,
   createDrawerNavigator,
@@ -22,9 +22,10 @@ import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
-import Bookmarks from "../screens/Bookmarks"
-import MyEvents from "../screens/MyEvents"
-import HappeningLater from "../screens/HappeningLater"
+import Bookmarks from "../screens/Bookmarks";
+import MyEvents from "../screens/MyEvents";
+import HappeningLater from "../screens/HappeningLater";
+import NotImplemented from "../screens/NotImplemented";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -72,7 +73,7 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
 
 const ElementsStack = createStackNavigator({
   Elements: {
-    screen: Elements,
+    screen: NotImplemented,
     navigationOptions: ({ navigation }) => ({
       header: <Header title="Elements" navigation={navigation} />
     })
@@ -101,7 +102,7 @@ const ArticlesStack = createStackNavigator({
 const ProfileStack = createStackNavigator(
   {
     Profile: {
-      screen: Profile,
+      screen: NotImplemented,
       navigationOptions: ({ navigation }) => ({
         header: (
           <Header white transparent title="Profile" iconColor={'#FFF'} navigation={navigation} />
@@ -176,7 +177,14 @@ const HomeStack = createStackNavigator(
     Register: {
       screen: Register,
       navigationOptions: ({ navigation }) => ({
-      })
+        headerStyle: Styles.custonHeader,
+        headerTintColor: "#FFFFFF"
+      }),
+    },
+    NotImplemented: {
+      screen: NotImplemented,
+      navigationOptions: ({ navigation }) => ({
+      }),
     }
   },
   {
@@ -287,6 +295,13 @@ const AppStack = createDrawerNavigator(
   },
   Menu
 );
+
+const Styles = StyleSheet.create({
+  custonHeader: {
+    backgroundColor: Colors.orange,
+    color: "#FFFFFF",
+  }
+});
 
 const AppContainer = createAppContainer(AppStack);
 export default AppContainer;
