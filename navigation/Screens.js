@@ -262,12 +262,12 @@ MyEventsStack.navigationOptions = ({ navigation }) => {
 };
 Home2.navigationOptions = ({ navigation }) => {
   return {
-    tabBarLabel: 'Happening Now',
+    tabBarLabel: 'Active Now',
   };
 };
 Home.navigationOptions = ({ navigation }) => {
   return {
-    tabBarLabel: 'Happening Now',
+    tabBarLabel: 'Active Now',
   };
 };
 HappeningLater.navigationOptions = ({ navigation }) => {
