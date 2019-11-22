@@ -1,3 +1,4 @@
+//'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
 export default [
   {
     title: 'Event 1',
@@ -5,7 +6,7 @@ export default [
     location: 'Wilbur Field',
     activity: 'active now',
     attending: '2 attending',
-    image: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
+    image: '../assets/imgs/park.jpg',
     horizontal: true
   },
   {

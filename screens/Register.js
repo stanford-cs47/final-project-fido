@@ -43,7 +43,7 @@ class Register extends React.Component {
             <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
           </View>
-          <View style={styles.buttonContainer} >
+          <View >
             <View style={styles.buttons}>
               <Button
                 mode="contained"
@@ -61,7 +61,7 @@ class Register extends React.Component {
                 uppercase={false}
                 color={Colors.orange}
                 labelStyle={styles.buttonText}
-                onPress={() => {console.log('Pressed')}}
+                onPress={() => this.props.navigation.navigate('Home2')}
               >
                 Post
               </Button>
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
     justifyContent: "space-around",
-<<<<<<< HEAD
     marginTop: 40,
   },
   temp:{
@@ -109,8 +108,6 @@ const styles = StyleSheet.create({
   },
   textTemp:{
     color: "#FFFFFF"
-=======
->>>>>>> 3fe7fa0721f321dc1320f0e25a520c968e2d18a3
   }
 });
 

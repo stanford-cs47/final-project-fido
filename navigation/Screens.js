@@ -16,6 +16,7 @@ import Icon from '../components/Icon';
 
 // screens
 import Home from "../screens/Home";
+import Home2 from "../screens/Home2";
 import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
@@ -151,9 +152,35 @@ const HomeTab = createMaterialTopTabNavigator({
   },
 })
 
+const HomeTab2 = createMaterialTopTabNavigator({
+  Home: {screen: Home2},
+  HappeningLater: {screen: HappeningLater},
+},
+{
+  headerMode: 'float',
+  initialRouteName: 'Home',
+  tabBarOptions: {
+    activeTintColor: Colors.orange,
+    inactiveTintColor: "black",
+    style: {backgroundColor: '#FFFFFF'},
+    upperCaseLabel: false,
+  },
+})
+
 const MainTab = createBottomTabNavigator({
   MyEventsStack: {screen: MyEventsStack},
   HomeTab: {screen: HomeTab},
+  BookmarkStack: {screen: BookmarkStack},
+},
+{
+  headerMode: 'float',
+  initialRouteName: 'HomeTab',
+  tabBarOptions: {activeTintColor: Colors.orange}
+})
+
+const AltTab = createBottomTabNavigator({
+  MyEventsStack: {screen: MyEventsStack},
+  HomeTab: {screen: HomeTab2},
   BookmarkStack: {screen: BookmarkStack},
 },
 {
@@ -190,7 +217,13 @@ const HomeStack = createStackNavigator(
       screen: NotImplemented,
       navigationOptions: ({ navigation }) => ({
       }),
-    }
+    },
+    Home2: {
+      screen: AltTab,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search options title="Home" navigation={navigation} />,
+      }),
+    },
   },
   {
     cardStyle: {
