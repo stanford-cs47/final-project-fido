@@ -7,6 +7,7 @@ import {
   Dimensions
 } from "react-native";
 import { Block, Button, Text, theme } from "galio-framework";
+import { Colors, Metrics } from '../Themes';
 
 const { height, width } = Dimensions.get("screen");
 
@@ -33,17 +34,17 @@ class Onboarding extends React.Component {
             <Block flex space="around" style={{ zIndex: 2 }}>
               <Block style={styles.title}>
                 <Block>
-                  <Text color="white" size={60}>
+                  <Text color="#FF5722" size={60}>
                     FIDO
                   </Text>
                 </Block>
                 <Block>
-                  <Text color="white" size={60}>
+                  <Text color="#FF5722" size={60}>
                     YEET
                   </Text>
                 </Block>
                 <Block style={styles.subTitle}>
-                  <Text color="white" size={16}>
+                  <Text color="#FF5722" size={16}>
                     Eddie and Irene are beasts
                   </Text>
                 </Block>
@@ -53,7 +54,7 @@ class Onboarding extends React.Component {
                   style={styles.button}
                   color={argonTheme.COLORS.SECONDARY}
                   onPress={() => navigation.navigate("Home")}
-                  textStyle={{ color: argonTheme.COLORS.BLACK }}
+                  textStyle={{ color: Colors.orange }}
                 >
                   Get Started
                 </Button>
