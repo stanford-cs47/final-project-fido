@@ -13,17 +13,24 @@ import { Images } from "../constants";
 import { Block, Checkbox, Text, theme } from "galio-framework";
 
 const { width, height } = Dimensions.get("screen");
-import {TextInput, Chip} from 'react-native-paper'
+import {TextInput, Chip, Button} from 'react-native-paper'
+import { Colors, Metrics } from '../Themes';
 
 class Register extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
+      <Block>
+        <Image source={Images.Park} style={styles.image}/>
+        <Block>
+=======
       <View style = {styles.mainContainer}>
         <View style = {styles.container}>
           <Image source={Images.Park} style={styles.image}/>
         </View>
         <View style = {styles.container}>
+>>>>>>> 17d4c990a6241bc0d1690c34944736fe8915e626
           <TextInput
             label='Title'
             value='Fetch at the Park'
@@ -43,6 +50,26 @@ class Register extends React.Component {
           <View style={styles.chips}>
             <Chip onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
+          </View>
+          <View
+            mode="contained"
+            compact={true}
+            uppercase={false}
+            color={Colors.orange}
+            labelStyle={styles.buttonText}
+            onPress={() => {console.log('Pressed')}}
+          >
+            Navigate
+          </View>
+          <View
+            mode="contained"
+            compact={true}
+            uppercase={false}
+            color={Colors.orange}
+            labelStyle={styles.buttonText}
+            onPress={() => {console.log('Pressed')}}
+          >
+            Cancel
           </View>
         </View>
       </View>
@@ -73,6 +100,9 @@ const styles = StyleSheet.create({
   inputContainerStyle: {
     margin: 8,
   },
+  buttons: {
+    flexDirection: "row"
+  }
 });
 
 export default Register;
