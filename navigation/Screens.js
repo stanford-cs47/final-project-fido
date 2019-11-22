@@ -143,7 +143,12 @@ const HomeTab = createMaterialTopTabNavigator({
 {
   headerMode: 'float',
   initialRouteName: 'Home',
-  tabBarOptions: {activeTintColor: Colors.orange, inactiveTintColor: "black", style: {backgroundColor: '#FFFFFF'}},
+  tabBarOptions: {
+    activeTintColor: Colors.orange,
+    inactiveTintColor: "black",
+    style: {backgroundColor: '#FFFFFF'},
+    upperCaseLabel: false,
+  },
 })
 
 const MainTab = createBottomTabNavigator({
@@ -177,7 +182,7 @@ const HomeStack = createStackNavigator(
     Register: {
       screen: Register,
       navigationOptions: ({ navigation }) => ({
-        headerStyle: Styles.custonHeader,
+        headerStyle: Styles.customHeader,
         headerTintColor: "#FFFFFF"
       }),
     },
@@ -211,7 +216,7 @@ BookmarkStack.navigationOptions = ({ navigation }) => {
 
 MyEventsStack.navigationOptions = ({ navigation }) => {
   return {
-    tabBarLabel: 'MyEvents',
+    tabBarLabel: 'My Events',
     tabBarIcon: ({ tintColor }) => (
       <Icon
         family="feather"
@@ -231,6 +236,7 @@ Home.navigationOptions = ({ navigation }) => {
 HappeningLater.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Happening Later',
+
   };
 };
 
@@ -302,7 +308,7 @@ const AppStack = createDrawerNavigator(
 );
 
 const Styles = StyleSheet.create({
-  custonHeader: {
+  customHeader: {
     backgroundColor: Colors.orange,
     color: "#FFFFFF",
   }

@@ -1,6 +1,7 @@
 // local imgs
 const Plus = require("../assets/imgs/plus.png");
 const Paw = require("../assets/imgs/pawprint.jpg");
+const BG = require("../assets/imgs/coolbackground.png");
 const Park = require("../assets/imgs/park.jpg");
 const Onboarding = require("../assets/imgs/bg.png");
 const Logo = require("../assets/imgs/argon-logo.png");

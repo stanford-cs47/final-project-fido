@@ -5,7 +5,8 @@ import {
   ImageBackground,
   Dimensions,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  View
 } from "react-native";
 import { Icon, EventForm } from "../components";
 import { Images } from "../constants";
@@ -19,9 +20,17 @@ class Register extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <Block>
         <Image source={Images.Park} style={styles.image}/>
         <Block>
+=======
+      <View style = {styles.mainContainer}>
+        <View style = {styles.container}>
+          <Image source={Images.Park} style={styles.image}/>
+        </View>
+        <View style = {styles.container}>
+>>>>>>> 17d4c990a6241bc0d1690c34944736fe8915e626
           <TextInput
             label='Title'
             value='Fetch at the Park'
@@ -31,18 +40,18 @@ class Register extends React.Component {
             value='Wilbur Field'
           />
           <Text size={14} >Time</Text>
-          <Block style={styles.chips}>
+          <View style={styles.chips}>
             <Chip onPress={() => console.log('Pressed')}>Now</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 30 Minutes</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 1 Hour</Chip>
-          </Block>
+          </View>
           <Text size={14} >Invite</Text>
-          <Block style={styles.chips}>
+          <View style={styles.chips}>
             <Chip onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
-          </Block>
-          <Button
+          </View>
+          <View
             mode="contained"
             compact={true}
             uppercase={false}
@@ -51,8 +60,8 @@ class Register extends React.Component {
             onPress={() => {console.log('Pressed')}}
           >
             Navigate
-          </Button>
-          <Button
+          </View>
+          <View
             mode="contained"
             compact={true}
             uppercase={false}
@@ -61,18 +70,24 @@ class Register extends React.Component {
             onPress={() => {console.log('Pressed')}}
           >
             Cancel
-          </Button>
-        </Block>
-      </Block>
+          </View>
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  mainContainer: {
+    flex:1,
     flexDirection: "column",
-    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    padding: 10,
+    marginTop: -300,
+  },
+  container: {
+
+    justifyContent: "space-around",
     padding: 10,
   },
   chips: {
