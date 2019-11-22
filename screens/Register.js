@@ -43,27 +43,29 @@ class Register extends React.Component {
             <Chip onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
           </View>
-          <View style={styles.buttons}>
-            <Button
-              mode="contained"
-              compact={true}
-              uppercase={false}
-              color={Colors.orange}
-              labelStyle={styles.buttonText}
-              onPress={() => {console.log('Pressed')}}
-            >
-              Navigate
-            </Button>
-            <Button
-              mode="contained"
-              compact={true}
-              uppercase={false}
-              color={Colors.orange}
-              labelStyle={styles.buttonText}
-              onPress={() => {console.log('Pressed')}}
-            >
-              Cancel
-            </Button>
+          <View style={styles.buttonContainer} >
+            <View style={styles.buttons}>
+              <Button
+                mode="contained"
+                compact={true}
+                uppercase={false}
+                color={Colors.orange}
+                labelStyle={styles.buttonText}
+                onPress={() => {console.log('Pressed')}}
+              >
+                Cancel
+              </Button>
+              <Button
+                mode="contained"
+                compact={true}
+                uppercase={false}
+                color={Colors.orange}
+                labelStyle={styles.buttonText}
+                onPress={() => {console.log('Pressed')}}
+              >
+                Post
+              </Button>
+            </View>
           </View>
         </View>
       </View>
@@ -94,9 +96,12 @@ const styles = StyleSheet.create({
   inputContainerStyle: {
     margin: 8,
   },
+  buttonContainer: {
+    alignSelf: "flex-end"
+  },
   buttons: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
   }
 });
 
