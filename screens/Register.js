@@ -47,8 +47,9 @@ class Register extends React.Component {
           </View>
           <View style={styles.inputContainer}>
           <Text size={14} >Invite</Text>
-            <View style={styles.chips}>
+            <View style={styles.chips2}>
               <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
+              <Text> </Text>
               <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
             </View>
           </View>
@@ -95,6 +96,9 @@ const styles = StyleSheet.create({
   chips: {
     flexDirection: "row",
     justifyContent: "space-around"
+  },
+  chips2: {
+    flexDirection: "row",
   },
   image: {
     width: width,
