@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  Image
+  Image,
+  Text
 } from "react-native";
 import { Block, theme } from "galio-framework";
 import { Colors, Metrics } from '../Themes'
@@ -16,7 +17,10 @@ const { width } = Dimensions.get("screen");
 const Drawer = props => (
   <Block style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
     <Block flex={0.05} style={styles.header}>
-      <Image styles={styles.logo} source={Images.Logo} />
+      <Text style ={styles.text}>
+       FIDO
+       </Text>
+      <Image styles={styles.photo} source={Images.Paw} />
     </Block>
     <Block flex>
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
@@ -63,6 +67,16 @@ const styles = StyleSheet.create({
     paddingBottom: theme.SIZES.BASE,
     paddingTop: theme.SIZES.BASE * 3,
     justifyContent: 'center'
+  },
+  photo:{
+    resizeMode: 'contain',
+    width: 20,
+    height: 20,
+  },
+  text:{
+    fontSize: 40,
+    color: Colors.orange,
+    fontWeight: 'bold'
   }
 });
 

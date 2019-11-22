@@ -8,6 +8,8 @@ const Pro = require("../assets/imgs/getPro-bg.png");
 const ArgonLogo = require("../assets/imgs/argonlogo.png");
 const iOSLogo = require("../assets/imgs/ios.png");
 const androidLogo = require("../assets/imgs/android.png");
+const Plus = require("../assets/imgs/plus.png");
+const Paw = require("../assets/imgs/pawprint.jpg");
 // internet imgs
 
 const ProfilePicture = 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?fit=crop&w=1650&q=80';

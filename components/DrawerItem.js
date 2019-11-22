@@ -4,6 +4,7 @@ import { Block, Text, theme } from "galio-framework";
 
 import Icon from "./Icon";
 import argonTheme from "../constants/Theme";
+import { Colors, Metrics } from '../Themes'
 
 class DrawerItem extends React.Component {
   renderIcon = () => {
@@ -16,7 +17,7 @@ class DrawerItem extends React.Component {
             name="shop"
             family="ArgonExtra"
             size={10}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : Colors.orange}
           />
         );
       case "Elements":
@@ -25,7 +26,7 @@ class DrawerItem extends React.Component {
             name="map-big"
             family="ArgonExtra"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.ERROR}
+            color={focused ? "white" : Colors.orange}
           />
         );
       case "Articles":
@@ -34,7 +35,7 @@ class DrawerItem extends React.Component {
             name="spaceship"
             family="ArgonExtra"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : Colors.orange}
           />
         );
       case "Profile":
@@ -43,7 +44,7 @@ class DrawerItem extends React.Component {
             name="chart-pie-35"
             family="ArgonExtra"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.WARNING}
+            color={focused ? "white" : Colors.orange}
           />
         );
       case "Account":
@@ -52,7 +53,7 @@ class DrawerItem extends React.Component {
             name="calendar-date"
             family="ArgonExtra"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.INFO}
+            color={focused ? "white" : Colors.orange}
           />
         );
       case "Getting Started":
@@ -81,7 +82,7 @@ class DrawerItem extends React.Component {
           <Text
             size={15}
             bold={focused ? true : false}
-            color={focused ? "white" : "rgba(0,0,0,0.5)"}
+            color={focused ? "white" : "rgba(0,0,0,0.75)"}
           >
             {title}
           </Text>
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14
   },
   activeStyle: {
-    backgroundColor: argonTheme.COLORS.ACTIVE,
+    backgroundColor: Colors.orange,
     borderRadius: 4
   },
   shadow: {
