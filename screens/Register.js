@@ -42,7 +42,7 @@ class Register extends React.Component {
               <Chip onPress={() => console.log('Pressed')}  >Now</Chip>
               <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
               <Chip onPress={() => console.log('Pressed')}>In 30 Minutes</Chip>
-              <Chip onPress={() => console.log('Pressed')}>In 1 Hour</Chip>
+              <Chip onPress={() => console.log('Pressed')}>Custom</Chip>
             </View>
           </View>
           <View style={styles.inputContainer}>
