@@ -23,7 +23,7 @@ class Register extends React.Component {
       <View>
         <Image source={Images.Park} style={styles.image}/>
         <View style={styles.mainContainer}>
-          <Text size={18} margin={10}>New Event</Text>
+          <Text size={18}>New Event</Text>
           <View style={styles.inputContainer}>
             <TextInput
               label='Title'
@@ -37,7 +37,7 @@ class Register extends React.Component {
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text size={14} margin={10}>Time</Text>
+            <Text size={14}>Time</Text>
             <View style={styles.chips}>
               <Chip onPress={() => console.log('Pressed')}  >Now</Chip>
               <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
@@ -46,7 +46,7 @@ class Register extends React.Component {
             </View>
           </View>
           <View style={styles.inputContainer}>
-          <Text size={14} margin={10}>Invite</Text>
+          <Text size={14} >Invite</Text>
             <View style={styles.chips}>
               <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
               <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
@@ -59,7 +59,6 @@ class Register extends React.Component {
                 compact={false}
                 uppercase={false}
                 color={Colors.orange}
-                labelStyle={styles.buttonText}
                 onPress={() => {console.log('Pressed')}}
               >
                 Cancel
@@ -104,7 +103,11 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   buttonContainer: {
-    justifyContent: "space-between"
+    justifyContent: "flex-end",
+    marginTop: 120
+  },
+  buttonText: {
+    color: "white"
   },
   buttons: {
     flexDirection: "row",
