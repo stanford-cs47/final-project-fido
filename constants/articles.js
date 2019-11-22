@@ -1,6 +1,6 @@
 export default [
   {
-    title: 'Event 1 …',
+    title: 'Event 1',
     description: '0.2 mi      active now      2 attending',
     location: 'Wilbur Field',
     activity: 'active now',
@@ -9,7 +9,7 @@ export default [
     horizontal: true
   },
   {
-    title: 'Event 2 …',
+    title: 'Event 2',
     description: '0.2 mi      active now      2 attending',
     location: 'Wilbur Field',
     activity: 'active now',
@@ -18,7 +18,7 @@ export default [
     horizontal: true
   },
   {
-    title: 'Event 3 …',
+    title: 'Event 3',
     description: '0.2 mi      active now      2 attending',
     location: 'Wilbur Field',
     activity: 'active now',
@@ -27,7 +27,7 @@ export default [
     horizontal: true
   },
   {
-    title: 'Event 4 …',
+    title: 'Event 4',
     description: '0.2 mi      active now      2 attending',
     location: 'Wilbur Field',
     activity: 'active now',
@@ -36,7 +36,16 @@ export default [
     horizontal: true
   },
   {
-    title: 'Event 5 …',
+    title: 'Event 5',
+    description: '0.2 mi      active now      2 attending',
+    location: 'Wilbur Field',
+    activity: 'active now',
+    attending: '2 attending',
+    image: 'https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?fit=crop&w=1947&q=80',
+    horizontal: true
+  },
+  {
+    title: 'Frisbee at the Park',
     description: '0.2 mi      active now      2 attending',
     location: 'Wilbur Field',
     activity: 'active now',
