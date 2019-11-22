@@ -56,6 +56,7 @@ class Register extends React.Component {
             <View style={styles.buttons}>
               <Button
                 mode="outlined"
+                style={{ width: 130 }}
                 compact={false}
                 uppercase={false}
                 color={Colors.orange}
@@ -65,6 +66,7 @@ class Register extends React.Component {
               </Button>
               <Button
                 mode="contained"
+                style={{ width: 230 }}
                 compact={false}
                 uppercase={false}
                 color={Colors.orange}
