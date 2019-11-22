@@ -23,7 +23,7 @@ class Onboarding extends React.Component {
         <StatusBar hidden />
         <Block flex center>
         <ImageBackground
-            source={Images.BG}
+            source={Images.Onboarding}
             style={{ height, width, zIndex: 1 }}
           />
         </Block>
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0
   },
   logo: {
+    resizeMode: 'contain',
     width: 200,
     height: 60,
     zIndex: 2,
