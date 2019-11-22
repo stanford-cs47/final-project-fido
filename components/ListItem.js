@@ -9,14 +9,26 @@ import { Images } from '../constants/';
 
 
 class ListItem extends React.Component {
+  state = {
+    expanded: false
+  }
+
+  _handlePress = () =>
+      this.setState({
+        expanded: !this.state.expanded
+      });
+
   render() {
     const { item } = this.props;
-  
+
     return (
       <List.Accordion
         title={item.title}
+        expanded={this.state.expanded}
+        titleStyle = {{color : this.state.expanded ? Colors.orange : 'black'}}
         description={item.description}
         left={ props => <Image source={Images.Park} style={styles.image} />}
+        onPress={this._handlePress}
       >
         <Block flex space="between" style={styles.card} >
           <Block>
