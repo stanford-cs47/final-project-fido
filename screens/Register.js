@@ -22,32 +22,41 @@ class Register extends React.Component {
     return (
       <View>
         <Image source={Images.Park} style={styles.image}/>
-        <View>
-          <TextInput
-            label='Title'
-            value='Fetch at the Park'
-          />
-          <TextInput
-            label='Location'
-            value='Wilbur Field'
-          />
-          <Text size={14} >Time</Text>
-          <View style={styles.chips}>
-            <Chip onPress={() => console.log('Pressed')}  >Now</Chip>
-            <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
-            <Chip onPress={() => console.log('Pressed')}>In 30 Minutes</Chip>
-            <Chip onPress={() => console.log('Pressed')}>In 1 Hour</Chip>
+        <View style={styles.mainContainer}>
+          <Text size={18} margin={10}>New Event</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              label='Title'
+              value='Fetch at the Park'
+            />
           </View>
-          <Text size={14} >Invite</Text>
-          <View style={styles.chips}>
-            <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
-            <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
+          <View style={styles.inputContainer}>
+            <TextInput
+              label='Location'
+              value='Wilbur Field'
+            />
           </View>
-          <View >
+          <View style={styles.inputContainer}>
+            <Text size={14} margin={10}>Time</Text>
+            <View style={styles.chips}>
+              <Chip onPress={() => console.log('Pressed')}  >Now</Chip>
+              <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
+              <Chip onPress={() => console.log('Pressed')}>In 30 Minutes</Chip>
+              <Chip onPress={() => console.log('Pressed')}>In 1 Hour</Chip>
+            </View>
+          </View>
+          <View style={styles.inputContainer}>
+          <Text size={14} margin={10}>Invite</Text>
+            <View style={styles.chips}>
+              <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
+              <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
+            </View>
+          </View>
+          <View style={styles.buttonContainer}>
             <View style={styles.buttons}>
               <Button
-                mode="contained"
-                compact={true}
+                mode="outlined"
+                compact={false}
                 uppercase={false}
                 color={Colors.orange}
                 labelStyle={styles.buttonText}
@@ -57,7 +66,7 @@ class Register extends React.Component {
               </Button>
               <Button
                 mode="contained"
-                compact={true}
+                compact={false}
                 uppercase={false}
                 color={Colors.orange}
                 labelStyle={styles.buttonText}
@@ -75,8 +84,8 @@ class Register extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    justifyContent: "space-around",
     padding: 10,
+    marginTop: -50
   },
   container: {
     justifyContent: "space-around",
@@ -91,11 +100,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginTop: -120
   },
-  inputContainerStyle: {
+  inputContainer: {
     margin: 8,
   },
   buttonContainer: {
-    alignSelf: "flex-end"
+    justifyContent: "space-between"
   },
   buttons: {
     flexDirection: "row",
