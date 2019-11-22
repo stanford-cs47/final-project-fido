@@ -44,7 +44,7 @@ class Home extends React.Component {
         <Block style={styles.home}>
           {this.renderArticles()}
         </Block>
-        <FloatingActionButton/>
+        <FloatingActionButton navigation= {this.props.navigation}/>
       </Block>
     );
   }

@@ -1,31 +1,52 @@
 import { StyleSheet, View, Image, TouchableOpacity, Alert} from 'react-native';
 import React from "react";
+import { withNavigation } from 'react-navigation';
 import { Colors, Metrics } from '../Themes'
 import { Entypo } from '@expo/vector-icons';
 import { Images } from '../constants/';
 import Icon from './Icon';
 
 
+const PlusButton = ({navigation}) => (
+  <View style={styles.MainContainer}>
+    <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('Register')} style={styles.TouchableOpacityStyle} >
+    <View style={styles.PlusStyle}>
+      <Icon
+       family="feather"
+       size={30}
+       name="plus"
+       color= "#FFFFFF"
+       />
+    </View>
+    </TouchableOpacity>
+  </View>
+);
+
 //{uri : 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png'}
 class FloatingActionButton extends React.Component {
+
   SampleFunction=()=>{
       Alert.alert("Plus Button Clicked");
   }
 
+  handleLeftPress = () => {
+    const { back, navigation } = this.props;
+    return (back ? navigation.goBack() : navigation.openDrawer());
+  }
+  renderRight = () => {
+    const { navigation } = this.props;
+    const { routeName } = navigation.state;
+
+    return [
+      <SearchButton key='chat-title' navigation={navigation} isWhite={white} />,
+      <FilterButton key='basket-title' navigation={navigation} isWhite={white} />
+    ]
+  }
+
   render() {
+    const { back, navigation } = this.props;
     return (
-      <View style={styles.MainContainer}>
-        <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle} >
-        <View style={styles.PlusStyle}>
-          <Icon
-           family="feather"
-           size={30}
-           name="plus"
-           color= "#FFFFFF"
-           />
-        </View>
-        </TouchableOpacity>
-      </View>
+      <PlusButton navigation = {this.props.navigation} />
     );
   }
 }
@@ -64,4 +85,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FloatingActionButton;
+export default withNavigation(FloatingActionButton);

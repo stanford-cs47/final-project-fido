@@ -172,6 +172,15 @@ const HomeStack = createStackNavigator(
         ),
         headerTransparent: true
       })
+    },
+    Register: {
+      screen: Register,
+      navigationOptions: ({ navigation }) => ({
+        header: (
+          <Header left={<Block />} white transparent title="" navigation={navigation} />
+        ),
+        headerTransparent: true
+      })
     }
   },
   {
