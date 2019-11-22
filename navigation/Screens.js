@@ -9,7 +9,10 @@ import {
 } from "react-navigation";
 import { Entypo } from '@expo/vector-icons';
 import { Block } from "galio-framework";
-import { Colors, Metrics } from '../Themes'
+import { Colors, Metrics } from '../Themes';
+//import Icon from 'react-feather';
+//import { Icon } from 'galio-framework';
+import Icon from '../components/Icon';
 
 // screens
 import Home from "../screens/Home";
@@ -183,9 +186,12 @@ BookmarkStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Bookmarks',
     tabBarIcon: ({ tintColor }) => (
-      <Entypo name="bookmark"
-        size={Metrics.icons.medium}
-        color={tintColor} />
+      <Icon
+        family="feather"
+        size={30}
+        name="bookmark"
+        color= {tintColor}
+      />
     ),
   };
 };
@@ -194,9 +200,12 @@ MyEventsStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'MyEvents',
     tabBarIcon: ({ tintColor }) => (
-      <Entypo name="user"
-        size={Metrics.icons.medium}
-        color={tintColor} />
+      <Icon
+        family="feather"
+        size={30}
+        name="user"
+        color= {tintColor}
+      />
     ),
   };
 };
@@ -211,9 +220,12 @@ HomeTab.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => (
-      <Entypo name="home"
-        size={Metrics.icons.medium}
-        color={tintColor} />
+      <Icon
+        family="feather"
+        size={30}
+        name="home"
+        color= {tintColor}
+      />
     ),
   };
 };

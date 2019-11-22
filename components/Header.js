@@ -15,21 +15,32 @@ const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 
 const BellButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
-      family="ArgonExtra"
-      size={16}
-      name="bell"
+      family="feather"
+      size={20}
+      name="search"
       color= "#FFFFFF"
     />
     <Block middle style={styles.notify} />
   </TouchableOpacity>
 );
 
+const FilterButton = ({isWhite, style, navigation}) => (
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+    <Icon
+      family="feather"
+      size={20}
+      name="filter"
+      color= "#FFFFFF"
+    />
+  </TouchableOpacity>
+);
+
 const BasketButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
-      family="ArgonExtra"
-      size={16}
-      name="basket"
+      family="feather"
+      size={20}
+      name="filter"
       color= "#FFFFFF"
     />
   </TouchableOpacity>
@@ -39,8 +50,8 @@ const SearchButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
       size={16}
-      family="Galio"
-      name="search-zoom-in"
+      family="feather"
+      name="search"
       color= 'WHITE'
     />
   </TouchableOpacity>
@@ -57,8 +68,8 @@ class Header extends React.Component {
 
     if (title === 'Title') {
       return [
-        <BellButton key='chat-title' navigation={navigation} isWhite={white} />,
-        <BasketButton key='basket-title' navigation={navigation} isWhite={white} />
+        <SearchButton key='chat-title' navigation={navigation} isWhite={white} />,
+        <FilterButton key='basket-title' navigation={navigation} isWhite={white} />
       ]
     }
 
