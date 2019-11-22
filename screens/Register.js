@@ -5,7 +5,8 @@ import {
   ImageBackground,
   Dimensions,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  View
 } from "react-native";
 import { Icon, EventForm } from "../components";
 import { Images } from "../constants";
@@ -18,11 +19,11 @@ class Register extends React.Component {
 
   render() {
     return (
-      <Block>
-        <Block>
+      <View style = {styles.mainContainer}>
+        <View style = {styles.container}>
           <Image source={Images.Park} style={styles.image}/>
-        </Block>
-        <Block>
+        </View>
+        <View style = {styles.container}>
           <TextInput
             label='Title'
             value='Fetch at the Park'
@@ -32,28 +33,34 @@ class Register extends React.Component {
             value='Wilbur Field'
           />
           <Text size={14} >Time</Text>
-          <Block style={styles.chips}>
+          <View style={styles.chips}>
             <Chip onPress={() => console.log('Pressed')}>Now</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 30 Minutes</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 1 Hour</Chip>
-          </Block>
+          </View>
           <Text size={14} >Invite</Text>
-          <Block style={styles.chips}>
+          <View style={styles.chips}>
             <Chip onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
-          </Block>
-        </Block>
-      </Block>
+          </View>
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  mainContainer: {
+    flex:1,
     flexDirection: "column",
-    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    padding: 10,
+    marginTop: -300,
+  },
+  container: {
+
+    justifyContent: "space-around",
     padding: 10,
   },
   chips: {
