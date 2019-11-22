@@ -5,6 +5,7 @@ import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-n
 import { Block, Text, theme } from 'galio-framework';
 import { Colors, Metrics } from '../Themes';
 import { List, Button } from 'react-native-paper';
+import { Images } from '../constants/';
 
 
 class ListItem extends React.Component {
@@ -15,7 +16,7 @@ class ListItem extends React.Component {
       <List.Accordion
         title={item.title}
         description={item.description}
-        left={ props => <Image source={{uri: item.image}} style={styles.image} />}
+        left={ props => <Image source={Images.Park} style={styles.image} />}
       >
         <Block flex space="between" style={styles.card} >
           <Block>

@@ -5,7 +5,7 @@ import { Colors, Metrics } from '../Themes';
 export default function HappeningLater() {
   return (
     <View style={styles.container}>
-      <Text>HappeningLater!</Text>
+      <Text>Happening Later!</Text>
     </View>
   );
 }
