@@ -176,10 +176,6 @@ const HomeStack = createStackNavigator(
     Register: {
       screen: Register,
       navigationOptions: ({ navigation }) => ({
-        header: (
-          <Header left={<Block />} white transparent title="" navigation={navigation} />
-        ),
-        headerTransparent: true
       })
     }
   },
