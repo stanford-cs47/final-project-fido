@@ -33,14 +33,14 @@ class Register extends React.Component {
           />
           <Text size={14} >Time</Text>
           <View style={styles.chips}>
-            <Chip onPress={() => console.log('Pressed')}>Now</Chip>
-            <Chip onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
+            <Chip onPress={() => console.log('Pressed')}  >Now</Chip>
+            <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 30 Minutes</Chip>
             <Chip onPress={() => console.log('Pressed')}>In 1 Hour</Chip>
           </View>
           <Text size={14} >Invite</Text>
           <View style={styles.chips}>
-            <Chip onPress={() => console.log('Pressed')}>Public</Chip>
+            <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
           </View>
           <View style={styles.buttons}>
@@ -73,9 +73,7 @@ class Register extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex:1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "space-around",
     padding: 10,
   },
   container: {
@@ -96,7 +94,15 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    marginTop: 40,
+  },
+  temp:{
+    backgroundColor: Colors.orange,
+    color: "#FFFFFF"
+  },
+  textTemp:{
+    color: "#FFFFFF"
   }
 });
 

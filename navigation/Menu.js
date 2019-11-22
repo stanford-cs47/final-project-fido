@@ -20,7 +20,7 @@ const Drawer = props => (
       <Text style ={styles.text}>
        FIDO
        </Text>
-      <Image styles={styles.photo} source={Images.Paw} />
+      <Image styles={styles.photo} source={Images.NewPaw} />
     </Block>
     <Block flex>
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
