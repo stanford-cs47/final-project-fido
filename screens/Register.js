@@ -43,27 +43,29 @@ class Register extends React.Component {
             <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
           </View>
-          <View style={styles.buttons}>
-            <Button
-              mode="contained"
-              compact={true}
-              uppercase={false}
-              color={Colors.orange}
-              labelStyle={styles.buttonText}
-              onPress={() => {console.log('Pressed')}}
-            >
-              Navigate
-            </Button>
-            <Button
-              mode="contained"
-              compact={true}
-              uppercase={false}
-              color={Colors.orange}
-              labelStyle={styles.buttonText}
-              onPress={() => {console.log('Pressed')}}
-            >
-              Cancel
-            </Button>
+          <View style={styles.buttonContainer} >
+            <View style={styles.buttons}>
+              <Button
+                mode="contained"
+                compact={true}
+                uppercase={false}
+                color={Colors.orange}
+                labelStyle={styles.buttonText}
+                onPress={() => {console.log('Pressed')}}
+              >
+                Cancel
+              </Button>
+              <Button
+                mode="contained"
+                compact={true}
+                uppercase={false}
+                color={Colors.orange}
+                labelStyle={styles.buttonText}
+                onPress={() => {console.log('Pressed')}}
+              >
+                Post
+              </Button>
+            </View>
           </View>
         </View>
       </View>
@@ -92,9 +94,13 @@ const styles = StyleSheet.create({
   inputContainerStyle: {
     margin: 8,
   },
+  buttonContainer: {
+    alignSelf: "flex-end"
+  },
   buttons: {
     flexDirection: "row",
     justifyContent: "space-around",
+<<<<<<< HEAD
     marginTop: 40,
   },
   temp:{
@@ -103,6 +109,8 @@ const styles = StyleSheet.create({
   },
   textTemp:{
     color: "#FFFFFF"
+=======
+>>>>>>> 3fe7fa0721f321dc1320f0e25a520c968e2d18a3
   }
 });
 
