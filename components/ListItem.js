@@ -30,7 +30,7 @@ class ListItem extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={styles.buttonText}
-              onPress={() => console.log('Pressed')}
+              onPress={() => {console.log('Pressed')}}
             >
               Navigate
             </Button>
