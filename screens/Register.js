@@ -20,17 +20,9 @@ class Register extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <Block>
+      <View>
         <Image source={Images.Park} style={styles.image}/>
-        <Block>
-=======
-      <View style = {styles.mainContainer}>
-        <View style = {styles.container}>
-          <Image source={Images.Park} style={styles.image}/>
-        </View>
-        <View style = {styles.container}>
->>>>>>> 17d4c990a6241bc0d1690c34944736fe8915e626
+        <View>
           <TextInput
             label='Title'
             value='Fetch at the Park'
@@ -51,25 +43,27 @@ class Register extends React.Component {
             <Chip onPress={() => console.log('Pressed')}>Public</Chip>
             <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
           </View>
-          <View
-            mode="contained"
-            compact={true}
-            uppercase={false}
-            color={Colors.orange}
-            labelStyle={styles.buttonText}
-            onPress={() => {console.log('Pressed')}}
-          >
-            Navigate
-          </View>
-          <View
-            mode="contained"
-            compact={true}
-            uppercase={false}
-            color={Colors.orange}
-            labelStyle={styles.buttonText}
-            onPress={() => {console.log('Pressed')}}
-          >
-            Cancel
+          <View style={styles.buttons}>
+            <Button
+              mode="contained"
+              compact={true}
+              uppercase={false}
+              color={Colors.orange}
+              labelStyle={styles.buttonText}
+              onPress={() => {console.log('Pressed')}}
+            >
+              Navigate
+            </Button>
+            <Button
+              mode="contained"
+              compact={true}
+              uppercase={false}
+              color={Colors.orange}
+              labelStyle={styles.buttonText}
+              onPress={() => {console.log('Pressed')}}
+            >
+              Cancel
+            </Button>
           </View>
         </View>
       </View>
@@ -86,7 +80,6 @@ const styles = StyleSheet.create({
     marginTop: -300,
   },
   container: {
-
     justifyContent: "space-around",
     padding: 10,
   },
@@ -103,7 +96,8 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   buttons: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "space-around"
   }
 });
 
