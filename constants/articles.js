@@ -46,7 +46,7 @@ export default [
     horizontal: true
   },
   {
-    title: 'Frisbee at the Park',
+    title: 'Frisbee at the Park (me)',
     description: '0.0 mi      active now      1 attending',
     location: 'Wilbur Field',
     activity: 'active now',
