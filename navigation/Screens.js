@@ -149,6 +149,8 @@ const HomeTab = createMaterialTopTabNavigator({
     inactiveTintColor: "black",
     style: {backgroundColor: '#FFFFFF'},
     upperCaseLabel: false,
+    activeTintColor: Colors.orange,
+    indicatorStyle: {color: Colors.orange, backgroundColor: Colors.orange}
   },
 })
 
@@ -164,6 +166,7 @@ const HomeTab2 = createMaterialTopTabNavigator({
     inactiveTintColor: "black",
     style: {backgroundColor: '#FFFFFF'},
     upperCaseLabel: false,
+    indicatorStyle: {color: Colors.orange, backgroundColor: Colors.orange}
   },
 })
 
@@ -186,7 +189,7 @@ const AltTab = createBottomTabNavigator({
 {
   headerMode: 'float',
   initialRouteName: 'HomeTab2',
-  tabBarOptions: {activeTintColor: Colors.orange}
+  tabBarOptions: {activeTintColor: Colors.orange, indicatorStyle:{color:Colors.orange}}
 })
 
 const HomeStack = createStackNavigator(
@@ -361,6 +364,10 @@ const Styles = StyleSheet.create({
   customHeader: {
     backgroundColor: Colors.orange,
     color: "#FFFFFF",
+  },
+  temp: {
+    color: Colors.orange,
+    backgroundColor: Colors.orange
   }
 });
 

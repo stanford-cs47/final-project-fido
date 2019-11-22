@@ -11,7 +11,7 @@ import { Images } from '../constants/';
 class ListItem extends React.Component {
   render() {
     const { item } = this.props;
-
+  
     return (
       <List.Accordion
         title={item.title}
