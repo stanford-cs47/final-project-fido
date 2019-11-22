@@ -32,6 +32,10 @@ const Products = {
 };
 
 export default {
+  Plus,
+  NewPaw,
+  Paw,
+  BG,
   Park,
   Onboarding,
   Logo,

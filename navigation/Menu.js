@@ -13,14 +13,13 @@ import { Colors, Metrics } from '../Themes'
 import Images from "../constants/Images";
 
 const { width } = Dimensions.get("screen");
-
+//<Image source={Images.Paw} styles={styles.photo} />
 const Drawer = props => (
   <Block style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
     <Block flex={0.05} style={styles.header}>
       <Text style ={styles.text}>
        FIDO
        </Text>
-      <Image styles={styles.photo} source={Images.NewPaw} />
     </Block>
     <Block flex>
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
@@ -61,17 +60,19 @@ const Menu = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    resizeMode: 'contain'
   },
   header: {
     paddingHorizontal: 28,
     paddingBottom: theme.SIZES.BASE,
     paddingTop: theme.SIZES.BASE * 3,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    resizeMode: 'contain'
   },
   photo:{
+    width: 10,
+    height: 10,
     resizeMode: 'contain',
-    width: 20,
-    height: 20,
   },
   text:{
     fontSize: 40,

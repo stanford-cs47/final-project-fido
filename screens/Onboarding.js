@@ -47,9 +47,9 @@ class Onboarding extends React.Component {
               <Block center>
                 <Button
                   style={styles.button}
-                  color={argonTheme.COLORS.SECONDARY}
+                  color={Colors.orange}
                   onPress={() => navigation.navigate("Home")}
-                  textStyle={{ color: Colors.orange }}
+                  textStyle={{ color: "#FFFFFF"}}
                 >
                   Get Started
                 </Button>
@@ -69,9 +69,8 @@ const styles = StyleSheet.create({
      height,
      width,
      zIndex: 1,
-     tintColor: "#FF5722",
+     tintColor: "#FFFFFF",
      backgroundColor: "#FF5722",
-     opacity: .35,
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 2,
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
   logo: {
     resizeMode: 'contain',
     width: 200,
-    height: 60,
+    height: 200,
     zIndex: 2,
     position: 'relative',
     marginTop: '-50%'
