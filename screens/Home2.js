@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, Alert } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 
 import { Card, FloatingActionButton, ListItem } from '../components';
@@ -37,11 +37,20 @@ class Home extends React.Component {
           <ListItem item={articles[4]}/>
         </List.Section>
       </ScrollView>
+
     );
   }
 
   render() {
     return (
+      Alert.alert(
+        'Event Posted!',
+        'You can view it in My Events',
+        [
+          {text: 'Got it!'},
+        ],
+        {cancelable: false},
+      ),
       <Block flex>
         <Block style={styles.home}>
           {this.renderArticles()}
