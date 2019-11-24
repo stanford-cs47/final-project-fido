@@ -7,7 +7,9 @@ import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 import { List, Checkbox } from 'react-native-paper';
 import { Colors, Metrics } from '../Themes';
-
+import { Images } from '../constants/';
+//style={{ borderColor: "#FF5722", borderWidth: 1, backgroundColor: Colors.orange, opacity: .5 }}
+//style={{ borderColor: "#FF5722", borderWidth:1}}
 class Home extends React.Component {
   state = {
     expanded: true

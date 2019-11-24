@@ -171,7 +171,7 @@ const HomeTab2 = createMaterialTopTabNavigator({
 })
 
 const MainTab = createBottomTabNavigator({
-  MyEventsStack: {screen: MyEventsStack},
+  MyEventsStack: {screen: MyEventsStack,},
   HomeTab: {screen: HomeTab},
   BookmarkStack: {screen: BookmarkStack},
 },
@@ -253,6 +253,7 @@ BookmarkStack.navigationOptions = ({ navigation }) => {
 MyEventsStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'My Events',
+    header: <Header search options title="My Events" navigation={navigation} />,
     tabBarIcon: ({ tintColor }) => (
       <Icon
         family="feather"

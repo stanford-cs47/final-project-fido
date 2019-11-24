@@ -37,8 +37,10 @@ const Menu = {
     activeTintColor: "white",
     inactiveTintColor: "#000",
     activeBackgroundColor: "transparent",
+    resizeMode: 'contain',
     itemStyle: {
       width: width * 0.75,
+      resizeMode: 'contain',
       backgroundColor: "transparent"
     },
     labelStyle: {
@@ -47,6 +49,7 @@ const Menu = {
       fontWeight: "normal"
     },
     itemsContainerStyle: {
+      resizeMode: 'contain',
       paddingVertical: 16,
       paddingHorizonal: 12,
       justifyContent: "center",
@@ -66,12 +69,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
     paddingBottom: theme.SIZES.BASE,
     paddingTop: theme.SIZES.BASE * 3,
+    flexDirection: 'row',
     justifyContent: 'center',
     resizeMode: 'contain'
   },
   photo:{
-    width: 10,
-    height: 10,
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
   },
   text:{

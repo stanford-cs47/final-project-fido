@@ -19,7 +19,7 @@ class ListItem extends React.Component {
       });
 
   render() {
-    const { item } = this.props;
+    const { item, style, image } = this.props;
 
     return (
       <List.Accordion
@@ -29,6 +29,7 @@ class ListItem extends React.Component {
         description={item.description}
         left={ props => <Image source={Images.Park} style={styles.image} />}
         onPress={this._handlePress}
+        style= {style}
       >
         <Block flex space="between" style={styles.card} >
           <Block>
