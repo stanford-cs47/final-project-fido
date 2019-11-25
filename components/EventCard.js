@@ -34,7 +34,16 @@ class EventCard extends React.Component {
       <View flex style={styles.container}>
         <Avatar.Image size={45} source={{uri: item.image}} style={styles.img}/>
         <View>
-          <Title style={styles.title} >{item.title}</Title>
+          <View style={styles.header}>
+            <Title style={styles.title} >{item.title}</Title>
+            <Icon
+              family="feather"
+              size={15}
+              name="bookmark"
+              color= {Colors.orange}
+              onPress={() => {console.log('Pressed')}}
+            />
+          </View>
           <Text style={styles.text}>{item.description}</Text>
           <View flex style={styles.info} >
             <Text style={styles.text} >When: {item.activity}</Text>
@@ -50,25 +59,16 @@ class EventCard extends React.Component {
             color= {fidoTheme.COLORS.GREY}
             onPress={() => {console.log('Pressed')}}
           />
-          <View style={styles.expandableButtons}>
-            <Icon
-              family="feather"
-              size={25}
-              name="bookmark"
-              color= {Colors.orange}
-              onPress={() => {console.log('Pressed')}}
-            />
-            <Button
-              mode="contained"
-              compact={true}
-              uppercase={false}
-              color={Colors.orange}
-              labelStyle={styles.buttonText}
-              onPress={() => {console.log('Pressed')}}
-            >
-              Navigate
-            </Button>
-          </View>
+          <Button
+            mode="contained"
+            compact={true}
+            uppercase={false}
+            color={Colors.orange}
+            labelStyle={styles.buttonText}
+            onPress={() => {console.log('Pressed')}}
+          >
+            Navigate
+          </Button>
         </View>
       </View>
     );
@@ -84,12 +84,17 @@ const styles = StyleSheet.create({
     borderColor: fidoTheme.COLORS.BORDER,
     borderBottomWidth: 1,
   },
+  header: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
   img: {
     marginTop: 10,
     marginRight: 16
   },
   title: {
     fontSize: 16,
+    marginRight: 10
   },
   text: {
     fontSize: 14,
