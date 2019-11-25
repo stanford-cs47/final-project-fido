@@ -25,7 +25,7 @@ class BookmarkCard extends React.Component {
 
     return (
       <View flex style={styles.container}>
-        <Avatar.Image size={40} source={{uri: item.image}} style={styles.img}/>
+        <Avatar.Image size={45} source={{uri: item.image}} style={styles.img}/>
         <View>
           <Title style={styles.title} >{item.title}</Title>
           <Text style={styles.text}>{item.description}</Text>
