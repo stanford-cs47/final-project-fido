@@ -50,7 +50,7 @@ class EventCard extends React.Component {
             color= {fidoTheme.COLORS.GREY}
             onPress={() => {console.log('Pressed')}}
           />
-          <View>
+          <View style={styles.expandableButtons}>
             <Icon
               family="feather"
               size={25}
@@ -103,6 +103,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "flex-end",
+  },
+  expandableButtons: {
+    alignItems: "flex-end",
+    flexDirection: "row",
   },
   buttonText: {
     color: "white",
