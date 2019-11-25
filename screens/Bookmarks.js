@@ -24,6 +24,10 @@ class Bookmarks extends React.Component {
        showsVerticalScrollIndicator={false}
        contentContainerStyle={styles.articles}>
        <BookmarkCard item={articles[0]}/>
+       <BookmarkCard item={articles[1]}/>
+       <BookmarkCard item={articles[2]}/>
+       <BookmarkCard item={articles[3]}/>
+       <BookmarkCard item={articles[4]}/>
       </ScrollView>
     );
   }

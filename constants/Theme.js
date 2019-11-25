@@ -8,6 +8,7 @@ export default {
     ERROR: '#F5365C',
     SUCCESS: '#2DCE89',
     WARNING: '#FB6340',
+    GREY: '#8E8E93',
     /*not yet changed */
     MUTED: '#ADB5BD',
     INPUT: '#DCDCDC',
