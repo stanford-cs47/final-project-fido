@@ -9,6 +9,7 @@ import Select from './Select';
 import FloatingActionButton from './FloatingActionButton'
 import ListItem from './ListItem'
 import BookmarkCard from './BookmarkCard'
+import EventCard from './EventCard'
 
 export {
   Button,
@@ -21,5 +22,6 @@ export {
   Select,
   FloatingActionButton,
   ListItem,
-  BookmarkCard
+  BookmarkCard,
+  EventCard,
 };

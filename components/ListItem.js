@@ -6,6 +6,7 @@ import { Block, Text, theme } from 'galio-framework';
 import { Colors, Metrics } from '../Themes';
 import { List, Button } from 'react-native-paper';
 import { Images } from '../constants/';
+import fidoTheme from "../constants/Theme";
 
 
 class ListItem extends React.Component {
@@ -33,9 +34,9 @@ class ListItem extends React.Component {
       >
         <Block flex space="between" style={styles.card} >
           <Block>
-            <Text size={14} >Where: {item.location}</Text>
-            <Text size={14} >When: {item.activity}</Text>
-            <Text size={14} >Who: {item.attending}</Text>
+            <Text style={styles.text} >Where: {item.location}</Text>
+            <Text style={styles.text} >When: {item.activity}</Text>
+            <Text style={styles.text} >Who: {item.attending}</Text>
           </Block>
           <Block flex style={styles.buttons}>
             <Button
@@ -58,8 +59,16 @@ class ListItem extends React.Component {
 const styles = StyleSheet.create({
   card: {
     marginBottom: theme.SIZES.BASE,
+    marginLeft: 10, 
     flexDirection: "row",
     alignItems: "flex-end",
+  },
+  cardSubDescription: {
+    flexDirection: "row",
+  },
+  text: {
+    fontSize: 14,
+    color: fidoTheme.COLORS.GREY,
   },
   buttons: {
     flexDirection: "column",
@@ -68,9 +77,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-  },
-  cardSubDescription: {
-    flexDirection: "row",
+    fontSize: 12,
   },
   image: {
     width: 50,
