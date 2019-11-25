@@ -8,6 +8,7 @@ import Switch from './Switch';
 import Select from './Select';
 import FloatingActionButton from './FloatingActionButton'
 import ListItem from './ListItem'
+import BookmarkCard from './BookmarkCard'
 
 export {
   Button,
@@ -19,5 +20,6 @@ export {
   Switch,
   Select,
   FloatingActionButton,
-  ListItem
+  ListItem,
+  BookmarkCard
 };

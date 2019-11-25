@@ -1,19 +1,57 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
+import { Block, theme } from 'galio-framework';
 
-export default function Bookmarks() {
-  return (
-    <View style={styles.container}>
-      <Text>Bookmarks!</Text>
-    </View>
-  );
+import { BookmarkCard } from '../components';
+import articles from '../constants/articles';
+const { width } = Dimensions.get('screen');
+import { List, Checkbox } from 'react-native-paper';
+import { Colors, Metrics } from '../Themes';
+
+class Bookmarks extends React.Component {
+  state = {
+    bookmarked: true
+  }
+
+  _handlePress = () =>
+    this.setState({
+      bookmarked: !this.state.expanded
+    });
+
+  renderArticles = () => {
+    return (
+      <ScrollView
+       showsVerticalScrollIndicator={false}
+       contentContainerStyle={styles.articles}>
+       <BookmarkCard item={articles[0]}/>
+      </ScrollView>
+    );
+  }
+
+  render() {
+    return (
+      <Block flex>
+        <Block style={styles.home}>
+          {this.renderArticles()}
+        </Block>
+      </Block>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  home: {
+    width: width,
+    alignItems: "center"
+  },
+  articles: {
+    width: width - theme.SIZES.BASE,
+  },
+  image: {
+    width: 50,
+    height: 50,
+    borderRadius: 50/2,
   },
 });
+
+export default Bookmarks;
