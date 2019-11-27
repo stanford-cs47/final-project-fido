@@ -20,6 +20,8 @@ class BookmarkCard extends React.Component {
         bookmarked: !this.state.bookmarked
       });
 
+
+
   render() {
     const { item } = this.props;
 
