@@ -13,20 +13,17 @@ import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-co
 
 class EventCard extends React.Component {
   state = {
-    expanded: false,
-  }
-
-  _handlePress = () => {
-    this.setState({
-      expanded: !this.state.expanded
-    });
+    collapsed: false,
   }
 
   render() {
     const { item } = this.props;
 
     return (
-      <Collapse style={styles.container}>
+      <Collapse
+          style={styles.container}
+          isCollapsed={this.state.collapsed}
+	        onToggle={(isCollapsed)=>this.setState({collapsed:isCollapsed})}>
         <CollapseHeader flex style={styles.top}>
           <Avatar.Image size={45} source={{uri: item.image}} style={styles.img}/>
           <View>
@@ -46,10 +43,9 @@ class EventCard extends React.Component {
             <Icon
               family="feather"
               size={25}
-              name= {this.state.expanded ? "chevron-up" : "chevron-down"}
+              name= {this.state.collapsed  ? "chevron-up" : "chevron-down"}
               color= {fidoTheme.COLORS.GREY}
               style={{alignSelf: "flex-end"}}
-              onPress={this._handlePress}
             />
           </View>
         </CollapseHeader>
