@@ -15,6 +15,7 @@ class EventCard extends React.Component {
   state = {
     collapsed: false,
     bookmarked: true,
+    myEvent: false,
   }
 
   render() {
@@ -35,6 +36,14 @@ class EventCard extends React.Component {
                   family="feather"
                   size={15}
                   name="bookmark"
+                  color= {Colors.orange}
+                />
+                : null}
+              {this.state.myEvent ?
+                <Icon
+                  family="feather"
+                  size={15}
+                  name="user"
                   color= {Colors.orange}
                 />
                 : null}
