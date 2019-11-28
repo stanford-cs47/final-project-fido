@@ -14,6 +14,7 @@ import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-co
 class EventCard extends React.Component {
   state = {
     collapsed: false,
+    bookmarked: false,
   }
 
   render() {
@@ -29,13 +30,13 @@ class EventCard extends React.Component {
           <View>
             <View style={styles.header}>
               <Title style={styles.title} >{item.title}</Title>
-              <Icon
-                family="feather"
-                size={15}
-                name="bookmark"
-                color= {Colors.orange}
-                onPress={() => {console.log('Pressed')}}
-              />
+              {this.state.bookmarked ?
+                <Icon
+                  family="feather"
+                  size={15}
+                  name="bookmark"
+                  color= {Colors.orange}
+                /> : null}
             </View>
             <Text style={styles.text}>{item.description}</Text>
           </View>
@@ -56,9 +57,31 @@ class EventCard extends React.Component {
             <Text style={styles.text} >Who: {item.attending}</Text>
           </View>
           <View style={styles.buttonContainer}>
+            {this.state.bookmarked ?
+              <Button
+                mode="outlined"
+                compact={true}
+                uppercase={false}
+                color={Colors.orange}
+                labelStyle={styles.buttonText}
+                onPress={() => this.setState({bookmarked: false})}>
+                Un-mark
+              </Button> :
+              <Button
+                mode="outlined"
+                compact={true}
+                uppercase={false}
+                color={Colors.orange}
+                labelStyle={styles.buttonText}
+                onPress={() => this.setState({bookmarked: true})}>
+                Bookmark
+              </Button>
+            }
+            <Text>  </Text>
             <Button
               mode="contained"
               compact={true}
+              dark = {true}
               uppercase={false}
               color={Colors.orange}
               labelStyle={styles.buttonText}
@@ -112,7 +135,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   buttonText: {
-    color: "white",
     fontSize: 12,
   },
 });
