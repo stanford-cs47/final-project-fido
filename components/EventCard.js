@@ -14,7 +14,7 @@ import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-co
 class EventCard extends React.Component {
   state = {
     collapsed: false,
-    bookmarked: false,
+    bookmarked: true,
   }
 
   render() {
@@ -36,7 +36,8 @@ class EventCard extends React.Component {
                   size={15}
                   name="bookmark"
                   color= {Colors.orange}
-                /> : null}
+                />
+                : null}
             </View>
             <Text style={styles.text}>{item.description}</Text>
           </View>
@@ -57,26 +58,15 @@ class EventCard extends React.Component {
             <Text style={styles.text} >Who: {item.attending}</Text>
           </View>
           <View style={styles.buttonContainer}>
-            {this.state.bookmarked ?
-              <Button
-                mode="outlined"
-                compact={true}
-                uppercase={false}
-                color={Colors.orange}
-                labelStyle={styles.buttonText}
-                onPress={() => this.setState({bookmarked: false})}>
-                Un-mark
-              </Button> :
-              <Button
-                mode="outlined"
-                compact={true}
-                uppercase={false}
-                color={Colors.orange}
-                labelStyle={styles.buttonText}
-                onPress={() => this.setState({bookmarked: true})}>
-                Bookmark
-              </Button>
-            }
+            <Button
+              mode="outlined"
+              compact={true}
+              uppercase={false}
+              color={Colors.orange}
+              labelStyle={styles.buttonText}
+              onPress={() => console.log('Pressed')}>
+              Message
+            </Button>
             <Text>  </Text>
             <Button
               mode="contained"
