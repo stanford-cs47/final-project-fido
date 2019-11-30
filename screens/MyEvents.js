@@ -7,16 +7,17 @@ import { List, Checkbox } from 'react-native-paper';
 import { FloatingActionButton, ListItem, EventCard } from '../components';
 import fidoTheme from "../constants/Theme";
 import { Block, theme } from 'galio-framework';
-import { Card, Title, Subheading, Paragraph, Button, Avatar } from 'react-native-paper';
+import { Card, Title, Subheading, Paragraph, Button, Avatar, TextInput } from 'react-native-paper';
 import { Images } from '../constants/';
 import Icon from '../components/Icon';
 
 
 // TEMPORARY VARIABLES
-var TEMP_ITEM = articles[2];
+var TEMP_ITEM = articles[0];
 var Jack = {
-  image: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
+  image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
   name: 'Jack Nichols',
+  icon: true,
 };
 
 
@@ -28,9 +29,13 @@ class Person extends React.Component {
       <View flex style={styles.container}>
         <Avatar.Image size={35} source={{uri: person.image}} style={styles.img}/>
         <View>
-          <Title style={styles.title} >{person.name}</Title>
+          {person.icon ?
+            <Title style={styles.title} >{person.name}</Title>
+          :
+            <Title style={styles.title2} >{person.name}</Title>}
         </View>
         <View style={styles.buttonContainer}>
+        {person.icon ?
           <Icon
             family="feather"
             size={25}
@@ -38,10 +43,17 @@ class Person extends React.Component {
             color= {Colors.orange}
             onPress={() => {console.log("PRESSED")}}
           />
+        : <View></View>}
         </View>
       </View>
     );
   }
+}
+
+var sampleMessage = {
+  image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
+  name: "Are you guys still there? I'm omw!",
+  icon: false,
 }
 
 // MyEvents Page
@@ -56,6 +68,16 @@ export default function MyEvents() {
 
         <Block style={styles.section}>
           <Text style={styles.header}>Message Board</Text>
+          <Person person={sampleMessage} />
+          <View style={styles.inputContainer}>
+            <Text style={styles.reply}>Reply</Text>
+            <TextInput
+              placeholder='Type a message :)'
+              dense={true}
+              style={styles.input}
+            />
+           </View>
+
         </Block>
 
         <Text style={styles.headerA}>Attending</Text>
@@ -91,7 +113,7 @@ const styles = StyleSheet.create({
   section: {
     borderColor: fidoTheme.COLORS.BORDER,
     borderBottomWidth: 1,
-    height: 200,
+    height: 185,
     width: '100%',
   },
   block: {
@@ -110,7 +132,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 10,
+    padding: 5,
   },
   img: {
     marginTop: 10,
@@ -121,11 +143,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingTop: 10,
   },
+  title2: {
+    fontSize: 16,
+    paddingTop: 10,
+    color: "grey",
+  },
   buttonContainer: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "flex-end",
     paddingTop: 10,
+  },
+  inputContainer: {
+    marginBottom: 12,
+    marginLeft: 12,
+    marginRight: 12
+
+  },
+  input: {
+    marginTop: 5
+  },
+  reply: {
+    marginLeft: 5
   }
 });
