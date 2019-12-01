@@ -71,7 +71,6 @@ class Header extends React.Component {
         <FilterButton key='basket-title' navigation={navigation} isWhite={white} />
       ]
     }
-    console.log(routeName);
     switch (routeName) {
       case 'HomeTab':
         return ([

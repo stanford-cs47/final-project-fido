@@ -18,6 +18,30 @@ import { Colors, Metrics } from '../Themes';
 
 class Register extends React.Component {
 
+  state = {
+    title: "",
+    location: "",
+  }
+
+  addEvent = () => {
+    let eventsCopy = JSON.parse(JSON.stringify(this.state.events));
+    eventsCopy.push({
+      title: this.state.title,
+      location: this.state.location,
+    });
+    this.props.db.get('events').then(function(doc) {
+      return db.put({
+        _id: 'events',
+        _rev: doc._rev,
+        contacts: eventsCopy,
+      });
+    }).then(function(response) {
+      console.log("added event");
+    }).catch(function (err) {
+      console.log(err);
+    });
+  };
+
   render() {
     return (
       <View>
