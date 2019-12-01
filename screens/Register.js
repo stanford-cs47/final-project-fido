@@ -27,13 +27,17 @@ class Register extends React.Component {
           <View style={styles.inputContainer}>
             <TextInput
               label='Title'
-              value='Fetch at the Park'
+              //value='Fetch at the Park'
+              value={this.state.title}
+              onChangeText={(text) => this.setState({title: text})}
             />
           </View>
           <View style={styles.inputContainer}>
             <TextInput
               label='Location'
-              value='Werry Park, 2100 Dartmouth St, Palo Alto, CA 94301'
+              //value='Wilbur Field'
+              value={this.state.location}
+              onChangeText={(text) => this.setState({location: text})}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -73,7 +77,7 @@ class Register extends React.Component {
                 compact={false}
                 uppercase={false}
                 color={Colors.orange}
-                onPress={() => {console.log('Pressed')}}
+                onPress={() => this.props.navigation.goBack()}
               >
                 Cancel
               </Button>
@@ -84,7 +88,10 @@ class Register extends React.Component {
                 uppercase={false}
                 color={Colors.orange}
                 labelStyle={styles.buttonText}
-                onPress={() => this.props.navigation.navigate('Home2')}
+                onPress={() => {
+                  this.addEvent();
+                  this.props.navigation.navigate('Home')
+                }}
               >
                 Post
               </Button>

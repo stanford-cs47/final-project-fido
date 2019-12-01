@@ -71,24 +71,24 @@ class Header extends React.Component {
         <FilterButton key='basket-title' navigation={navigation} isWhite={white} />
       ]
     }
-
+    console.log(routeName);
     switch (routeName) {
-      case 'Home':
+      case 'HomeTab':
         return ([
           <BellButton key='chat-home' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-home' navigation={navigation} isWhite={white} />
         ]);
-      case 'Deals':
+      case 'MyEventsStack':
         return ([
-          <BellButton key='chat-categories' navigation={navigation} />,
-          <BasketButton key='basket-categories' navigation={navigation} />
+          <BellButton navigation={navigation} />,
+          <BasketButton navigation={navigation} />,
         ]);
-      case 'Categories':
+      case 'Bookmarks':
         return ([
           <BellButton key='chat-categories' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-categories' navigation={navigation} isWhite={white} />
         ]);
-      case 'Category':
+      case 'BookmarkStack':
         return ([
           <BellButton key='chat-deals' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-deals' navigation={navigation} isWhite={white} />
@@ -152,7 +152,7 @@ class Header extends React.Component {
 
     const navbarStyles = [
       styles.navbar,
-      //bgColor && { backgroundColor: Colors.ember }
+      bgColor && { backgroundColor: Colors.ember }
     ];
 
     return (
