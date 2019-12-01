@@ -8,58 +8,45 @@ import { Card, Title, Subheading, Paragraph, Button, Avatar } from 'react-native
 import { Images } from '../constants/';
 import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
+import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
 
 class EventCard extends React.Component {
   state = {
-    expanded: true,
-    animation: new Animated.Value()
+    collapsed: false,
+    bookmarked: true,
+    myEvent: false,
   }
-
-  _handlePress = () => {
-    let initialValue = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight;
-    let finalValue = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
-
-    this.setState({
-      expanded: !this.state.expanded
-    });
-
-    this.state.animation.setValue(initialValue);
-    Animated.spring(
-        this.state.animation,
-        {
-            toValue: finalValue
-        }
-    ).start();
-  }
-
-  _setMaxHeight = (event) =>
-    this.setState({
-        maxHeight: event.nativeEvent.layout.height
-  });
-
-  _setMinHeight = (event) =>
-    this.setState({
-        minHeight: event.nativeEvent.layout.height
-  });
 
   render() {
     const { item } = this.props;
 
     return (
-      <Animated.View style={styles.container}>
-        <View flex style={styles.top} onLayout={this._setMinHeight.bind(this)}>
+      <Collapse
+          style={styles.container}
+          isCollapsed={this.state.collapsed}
+	        onToggle={(isCollapsed)=>this.setState({collapsed:isCollapsed})}>
+        <CollapseHeader flex style={styles.top}>
           <Avatar.Image size={45} source={{uri: item.image}} style={styles.img}/>
           <View>
             <View style={styles.header}>
               <Title style={styles.title} >{item.title}</Title>
-              <Icon
-                family="feather"
-                size={15}
-                name="bookmark"
-                color= {Colors.orange}
-                onPress={() => {console.log('Pressed')}}
-              />
+              {this.state.bookmarked ?
+                <Icon
+                  family="feather"
+                  size={15}
+                  name="bookmark"
+                  color= {Colors.orange}
+                />
+                : null}
+              {this.state.myEvent ?
+                <Icon
+                  family="feather"
+                  size={15}
+                  name="user"
+                  color= {Colors.orange}
+                />
+                : null}
             </View>
             <Text style={styles.text}>{item.description}</Text>
           </View>
@@ -67,14 +54,13 @@ class EventCard extends React.Component {
             <Icon
               family="feather"
               size={25}
-              name= {this.state.expanded ? "chevron-up" : "chevron-down"}
+              name= {this.state.collapsed  ? "chevron-up" : "chevron-down"}
               color= {fidoTheme.COLORS.GREY}
               style={{alignSelf: "flex-end"}}
-              onPress={this._handlePress}
             />
           </View>
-        </View>
-        <View flex style={styles.bottom} onLayout={this._setMaxHeight.bind(this)}>
+        </CollapseHeader>
+        <CollapseBody flex style={styles.bottom}>
           <View flex style={styles.info} >
             <Text style={styles.text} >When: {item.activity}</Text>
             <Text style={styles.text} >Where: {item.location}</Text>
@@ -82,8 +68,19 @@ class EventCard extends React.Component {
           </View>
           <View style={styles.buttonContainer}>
             <Button
+              mode="outlined"
+              compact={true}
+              uppercase={false}
+              color={Colors.orange}
+              labelStyle={styles.buttonText}
+              onPress={() => console.log('Pressed')}>
+              Message
+            </Button>
+            <Text>  </Text>
+            <Button
               mode="contained"
               compact={true}
+              dark = {true}
               uppercase={false}
               color={Colors.orange}
               labelStyle={styles.buttonText}
@@ -92,8 +89,8 @@ class EventCard extends React.Component {
               Navigate
             </Button>
           </View>
-        </View>
-      </Animated.View>
+        </CollapseBody>
+      </Collapse>
     );
   }
 }
@@ -137,7 +134,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   buttonText: {
-    color: "white",
     fontSize: 12,
   },
 });
