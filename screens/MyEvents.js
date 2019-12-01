@@ -10,6 +10,7 @@ import { Block, theme } from 'galio-framework';
 import { Card, Title, Subheading, Paragraph, Button, Avatar, TextInput } from 'react-native-paper';
 import { Images } from '../constants/';
 import Icon from '../components/Icon';
+const { width } = Dimensions.get('screen');
 
 
 // TEMPORARY VARIABLES
@@ -27,20 +28,21 @@ class Person extends React.Component {
     const { person } = this.props;
     return (
       <View flex style={styles.container}>
-        <Avatar.Image size={35} source={{uri: person.image}} style={styles.img}/>
+        <Avatar.Image size={45} source={{uri: person.image}} style={styles.img}/>
         <View>
           {person.icon ?
             <Title style={styles.title} >{person.name}</Title>
           :
-            <Title style={styles.title2} >{person.name}</Title>}
+            <Title style={styles.message} >{person.name}</Title>}
         </View>
         <View style={styles.buttonContainer}>
         {person.icon ?
           <Icon
             family="feather"
             size={25}
-            name="plus"
-            color= {Colors.orange}
+            name="user-plus"
+            color= {fidoTheme.COLORS.GREY}
+            style= {{marginRight: 20}}
             onPress={() => {console.log("PRESSED")}}
           />
         : <View></View>}
@@ -59,80 +61,63 @@ var sampleMessage = {
 // MyEvents Page
 export default function MyEvents() {
     return (
-      <View style={styles.main}>
-
-        <Block style={styles.block}>
+      <View flex style={styles.main}>
+        <View flex>
           <Text style={styles.header}>Event Information</Text>
           <BookmarkCard item={TEMP_ITEM} />
-        </Block>
+        </View>
 
-        <Block style={styles.section}>
+        <View flex style={styles.section}>
           <Text style={styles.header}>Message Board</Text>
-          <Person person={sampleMessage} />
+          <ScrollView
+           showsVerticalScrollIndicator={false}
+           contentContainerStyle={styles.articles}>
+           <Person person={sampleMessage} />
+          </ScrollView>
           <View style={styles.inputContainer}>
-            <Text style={styles.reply}>Reply</Text>
+            <Text>Reply</Text>
             <TextInput
-              placeholder='Type a message :)'
+              placeholder='Aa'
               dense={true}
               style={styles.input}
             />
            </View>
-
-        </Block>
-
-        <Text style={styles.headerA}>Attending</Text>
-        <ScrollView
-         showsVerticalScrollIndicator={false}
-         contentContainerStyle={styles.articles}>
-          <List.Section>
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-            <Person person={Jack} />
-          </List.Section>
-        </ScrollView>
-
+        </View>
+        <View flex style={styles.section}>
+          <Text style={styles.header}>Attending</Text>
+          <ScrollView
+           showsVerticalScrollIndicator={false}
+           contentContainerStyle={styles.articles}>
+            <List.Section>
+              <Person person={Jack} />
+              <Person person={Jack} />
+              <Person person={Jack} />
+              <Person person={Jack} />
+              <Person person={Jack} />
+            </List.Section>
+          </ScrollView>
+        </View>
       </View>
     );
 }
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
-    backgroundColor: '#fff',
     justifyContent: 'center',
+    width: width - theme.SIZES.BASE,
   },
   section: {
     borderColor: fidoTheme.COLORS.BORDER,
     borderBottomWidth: 1,
-    height: 185,
-    width: '100%',
-  },
-  block: {
-    height: 200,
-    width: '100%',
+    padding: 10,
   },
   header: {
-    fontSize: 18,
+    fontSize: 16,
     padding: 10,
-  },
-  headerA: {
-    fontSize: 18,
-    padding: 10,
-    paddingBottom: 0
   },
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 5,
   },
   img: {
     marginTop: 10,
@@ -140,11 +125,11 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     paddingTop: 10,
   },
-  title2: {
-    fontSize: 16,
+  message: {
+    fontSize: 14,
     paddingTop: 10,
     color: "grey",
   },
@@ -155,16 +140,15 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     paddingTop: 10,
   },
+  articles: {
+    width: width - theme.SIZES.BASE,
+  },
   inputContainer: {
     marginBottom: 12,
     marginLeft: 12,
     marginRight: 12
-
   },
   input: {
     marginTop: 5
   },
-  reply: {
-    marginLeft: 5
-  }
 });
