@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 
-import { FloatingActionButton, ListItem, EventCard } from '../components';
+import { FloatingActionButton, ListItem, ExpandableEventCard } from '../components';
 import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 import { List, Checkbox } from 'react-native-paper';
@@ -20,16 +20,16 @@ class Home extends React.Component {
        showsVerticalScrollIndicator={false}
        contentContainerStyle={styles.articles}>
         <List.Section>
-          <EventCard item={articles[0]}/>
-          <EventCard item={articles[1]}/>
-          <EventCard item={articles[2]}/>
-          <EventCard item={articles[3]}/>
-          <EventCard item={articles[4]}/>
-          <EventCard item={articles[0]}/>
-          <EventCard item={articles[1]}/>
-          <EventCard item={articles[2]}/>
-          <EventCard item={articles[3]}/>
-          <EventCard item={articles[4]}/>
+          <ExpandableEventCard item={articles[0]}/>
+          <ExpandableEventCard item={articles[1]}/>
+          <ExpandableEventCard item={articles[2]}/>
+          <ExpandableEventCard item={articles[3]}/>
+          <ExpandableEventCard item={articles[4]}/>
+          <ExpandableEventCard item={articles[0]}/>
+          <ExpandableEventCard item={articles[1]}/>
+          <ExpandableEventCard item={articles[2]}/>
+          <ExpandableEventCard item={articles[3]}/>
+          <ExpandableEventCard item={articles[4]}/>
         </List.Section>
       </ScrollView>
     );

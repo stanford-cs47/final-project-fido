@@ -8,8 +8,8 @@ import Switch from './Switch';
 import Select from './Select';
 import FloatingActionButton from './FloatingActionButton'
 import ListItem from './ListItem'
-import BookmarkCard from './BookmarkCard'
 import EventCard from './EventCard'
+import ExpandableEventCard from './ExpandableEventCard'
 import Person from './Person'
 
 export {
@@ -23,7 +23,7 @@ export {
   Select,
   FloatingActionButton,
   ListItem,
-  BookmarkCard,
   EventCard,
+  ExpandableEventCard,
   Person
 };

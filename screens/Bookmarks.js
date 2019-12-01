@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
-import { BookmarkCard } from '../components';
+import { EventCard } from '../components';
 import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 import { List, Checkbox } from 'react-native-paper';
@@ -23,11 +23,11 @@ class Bookmarks extends React.Component {
       <ScrollView
        showsVerticalScrollIndicator={false}
        contentContainerStyle={styles.articles}>
-       <BookmarkCard item={articles[0]}/>
-       <BookmarkCard item={articles[1]}/>
-       <BookmarkCard item={articles[2]}/>
-       <BookmarkCard item={articles[3]}/>
-       <BookmarkCard item={articles[4]}/>
+       <EventCard item={articles[0]} type={"bookmark"}/>
+       <EventCard item={articles[1]} type={"bookmark"}/>
+       <EventCard item={articles[2]} type={"bookmark"}/>
+       <EventCard item={articles[3]} type={"bookmark"}/>
+       <EventCard item={articles[4]} type={"bookmark"}/>
       </ScrollView>
     );
   }
