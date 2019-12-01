@@ -25,15 +25,19 @@ class BookmarkCard extends React.Component {
     });
   }
 
-  deleteBookmark = async () => {
-    this.setState({ savingBookmark: true });
+  removeBookmark = async () => {
+    try {
+      this.setState({ savingBookmark: true });
 
-    this.setState({bookmarked: !this.state.bookmarked});
-    const { content = {} } = this.props;
-    var bookmarkRef = firestore.doc('bookmarkedEvents/' + content.id);
-    await bookmarkRef.delete();
+      this.setState({bookmarked: !this.state.bookmarked});
+      const { item = {} } = this.props;
+      var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+      await bookmarkRef.delete();
 
-    this.setState({ savingBookmark: false });
+      this.setState({ savingBookmark: false });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -65,7 +69,7 @@ class BookmarkCard extends React.Component {
             size={25}
             name="bookmark"
             color= {Colors.orange}
-            onPress={() => {console.log('Pressed Bookmark')}}
+            onPress={() => {this.removeBookmark()}}
           />
           <View style={styles.bottomButton}>
             <Button

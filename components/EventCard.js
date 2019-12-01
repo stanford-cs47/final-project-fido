@@ -25,7 +25,7 @@ class EventCard extends React.Component {
   componentDidMount = async () => {
     try {
       const { item = {} } = this.props;
-      let bookmarkRef = firestore.doc('bookmarkedEvents/');
+      let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
       let bookmark = await bookmarkRef.get();
 
       if(bookmark.exists) this.setState({bookmarked: true})
@@ -39,7 +39,7 @@ class EventCard extends React.Component {
 
     this.setState({bookmarked: !this.state.bookmarked});
     const { item = {} } = this.props;
-    
+
     var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     await bookmarkRef.set(item);
 

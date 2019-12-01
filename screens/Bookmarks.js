@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, FlatList, View } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, FlatList, View, Text } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
 import { BookmarkCard } from '../components';
@@ -22,10 +22,6 @@ class Bookmarks extends React.Component {
   componentDidMount() {
     const user = firebase.auth().currentUser;
     let bookmarksRef = firestore.collection('bookmarkedEvents/');
-    // We want our list of bookmarks to update in realtime (so the user doesn't have to
-    // refresh the page to see any changes). This basically waits for a change in the
-    // bookmarks collection and then tells the program to retrieve all of the bookmarks
-    // again (it basically calls your code for getBookmarks).
     let unsubscribe = bookmarksRef.onSnapshot(() => {
       this.reloadBookmarks();
     });
@@ -63,8 +59,7 @@ class Bookmarks extends React.Component {
 
   _keyExtractor = (item, index) => { return item + index};
 
-  test = (item) => {
-    console.log("item: " + item);
+  renderBookmarks = (item) => {
     return (
       <BookmarkCard item={item}/>
     )
@@ -77,7 +72,7 @@ class Bookmarks extends React.Component {
        contentContainerStyle={styles.articles}>
        <FlatList
          data={this.state.bookmarks}
-         renderItem={({item}) => this.test(item)}
+         renderItem={({item}) => this.renderBookmarks(item)}
          keyExtractor={this._keyExtractor}
          ItemSeparatorComponent = {() => (<View style={{height: 10}}/>)}
        />
@@ -91,9 +86,14 @@ class Bookmarks extends React.Component {
   }
 
   render() {
+    let emptyList = null;
+    if (!this.state.bookmarks[0]) {
+      emptyList = (<Text style={{marginTop: Metrics.navBarHeight}}>No bookmarks exist yet!</Text>);
+    }
     return (
       <Block flex>
         <Block style={styles.home}>
+          {emptyList}
           {this.renderArticles()}
         </Block>
       </Block>
