@@ -40,7 +40,7 @@ class Home extends React.Component {
     });
 
   componentDidMount() {
-    db.allDocs().then(doc => console.log(doc.rows[0].doc.events));
+    //db.allDocs().then(doc => console.log(doc.rows[0].doc.events));
   }
 
   contentDisplayed = () => {
