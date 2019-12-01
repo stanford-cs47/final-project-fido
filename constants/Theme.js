@@ -9,6 +9,7 @@ export default {
     SUCCESS: '#2DCE89',
     WARNING: '#FB6340',
     GREY: '#8E8E93',
+    LIGHT_ORANGE: '#FFCEBF',
     /*not yet changed */
     MUTED: '#ADB5BD',
     INPUT: '#DCDCDC',

@@ -43,18 +43,31 @@ class BookmarkCard extends React.Component {
             size={25}
             name="bookmark"
             color= {Colors.orange}
-            onPress={() => {console.log('Pressed')}}
+            onPress={() => {console.log('Pressed Bookmark')}}
           />
-          <Button
-            mode="contained"
-            compact={true}
-            uppercase={false}
-            color={Colors.orange}
-            labelStyle={styles.buttonText}
-            onPress={() => {console.log('Pressed')}}
-          >
-            Navigate
-          </Button>
+          <View style={styles.bottomButton}>
+            <Button
+              mode="contained"
+              compact={true}
+              uppercase={false}
+              style={{marginRight: 5}}
+              color={fidoTheme.COLORS.LIGHT_ORANGE}
+              labelStyle={{color: Colors.orange, fontSize: 12}}
+              onPress={() => {console.log('Pressed More')}}
+            >
+              More
+            </Button>
+            <Button
+              mode="contained"
+              compact={true}
+              uppercase={false}
+              color={Colors.orange}
+              labelStyle={{color: "white", fontSize: 12}}
+              onPress={() => {console.log('Pressed Navigate')}}
+            >
+              Navigate
+            </Button>
+          </View>
         </View>
       </View>
     );
@@ -89,6 +102,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "flex-end",
+  },
+  bottomButton: {
+    flexDirection: "row",
   },
   buttonText: {
     color: "white",
