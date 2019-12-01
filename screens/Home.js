@@ -8,15 +8,11 @@ const { width } = Dimensions.get('screen');
 import { List, Checkbox } from 'react-native-paper';
 import { Colors, Metrics } from '../Themes';
 
-class Home extends React.Component {
-  state = {
-    expanded: true
-  }
+import PouchDB from 'pouchdb-core';
+PouchDB.plugin(require('pouchdb-adapter-asyncstorage').default);
+const db = new PouchDB('mydb', {adapter: 'asyncstorage'});
 
-  _handlePress = () =>
-    this.setState({
-      expanded: !this.state.expanded
-    });
+class Home extends React.Component {
 
   renderArticles = () => {
     return (
@@ -45,7 +41,7 @@ class Home extends React.Component {
         <Block style={styles.home}>
           {this.renderArticles()}
         </Block>
-        <FloatingActionButton navigation= {this.props.navigation}/>
+        <FloatingActionButton navigation= {this.props.navigation} db = {db}/>
       </Block>
     );
   }

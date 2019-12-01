@@ -7,9 +7,10 @@ import { Images } from '../constants/';
 import Icon from './Icon';
 
 
-const PlusButton = ({navigation}) => (
+const PlusButton = ({navigation, db}) => (
   <View style={styles.MainContainer}>
-    <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('Register')} style={styles.TouchableOpacityStyle} >
+    <TouchableOpacity activeOpacity={0.5} onPress={() =>
+      navigation.navigate('Register', {db: db})} style={styles.TouchableOpacityStyle} >
     <View style={styles.PlusStyle}>
       <Icon
        family="feather"
@@ -44,9 +45,9 @@ class FloatingActionButton extends React.Component {
   }
 
   render() {
-    const { back, navigation } = this.props;
+    const { back, navigation, db } = this.props;
     return (
-      <PlusButton navigation = {this.props.navigation} />
+      <PlusButton navigation = {this.props.navigation} db = {this.props.navigation}/>
     );
   }
 }

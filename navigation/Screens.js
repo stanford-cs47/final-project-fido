@@ -10,8 +10,6 @@ import {
 import { Entypo } from '@expo/vector-icons';
 import { Block } from "galio-framework";
 import { Colors, Metrics } from '../Themes';
-//import Icon from 'react-feather';
-//import { Icon } from 'galio-framework';
 import Icon from '../components/Icon';
 
 // screens
@@ -34,44 +32,6 @@ import DrawerItem from "../components/DrawerItem";
 // header for screens
 import Header from "../components/Header";
 
-const transitionConfig = (transitionProps, prevTransitionProps) => ({
-  transitionSpec: {
-    duration: 400,
-    easing: Easing.out(Easing.poly(4)),
-    timing: Animated.timing
-  },
-  screenInterpolator: sceneProps => {
-    const { layout, position, scene } = sceneProps;
-    const thisSceneIndex = scene.index;
-    const width = layout.initWidth;
-
-    const scale = position.interpolate({
-      inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
-      outputRange: [4, 1, 1]
-    });
-    const opacity = position.interpolate({
-      inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
-      outputRange: [0, 1, 1]
-    });
-    const translateX = position.interpolate({
-      inputRange: [thisSceneIndex - 1, thisSceneIndex],
-      outputRange: [width, 0]
-    });
-
-    const scaleWithOpacity = { opacity };
-    const screenName = "Search";
-
-    if (
-      screenName === transitionProps.scene.route.routeName ||
-      (prevTransitionProps &&
-        screenName === prevTransitionProps.scene.route.routeName)
-    ) {
-      return scaleWithOpacity;
-    }
-    return { transform: [{ translateX }] };
-  }
-});
-
 const ElementsStack = createStackNavigator({
   Elements: {
     screen: NotImplemented,
@@ -83,22 +43,22 @@ const ElementsStack = createStackNavigator({
   cardStyle: {
     backgroundColor: "#F8F9FE"
   },
-  transitionConfig
+  //transitionConfig
 });
 
-const ArticlesStack = createStackNavigator({
-  Articles: {
-    screen: Articles,
-    navigationOptions: ({ navigation }) => ({
-      header: <Header title="Articles" navigation={navigation} />
-    })
-  }
-},{
-  cardStyle: {
-    backgroundColor: "#F8F9FE"
-  },
-  transitionConfig
-});
+// const ArticlesStack = createStackNavigator({
+//   Articles: {
+//     screen: Articles,
+//     navigationOptions: ({ navigation }) => ({
+//       header: <Header title="Articles" navigation={navigation} />
+//     })
+//   }
+// },{
+//   cardStyle: {
+//     backgroundColor: "#F8F9FE"
+//   },
+//   transitionConfig
+// });
 
 const ProfileStack = createStackNavigator(
   {
@@ -114,7 +74,7 @@ const ProfileStack = createStackNavigator(
   },
   {
     cardStyle: { backgroundColor: "#FFFFFF" },
-    transitionConfig
+    //transitionConfig
   }
 );
 
@@ -127,15 +87,68 @@ const BookmarkStack = createStackNavigator({
   initialRouteName: 'Bookmarks',
 })
 
+Bookmarks.navigationOptions = ({navigation}) => {
+  return {
+    header: (<Header title= "Bookmarks" navigation={navigation} />),
+    headerMode: 'float',
+  }
+}
+
+BookmarkStack.navigationOptions = ({ navigation, db }) => {
+  return {
+    header: <Header title= "Bookmarks" navigation={navigation} />,
+    tabBarLabel: 'Bookmarks',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        family="feather"
+        size={30}
+        name="bookmark"
+        color= {tintColor}
+      />
+    ),
+  };
+};
+
+MyEvents.navigationOptions = ({navigation}) => {
+  return {
+    header: <Header title= "My Events" navigation={navigation} />,
+  }
+}
 
 const MyEventsStack = createStackNavigator({
   MyEvents: {screen: MyEvents},
-  Meh: {screen: Bookmarks}
 },
 {
   headerMode: 'float',
   initialRouteName: 'MyEvents',
-})
+});
+
+MyEventsStack.navigationOptions = ({ navigation, db }) => {
+  return {
+    tabBarLabel: 'My Events',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        family="feather"
+        size={30}
+        name="user"
+        color= {tintColor}
+      />
+    ),
+  };
+};
+
+
+HappeningLater.navigationOptions = ({ navigation, db }) => {
+  return {
+    tabBarLabel: 'Happening Later',
+  };
+};
+
+Home.navigationOptions = ({ navigation, db }) => {
+  return {
+    tabBarLabel: 'Active Now',
+  };
+};
 
 const HomeTab = createMaterialTopTabNavigator({
   Home: {screen: Home},
@@ -154,159 +167,126 @@ const HomeTab = createMaterialTopTabNavigator({
   },
 })
 
-const HomeTab2 = createMaterialTopTabNavigator({
-  Home2: {screen: Home2},
-  HappeningLater: {screen: HappeningLater},
-},
-{
-  headerMode: 'float',
-  initialRouteName: 'Home2',
-  tabBarOptions: {
-    activeTintColor: Colors.orange,
-    inactiveTintColor: "black",
-    style: {backgroundColor: '#FFFFFF'},
-    upperCaseLabel: false,
-    indicatorStyle: {color: Colors.orange, backgroundColor: Colors.orange}
-  },
-})
+HomeTab.navigationOptions = ({ navigation, db }) => {
+  return {
+    header: <Header title= "Home" navigation={navigation} />,
+    tabBarLabel: 'Home',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        family="feather"
+        size={30}
+        name="home"
+        color= {tintColor}
+      />
+    ),
+  };
+};
 
-const MainTab = createBottomTabNavigator({
-  MyEventsStack: {screen: MyEventsStack,},
+const MyHomeStack = createStackNavigator({
   HomeTab: {screen: HomeTab},
-  BookmarkStack: {screen: BookmarkStack},
 },
 {
   headerMode: 'float',
   initialRouteName: 'HomeTab',
-  tabBarOptions: {activeTintColor: Colors.orange}
-})
+});
 
-const AltTab = createBottomTabNavigator({
-  MyEventsStack: {screen: MyEventsStack},
-  HomeTab2: {screen: HomeTab2},
+MyHomeStack.navigationOptions = ({ navigation, db }) => {
+  return {
+    tabBarLabel: 'Home',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        family="feather"
+        size={30}
+        name="home"
+        color= {tintColor}
+      />
+    ),
+  };
+};
+
+const MainTab = createBottomTabNavigator({
+  MyEventsStack2: {screen: MyEventsStack,},
+  MyHomeStack: {screen: MyHomeStack},
   BookmarkStack: {screen: BookmarkStack},
 },
 {
-  headerMode: 'float',
-  initialRouteName: 'HomeTab2',
-  tabBarOptions: {activeTintColor: Colors.orange, indicatorStyle:{color:Colors.orange}}
+  initialRouteName: 'MyHomeStack',
+  tabBarOptions: {activeTintColor: Colors.orange}
 })
+
+Register.navigationOptions = ({navigation}) => {
+  return {
+    headerMode: 'float',
+    header: <Header title= "Home" navigation={navigation} />,
+    headerStyle: Styles.customHeader,
+    headerTitle: "New Event",
+    headerTintColor: "#FFFFFF"
+  }
+}
 
 const HomeStack = createStackNavigator(
   {
     Home: {
       screen: MainTab,
-      navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Home" navigation={navigation} />,
+      headerMode: 'none',
+      navigationOptions: ({ navigation, db }) => ({
+        //headerTransparent: true,
+        //header: <Header search options title="Home" navigation={navigation} />,
       }),
     },
     Pro: {
       screen: Pro,
-      navigationOptions: ({ navigation }) => ({
-        header: (
-          <Header left={<Block />} white transparent title="" navigation={navigation} />
-        ),
+      navigationOptions: ({ navigation, db }) => ({
+        // header: (
+        //   {/*<Header left={<Block />} white transparent title="" navigation={navigation} />*/}
+        // ),
         headerTransparent: true
       })
     },
-    Home2: {
-      screen: AltTab,
-      navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Home" navigation={navigation} />,
-      }),
-    },
     Register: {
       screen: Register,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: ({ navigation, db }) => ({
+        headerMode: 'float',
         headerStyle: Styles.customHeader,
+        headerTitle: "New Event",
         headerTintColor: "#FFFFFF"
       }),
+      headerMode: 'float',
     },
     NotImplemented: {
       screen: NotImplemented,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: ({ navigation, db }) => ({
       }),
     },
   },
   {
+    headerMode: 'none',
     cardStyle: {
       backgroundColor: "#F8F9FE"
     },
-    transitionConfig
+    //transitionConfig
   }
 );
 
-BookmarkStack.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: 'Bookmarks',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        family="feather"
-        size={30}
-        name="bookmark"
-        color= {tintColor}
-      />
-    ),
-  };
-};
+// Home2.navigationOptions = ({ navigation }) => {
+//   return {
+//     tabBarLabel: 'Active Now',
+//   };
+// };
 
-MyEventsStack.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: 'My Events',
-    header: <Header search options title="My Events" navigation={navigation} />,
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        family="feather"
-        size={30}
-        name="user"
-        color= {tintColor}
-      />
-    ),
-  };
-};
-Home2.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: 'Active Now',
-  };
-};
-Home.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: 'Active Now',
-  };
-};
-HappeningLater.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: 'Happening Later',
-
-  };
-};
-
-HomeTab.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: 'Home',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        family="feather"
-        size={30}
-        name="home"
-        color= {tintColor}
-      />
-    ),
-  };
-};
-HomeTab2.navigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: 'Home',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        family="feather"
-        size={30}
-        name="home"
-        color= {tintColor}
-      />
-    ),
-  };
-};
+// HomeTab2.navigationOptions = ({ navigation }) => {
+//   return {
+//     tabBarLabel: 'Home',
+//     tabBarIcon: ({ tintColor }) => (
+//       <Icon
+//         family="feather"
+//         size={30}
+//         name="home"
+//         color= {tintColor}
+//       />
+//     ),
+//   };
+// };
 
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
@@ -349,14 +329,14 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Articles: {
-      screen: ArticlesStack,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Articles" title="Articles" />
-        )
-      })
-    }
+    // Articles: {
+    //   screen: ArticlesStack,
+    //   navigationOptions: navOpt => ({
+    //     drawerLabel: ({ focused }) => (
+    //       <DrawerItem focused={focused} screen="Articles" title="Articles" />
+    //     )
+    //   })
+    // }
   },
   Menu
 );
