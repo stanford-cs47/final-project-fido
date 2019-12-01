@@ -12,7 +12,7 @@ import Icon from './Icon';
 
 class BookmarkCard extends React.Component {
   state = {
-    bookmarked: false
+    bookmarked: true
   }
 
   _handlePress = () =>

@@ -68,15 +68,16 @@ class EventCard extends React.Component {
           </View>
           <View style={styles.buttonContainer}>
             <Button
-              mode="outlined"
+              mode="contained"
               compact={true}
               uppercase={false}
-              color={Colors.orange}
-              labelStyle={styles.buttonText}
-              onPress={() => console.log('Pressed')}>
-              Message
+              style={{marginRight: 5}}
+              color={fidoTheme.COLORS.LIGHT_ORANGE}
+              labelStyle={{color: Colors.orange, fontSize: 12}}
+              onPress={() => {console.log('Pressed More')}}
+            >
+              More
             </Button>
-            <Text>  </Text>
             <Button
               mode="contained"
               compact={true}
