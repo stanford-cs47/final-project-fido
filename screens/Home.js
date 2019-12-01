@@ -46,19 +46,19 @@ class Home extends React.Component {
   contentDisplayed = () => {
     let data = [];
     db.get('events').then(function (doc) {
-      console.log("before: ");
-      console.log(doc.events);
+      //console.log("before: ");
+      //console.log(doc.events);
       temp = doc.events;
-      console.log("temp" + temp);
+      //console.log("temp" + temp);
       temp.forEach((contact)  => {
         data.push(contact);
       })
-      console.log("data after:" + data);
+      //console.log("data after:" + data);
     }).catch(function (err) {
-      console.log("error");
+      //console.log("error");
       console.log(err);
     });
-    console.log("data :" + data);
+    //console.log("data :" + data);
     return (
       this.state.events
     )
@@ -67,11 +67,26 @@ class Home extends React.Component {
   _keyExtractor = (item, index) => { return item.event.title + index};
 
   listItemRenderer = (item, index) => {
-    console.log("item: " + "index: " + index)
-    console.log(item.event.title);
     return (
       <EventCard item={item.event}/>
     );
+  }
+
+  getEvents = async () => {
+    try {
+      let allEvents = [];
+      // Add your code here
+      let eventsColletionRef = firestore.collection('allEvents/');
+      let all = await bookmarkColletionRef.get();
+      all.forEach((currEvent) => {
+        allEvents.push(currEvent.data());
+      })
+      //this.setState({bookmarks});
+      return (allEvents ? allEvents : []);
+    } catch (error) {
+      console.log(error);
+    }
+    return ([]);
   }
 
   renderArticles = () => {
@@ -84,11 +99,7 @@ class Home extends React.Component {
          renderItem={({item, index}) => this.listItemRenderer(item, index)}
          keyExtractor={this._keyExtractor}
          ItemSeparatorComponent = {() => (<View style={{height: 10}}/>)}
-         renderSectionHeader={({section}) =>
-           <View style={styles.header}>
-             <Text style={styles.title}>{section.title}</Text>
-           </View>
-         }
+
        />
       </ScrollView>
     );
