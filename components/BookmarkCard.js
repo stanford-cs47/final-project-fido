@@ -12,7 +12,7 @@ import Icon from './Icon';
 
 class BookmarkCard extends React.Component {
   state = {
-    bookmarked: false
+    bookmarked: true
   }
 
   _handlePress = () =>
@@ -30,11 +30,19 @@ class BookmarkCard extends React.Component {
         <Avatar.Image size={45} source={{uri: item.image}} style={styles.img}/>
         <View>
           <Title style={styles.title} >{item.title}</Title>
-          <Text style={styles.text}>{item.description}</Text>
-          <View flex style={styles.info} >
-            <Text style={styles.text} >When: {item.activity}</Text>
-            <Text style={styles.text} >Where: {item.location}</Text>
-            <Text style={styles.text} >Who: {item.attending}</Text>
+          <Text style={styles.text1}>{item.description}</Text>
+          <View flex style={styles.infoContainer} >
+            <View>
+              <Text style={styles.text1} >Where:</Text>
+              <Text style={styles.text1} > </Text>
+              <Text style={styles.text1} >When:</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.text1} >{item.location1}</Text>
+              <Text style={styles.text2} >{item.location2}</Text>
+              <Text style={styles.text1} >{item.time1}</Text>
+              <Text style={styles.text2} >{item.time2}</Text>
+            </View>
           </View>
         </View>
         <View style={styles.buttonContainer}>
@@ -43,18 +51,31 @@ class BookmarkCard extends React.Component {
             size={25}
             name="bookmark"
             color= {Colors.orange}
-            onPress={() => {console.log('Pressed')}}
+            onPress={() => {console.log('Pressed Bookmark')}}
           />
-          <Button
-            mode="contained"
-            compact={true}
-            uppercase={false}
-            color={Colors.orange}
-            labelStyle={styles.buttonText}
-            onPress={() => {console.log('Pressed')}}
-          >
-            Navigate
-          </Button>
+          <View style={styles.bottomButton}>
+            <Button
+              mode="contained"
+              compact={true}
+              uppercase={false}
+              style={{marginRight: 5}}
+              color={fidoTheme.COLORS.LIGHT_ORANGE}
+              labelStyle={{color: Colors.orange, fontSize: 12}}
+              onPress={() => {console.log('Pressed More')}}
+            >
+              More
+            </Button>
+            <Button
+              mode="contained"
+              compact={true}
+              uppercase={false}
+              color={Colors.orange}
+              labelStyle={{color: "white", fontSize: 12}}
+              onPress={() => {console.log('Pressed Navigate')}}
+            >
+              Navigate
+            </Button>
+          </View>
         </View>
       </View>
     );
@@ -77,18 +98,31 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
   },
-  text: {
+  text1: {
     fontSize: 14,
     color: fidoTheme.COLORS.GREY,
+    marginBottom: 2,
+  },
+  text2: {
+    fontSize: 14,
+    color: fidoTheme.COLORS.LIGHT_GREY,
+    marginBottom: 2
+  },
+  infoContainer: {
+    marginTop: 10,
+    flexDirection: "row"
   },
   info: {
-    marginTop: 10,
+    marginLeft: 5
   },
   buttonContainer: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "flex-end",
+  },
+  bottomButton: {
+    flexDirection: "row",
   },
   buttonText: {
     color: "white",
