@@ -10,6 +10,7 @@ import FloatingActionButton from './FloatingActionButton'
 import ListItem from './ListItem'
 import BookmarkCard from './BookmarkCard'
 import EventCard from './EventCard'
+import Person from './Person'
 
 export {
   Button,
@@ -24,4 +25,5 @@ export {
   ListItem,
   BookmarkCard,
   EventCard,
+  Person
 };

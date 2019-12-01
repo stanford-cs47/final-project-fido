@@ -104,10 +104,11 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     borderColor: fidoTheme.COLORS.BORDER,
     borderBottomWidth: 1,
+    height: 170,
   },
   img: {
     marginTop: 10,
-    marginRight: 16
+    marginRight: 15
   },
   title: {
     fontSize: 16,

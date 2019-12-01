@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   },
   img: {
     marginTop: 10,
-    marginRight: 16
+    marginRight: 15
   },
   title: {
     fontSize: 16,
