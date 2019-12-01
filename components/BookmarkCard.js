@@ -86,8 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 5,
-    paddingTop: 10,
+    padding: 10,
     paddingBottom: 20,
     borderColor: fidoTheme.COLORS.BORDER,
     borderBottomWidth: 1,

@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderColor: fidoTheme.COLORS.BORDER,
     borderBottomWidth: 1,
-    paddingBottom: 20,
     padding: 10,
   },
   top: {
