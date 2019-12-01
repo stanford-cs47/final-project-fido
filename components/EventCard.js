@@ -48,7 +48,7 @@ class EventCard extends React.Component {
                 />
                 : null}
             </View>
-            <Text style={styles.text}>{item.description}</Text>
+            <Text style={styles.text1}>{item.description}</Text>
           </View>
           <View flex column>
             <Icon
@@ -61,10 +61,18 @@ class EventCard extends React.Component {
           </View>
         </CollapseHeader>
         <CollapseBody flex style={styles.bottom}>
-          <View flex style={styles.info} >
-            <Text style={styles.text} >When: {item.activity}</Text>
-            <Text style={styles.text} >Where: {item.location}</Text>
-            <Text style={styles.text} >Who: {item.attending}</Text>
+          <View flex style={styles.infoContainer} >
+            <View>
+              <Text style={styles.text1} >Where:</Text>
+              <Text style={styles.text1} > </Text>
+              <Text style={styles.text1} >When:</Text>
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.text1} >{item.location1}</Text>
+              <Text style={styles.text2} >{item.location2}</Text>
+              <Text style={styles.text1} >{item.time1}</Text>
+              <Text style={styles.text2} >{item.time2}</Text>
+            </View>
           </View>
           <View style={styles.buttonContainer}>
             <Button
@@ -127,8 +135,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: fidoTheme.COLORS.GREY,
   },
-  info: {
+  text1: {
+    fontSize: 14,
+    color: fidoTheme.COLORS.GREY,
+    marginBottom: 2,
+  },
+  text2: {
+    fontSize: 14,
+    color: fidoTheme.COLORS.LIGHT_GREY,
+    marginBottom: 2
+  },
+  infoContainer: {
     marginTop: 10,
+    flexDirection: "row"
+  },
+  info: {
+    marginLeft: 5
   },
   buttonContainer: {
     flexDirection: "row",
