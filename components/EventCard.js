@@ -10,17 +10,31 @@ import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
 
 
+import firestore from '../firebase';
+import firebase from 'firebase';
+
 class EventCard extends React.Component {
   state = {
-    bookmarked: true
+    bookmarked: true,
+    savingBookmark: false,
   }
 
-  _handlePress = () =>
-      this.setState({
-        bookmarked: !this.state.bookmarked
-      });
+  _handlePress = () => {
+    this.setState({
+      bookmarked: !this.state.bookmarked
+    });
+  }
 
+  deleteBookmark = async () => {
+    this.setState({ savingBookmark: true });
 
+    this.setState({bookmarked: !this.state.bookmarked});
+    const { content = {} } = this.props;
+    var bookmarkRef = firestore.doc('bookmarkedEvents/' + content.id);
+    await bookmarkRef.delete();
+
+    this.setState({ savingBookmark: false });
+  }
 
   render() {
     const { item, type } = this.props;

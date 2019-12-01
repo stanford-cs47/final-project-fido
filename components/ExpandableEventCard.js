@@ -10,12 +10,64 @@ import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
+import firestore from '../firebase';
+import firebase from 'firebase';
+
 
 class ExpandableEventCard extends React.Component {
   state = {
     collapsed: false,
-    bookmarked: true,
+    bookmarked: false,
     myEvent: false,
+    savingBookmark: false,
+  }
+
+  componentDidMount = async () => {
+    try {
+      const { item = {} } = this.props;
+      let bookmarkRef = firestore.doc('bookmarkedEvents/');
+      let bookmark = await bookmarkRef.get();
+
+      if(bookmark.exists) this.setState({bookmarked: true})
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  saveBookmark = async() => {
+    this.setState({ savingBookmark: true });
+
+    this.setState({bookmarked: !this.state.bookmarked});
+    const { item = {} } = this.props;
+
+    var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+    await bookmarkRef.set(item);
+
+    this.setState({ savingBookmark: false });
+  }
+
+  deleteBookmark = async () => {
+    this.setState({ savingBookmark: true });
+
+    this.setState({bookmarked: !this.state.bookmarked});
+    const { item = {} } = this.props;
+
+    var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+    await bookmarkRef.delete();
+
+    this.setState({ savingBookmark: false });
+  }
+
+  bookmarkPressed = async () => {
+    if (this.state.savingBookmark) return; //stop if already saving
+
+    if (!this.state.bookmarked) {
+      this.saveBookmark();
+    } else {
+      this.deleteBookmark();
+    }
+
+    this.setState({ bookmarked: !this.state.bookmarked });
   }
 
   render() {

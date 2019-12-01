@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, FlatList, View } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 
 import { FloatingActionButton, ListItem, ExpandableEventCard } from '../components';
@@ -12,25 +12,95 @@ import PouchDB from 'pouchdb-core';
 PouchDB.plugin(require('pouchdb-adapter-asyncstorage').default);
 const db = new PouchDB('mydb', {adapter: 'asyncstorage'});
 
+import firestore from '../firebase';
+import firebase from 'firebase';
+
 class Home extends React.Component {
+
+  state = {
+    expanded: true,
+    events: [{
+      event: articles[0],
+    },
+    {
+      event: articles[1],
+    }],
+    title: "",
+    description: "",
+    location: "",
+    activity: "",
+    attending: "",
+    image: "",
+    horizontal: true,
+  }
+
+  _handlePress = () =>
+    this.setState({
+      expanded: !this.state.expanded
+    });
+
+  componentDidMount() {
+    db.allDocs().then(doc => console.log(doc.rows[0].doc.events));
+  }
+
+  contentDisplayed = () => {
+    let data = [];
+    db.get('events').then(function (doc) {
+      //console.log("before: ");
+      //console.log(doc.events);
+      temp = doc.events;
+      //console.log("temp" + temp);
+      temp.forEach((contact)  => {
+        data.push(contact);
+      })
+      //console.log("data after:" + data);
+    }).catch(function (err) {
+      //console.log("error");
+      console.log(err);
+    });
+    //console.log("data :" + data);
+    return (
+      this.state.events
+    )
+  };
+
+  _keyExtractor = (item, index) => { return item.event.title + index};
+
+  listItemRenderer = (item, index) => {
+    return (
+      <ExpandableEventCard item={item.event}/>
+    );
+  }
+
+  getEvents = async () => {
+    try {
+      let allEvents = [];
+      // Add your code here
+      let eventsColletionRef = firestore.collection('allEvents/');
+      let all = await bookmarkColletionRef.get();
+      all.forEach((currEvent) => {
+        allEvents.push(currEvent.data());
+      })
+      //this.setState({bookmarks});
+      return (allEvents ? allEvents : []);
+    } catch (error) {
+      console.log(error);
+    }
+    return ([]);
+  }
 
   renderArticles = () => {
     return (
       <ScrollView
        showsVerticalScrollIndicator={false}
        contentContainerStyle={styles.articles}>
-        <List.Section>
-          <ExpandableEventCard item={articles[0]}/>
-          <ExpandableEventCard item={articles[1]}/>
-          <ExpandableEventCard item={articles[2]}/>
-          <ExpandableEventCard item={articles[3]}/>
-          <ExpandableEventCard item={articles[4]}/>
-          <ExpandableEventCard item={articles[0]}/>
-          <ExpandableEventCard item={articles[1]}/>
-          <ExpandableEventCard item={articles[2]}/>
-          <ExpandableEventCard item={articles[3]}/>
-          <ExpandableEventCard item={articles[4]}/>
-        </List.Section>
+       <FlatList
+         data={this.contentDisplayed()}
+         renderItem={({item, index}) => this.listItemRenderer(item, index)}
+         keyExtractor={this._keyExtractor}
+         ItemSeparatorComponent = {() => (<View style={{height: 10}}/>)}
+
+       />
       </ScrollView>
     );
   }
