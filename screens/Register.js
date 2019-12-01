@@ -33,11 +33,11 @@ class Register extends React.Component {
           <View style={styles.inputContainer}>
             <TextInput
               label='Location'
-              value='Wilbur Field'
+              value='Werry Park, 2100 Dartmouth St, Palo Alto, CA 94301'
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text size={14}>Time</Text>
+            <Text size={14}>Start Time</Text>
             <View style={styles.chips}>
               <Chip onPress={() => console.log('Pressed')}  >Now</Chip>
               <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
@@ -46,10 +46,22 @@ class Register extends React.Component {
             </View>
           </View>
           <View style={styles.inputContainer}>
+            <Text size={14}>Estimate Duration</Text>
+            <View style={styles.chips2}>
+              <Chip onPress={() => console.log('Pressed')}  >30 Minutes</Chip>
+              <Text>  </Text>
+              <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>1 Hour</Chip>
+              <Text>  </Text>
+              <Chip onPress={() => console.log('Pressed')}>2 Hours</Chip>
+              <Text>  </Text>
+              <Chip onPress={() => console.log('Pressed')}>Custom</Chip>
+            </View>
+          </View>
+          <View style={styles.inputContainer}>
           <Text size={14} >Invite</Text>
             <View style={styles.chips2}>
               <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
-              <Text> </Text>
+              <Text>  </Text>
               <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
             </View>
           </View>
@@ -95,10 +107,12 @@ const styles = StyleSheet.create({
   },
   chips: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    marginTop: 5,
   },
   chips2: {
     flexDirection: "row",
+    marginTop: 5,
   },
   image: {
     width: width,
@@ -110,7 +124,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     justifyContent: "flex-end",
-    marginTop: 120
+    marginTop: 80
   },
   buttonText: {
     color: "white"
