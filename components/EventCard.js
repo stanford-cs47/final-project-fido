@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     borderColor: fidoTheme.COLORS.BORDER,
     borderBottomWidth: 1,
     padding: 10,
+    paddingBottom: 20,
   },
   top: {
     flexDirection: "row",
