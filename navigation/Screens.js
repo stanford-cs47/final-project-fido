@@ -189,7 +189,8 @@ HomeTab.navigationOptions = ({ navigation, db }) => {
 const MyHomeStack = createStackNavigator({
   HomeTab: {screen: HomeTab},
   NotImplemented: {screen: NotImplemented},
-  Map: {screen: Map}
+  Map: {screen: Map},
+  ExpandedEvent: {screen: ExpandedEvent}
 },
 {
   headerMode: 'float',
