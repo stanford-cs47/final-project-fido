@@ -9,7 +9,6 @@ import { Images } from '../constants/';
 import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
 
-
 import firestore from '../firebase';
 import firebase from 'firebase';
 
@@ -24,23 +23,43 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
 
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-      let bookmark = await bookmarkRef.get();
 
-      if(bookmark.exists) this.setState({bookmarked: true})
+      let unsubscribe = bookmarkRef.onSnapshot(() => {
+        this.reloadBookmarks();
+      });
+      this.setState({ unsubscribe });
+
+      this.reloadBookmarks();
+
     } catch (err) {
       console.log(err);
     }
   }
 
+  componentWillUnmount() {
+    this.state.unsubscribe();
+  }
+
+  reloadBookmarks = async () => {
+    this.setState({isRefreshing: true});
+    const { item = {} } = this.props;
+    let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+    let bookmark = await bookmarkRef.get();
+
+    if(bookmark.exists) this.setState({bookmarked: true});
+    else this.setState({bookmarked: false});
+    this.setState({isRefreshing: false});
+  }
+
   removeBookmark = async () => {
-    this.setState({ savingBookmark: true });
+    //this.setState({ savingBookmark: true });
 
     this.setState({bookmarked: !this.state.bookmarked});
     const { item = {} } = this.props;
     var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     await bookmarkRef.delete();
-
-    this.setState({ savingBookmark: false });
+    this.props.book = false;
+    //this.setState({ savingBookmark: false });
   }
 
   render() {
@@ -73,7 +92,7 @@ class EventCard extends React.Component {
               size={25}
               name="bookmark"
               color= {Colors.orange}
-              onPress={() => {console.log('Pressed Bookmark')}}
+              onPress={() => this.removeBookmark()}
             /> : null
           }
           {type === "event" ?

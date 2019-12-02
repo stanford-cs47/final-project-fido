@@ -13,10 +13,11 @@ import { Colors, Metrics } from '../Themes'
 import Images from "../constants/Images";
 
 const { width } = Dimensions.get("screen");
-//<Image source={Images.Paw} styles={styles.photo} />
+
 const Drawer = props => (
   <Block style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
     <Block flex={0.05} style={styles.header}>
+      {/*<Image source={Images.Paw} styles={styles.photo} />*/}
       <Text style ={styles.text}>
        FIDO
        </Text>
@@ -74,9 +75,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   photo:{
+    resizeMode: 'contain',
     width: 40,
     height: 40,
-    resizeMode: 'contain',
   },
   text:{
     fontSize: 40,

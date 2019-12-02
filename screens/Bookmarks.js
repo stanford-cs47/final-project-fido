@@ -20,8 +20,8 @@ class Bookmarks extends React.Component {
   }
 
   componentDidMount() {
-    const user = firebase.auth().currentUser;
     let bookmarksRef = firestore.collection('bookmarkedEvents/');
+
     let unsubscribe = bookmarksRef.onSnapshot(() => {
       this.reloadBookmarks();
     });
@@ -61,7 +61,7 @@ class Bookmarks extends React.Component {
 
   renderBookmarks = (item) => {
     return (
-      <EventCard item={item} type={"bookmark"}/>
+      <EventCard item={item} type={"bookmark"} book ={this.state.bookmarked}/>
     )
   }
 
@@ -88,7 +88,7 @@ class Bookmarks extends React.Component {
   render() {
     let emptyList = null;
     if (!this.state.bookmarks[0]) {
-      emptyList = (<Text style={{marginTop: Metrics.navBarHeight}}>No bookmarks exist yet!</Text>);
+      emptyList = (<Text style={{marginTop: Metrics.navBarHeight}}>You have not bookmarked events yet!</Text>);
     }
     return (
       <Block flex>

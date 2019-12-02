@@ -13,25 +13,47 @@ import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-co
 import firestore from '../firebase';
 import firebase from 'firebase';
 
-
 class ExpandableEventCard extends React.Component {
   state = {
     collapsed: false,
     bookmarked: false,
     myEvent: false,
     savingBookmark: false,
+    unsubscribe: null,
+    isRefreshing:false,
   }
 
   componentDidMount = async () => {
     try {
       const { item = {} } = this.props;
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-      let bookmark = await bookmarkRef.get();
+      // let bookmark = await bookmarkRef.get();
+      //
+      // if(bookmark.exists) this.setState({bookmarked: true});
+      let unsubscribe = bookmarkRef.onSnapshot(() => {
+        this.reloadBookmarks();
+      });
+      this.setState({ unsubscribe });
 
-      if(bookmark.exists) this.setState({bookmarked: true})
+      this.reloadBookmarks();
     } catch (err) {
       console.log(err);
     }
+  }
+
+  componentWillUnmount() {
+    this.state.unsubscribe();
+  }
+
+  reloadBookmarks = async () => {
+    this.setState({isRefreshing: true});
+    const { item = {} } = this.props;
+    let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+    let bookmark = await bookmarkRef.get();
+
+    if(bookmark.exists) this.setState({bookmarked: true});
+    else this.setState({bookmarked: false});
+    this.setState({isRefreshing: false});
   }
 
   saveBookmark = async() => {

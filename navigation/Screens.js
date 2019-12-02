@@ -32,11 +32,11 @@ import DrawerItem from "../components/DrawerItem";
 // header for screens
 import Header from "../components/Header";
 
-const ElementsStack = createStackNavigator({
+const HelpStack = createStackNavigator({
   Elements: {
     screen: NotImplemented,
     navigationOptions: ({ navigation }) => ({
-      header: <Header title="Elements" navigation={navigation} />
+      header: <Header title="Help" navigation={navigation} />
     })
   }
 },{
@@ -46,19 +46,19 @@ const ElementsStack = createStackNavigator({
   //transitionConfig
 });
 
-// const ArticlesStack = createStackNavigator({
-//   Articles: {
-//     screen: Articles,
-//     navigationOptions: ({ navigation }) => ({
-//       header: <Header title="Articles" navigation={navigation} />
-//     })
-//   }
-// },{
-//   cardStyle: {
-//     backgroundColor: "#F8F9FE"
-//   },
-//   transitionConfig
-// });
+const SettingsStack = createStackNavigator({
+  Settings: {
+    screen: NotImplemented,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Settings" navigation={navigation} />
+    })
+  }
+},{
+  cardStyle: {
+    backgroundColor: "#F8F9FE"
+  },
+  //transitionConfig
+});
 
 const ProfileStack = createStackNavigator(
   {
@@ -291,12 +291,12 @@ const HomeStack = createStackNavigator(
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
   {
-    Onboarding: {
-      screen: Onboarding,
-      navigationOptions: {
-        drawerLabel: () => {}
-      }
-    },
+    // Onboarding: {
+    //   screen: Onboarding,
+    //   navigationOptions: {
+    //     drawerLabel: () => {}
+    //   }
+    // },
     Home: {
       screen: HomeStack,
       navigationOptions: navOpt => ({
@@ -313,19 +313,19 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Account: {
-      screen: Register,
+    Settings: {
+      screen: SettingsStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Register" title="Account" />
+          <DrawerItem focused={focused} screen="NotImplemented" title="Settings" />
         )
       })
     },
-    Elements: {
-      screen: ElementsStack,
+    Help: {
+      screen: HelpStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Elements" title="Elements" />
+          <DrawerItem focused={focused} screen="NotImplemented" title="Help" />
         )
       })
     },

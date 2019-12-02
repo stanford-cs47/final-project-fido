@@ -19,17 +19,7 @@ class Home extends React.Component {
 
   state = {
     expanded: true,
-    events: [{
-      event: articles[0],
-    },
-    {
-      event: articles[1],
-    },
-    {
-      event: articles[2],
-    },{
-      event: articles[3],
-    }],
+    events: [],
 
     title: "",
     description: "",
@@ -38,15 +28,28 @@ class Home extends React.Component {
     attending: "",
     image: "",
     horizontal: true,
+    isRefreshing: false,
   }
 
-  _handlePress = () =>
+  _handlePress = () => {
     this.setState({
       expanded: !this.state.expanded
     });
+  }
 
   componentDidMount() {
-    //db.allDocs().then(doc => console.log(doc.rows[0].doc.events));
+    let eventsRef = firestore.collection('allEvents/');
+
+    let unsubscribe = eventsRef.onSnapshot(() => {
+      this.reloadEvents();
+    });
+    this.setState({ unsubscribe });
+
+    this.reloadEvents(); // Initial loading of bookmarks
+  }
+
+  componentWillUnmount() {
+    this.state.unsubscribe();
   }
 
   contentDisplayed = () => {
@@ -55,24 +58,32 @@ class Home extends React.Component {
     )
   };
 
-  _keyExtractor = (item, index) => { return item.event.title + index};
+  _keyExtractor = (item, index) => { return item + index};
 
   listItemRenderer = (item, index) => {
     return (
-      <ExpandableEventCard item={item.event}/>
+      <ExpandableEventCard item={item}/>
     );
+  }
+
+  reloadEvents = async () => {
+    this.setState({isRefreshing: true});
+    const events = await this.getEvents();
+    console.log("events : ");
+    console.log(events);
+    this.setState({events: events, isRefreshing: false});
   }
 
   getEvents = async () => {
     try {
       let allEvents = [];
-      // Add your code here
+
       let eventsColletionRef = firestore.collection('allEvents/');
-      let all = await bookmarkColletionRef.get();
+      let all = await eventsColletionRef.get();
       all.forEach((currEvent) => {
         allEvents.push(currEvent.data());
-      })
-      //this.setState({bookmarks});
+      });
+
       return (allEvents ? allEvents : []);
     } catch (error) {
       console.log(error);
@@ -86,7 +97,7 @@ class Home extends React.Component {
        showsVerticalScrollIndicator={false}
        contentContainerStyle={styles.articles}>
        <FlatList
-         data={this.contentDisplayed()}
+         data={this.state.events}
          renderItem={({item, index}) => this.listItemRenderer(item, index)}
          keyExtractor={this._keyExtractor}
          ItemSeparatorComponent = {() => (<View style={{height: 10}}/>)}
