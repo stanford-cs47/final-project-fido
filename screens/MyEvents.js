@@ -28,6 +28,33 @@ var sampleMessage = {
 
 // MyEvents Page
 class MyEvents extends React.Component {
+
+  deleteEvent = async () => {
+    this.setState({ savingBookmark: true });
+
+    this.setState({bookmarked: !this.state.bookmarked});
+    const { item = {} } = this.props;
+
+    var allEventsRef = firestore.doc('allEvents/' + item.title);
+    var myEventsRef = firestore.doc('myEvents/' + item.title);
+    await bookmarkRef.delete();
+
+    this.setState({ savingBookmark: false });
+  }
+
+  getMyEvent = async() => {
+    try {
+      let myEventRef = firestore.collection('myEvent/');
+      let myEvent = await myEventRef.get();
+
+
+      return (myEvent ? myEvent : null);
+    } catch (error) {
+      console.log(error);
+    }
+    return (null);
+  }
+
   renderPeople = () => {
     return (
       <ScrollView
@@ -48,7 +75,7 @@ class MyEvents extends React.Component {
       <View flex style={styles.main}>
         <View style={{height: 230, padding: 10}}>
           <Text style={styles.header}>Event Information</Text>
-          <EventCard item={TEMP_ITEM} type={"my_event"}/>
+          <EventCard item={null} type={"my_event"}/>
         </View>
 
         <View style={styles.section1}>

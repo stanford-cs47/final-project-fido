@@ -27,9 +27,7 @@ class ExpandableEventCard extends React.Component {
     try {
       const { item = {} } = this.props;
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-      // let bookmark = await bookmarkRef.get();
-      //
-      // if(bookmark.exists) this.setState({bookmarked: true});
+
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
       });
@@ -163,7 +161,7 @@ class ExpandableEventCard extends React.Component {
               style={{marginRight: 5}}
               color={fidoTheme.COLORS.LIGHT_ORANGE}
               labelStyle={{color: Colors.orange, fontSize: 12}}
-              onPress={() => {this.props.navigation.navigate('ExpandedEvent')}}
+              onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item})}}
             >
               More
             </Button>

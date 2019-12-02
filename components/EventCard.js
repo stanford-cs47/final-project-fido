@@ -64,7 +64,13 @@ class EventCard extends React.Component {
 
   render() {
     const { item, type } = this.props;
-
+    if (item === null) {
+      return (
+        <View flex style={styles.container}>
+        <Text> You do not have an event yet! </Text>
+        </View>
+      )
+    } else {
     return (
       <View flex style={styles.container}>
         <Avatar.Image size={45} source={{uri: item.image}} style={styles.img}/>
@@ -140,7 +146,7 @@ class EventCard extends React.Component {
           </View>
         </View>
       </View>
-    );
+    )}
   }
 }
 
