@@ -122,7 +122,7 @@ class EventCard extends React.Component {
                 style={{marginRight: 5}}
                 color={fidoTheme.COLORS.LIGHT_ORANGE}
                 labelStyle={{color: Colors.orange, fontSize: 12}}
-                onPress={() => {console.log('Pressed More')}}
+                onPress={() => {this.props.navigation.navigate('ExpandedEvent')}}
               >
                 More
               </Button> : null
@@ -133,7 +133,7 @@ class EventCard extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={{color: "white", fontSize: 12}}
-              onPress={() => {console.log('Pressed Navigate')}}
+              onPress={() => {this.props.navigation.navigate('Map')}}
             >
               Navigate
             </Button>
