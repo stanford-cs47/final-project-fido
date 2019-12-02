@@ -54,11 +54,12 @@ class EventCard extends React.Component {
   removeBookmark = async () => {
     //this.setState({ savingBookmark: true });
 
-    this.setState({bookmarked: !this.state.bookmarked});
     const { item = {} } = this.props;
-    var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-    await bookmarkRef.delete();
-    this.props.book = false;
+    var allEventsRef = firestore.doc('allEvents/' + item.title);
+    var myEventRef = firestore.doc('myEvent/' + item.title);
+    await myEvent.delete();
+    await allEventsRef.delete();
+
     //this.setState({ savingBookmark: false });
   }
 
@@ -128,7 +129,7 @@ class EventCard extends React.Component {
                 style={{marginRight: 5}}
                 color={fidoTheme.COLORS.LIGHT_ORANGE}
                 labelStyle={{color: Colors.orange, fontSize: 12}}
-                onPress={() => {this.props.navigation.navigate('ExpandedEvent')}}
+                onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item})}}
               >
                 More
               </Button> : null

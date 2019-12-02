@@ -75,7 +75,7 @@ class MyEvents extends React.Component {
       <View flex style={styles.main}>
         <View style={{height: 230, padding: 10}}>
           <Text style={styles.header}>Event Information</Text>
-          <EventCard item={null} type={"my_event"}/>
+          <EventCard item={TEMP_ITEM} type={"my_event"}/>
         </View>
 
         <View style={styles.section1}>
