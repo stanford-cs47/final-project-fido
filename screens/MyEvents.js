@@ -64,7 +64,7 @@ class MyEvents extends React.Component {
            </View>
         </View>
         <View style={styles.section2}>
-          <Text style={styles.header}>Attending</Text>
+          <Text style={styles.header}>Bookmarked By</Text>
           {this.renderPeople()}
         </View>
       </View>
