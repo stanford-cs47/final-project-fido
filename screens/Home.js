@@ -44,21 +44,6 @@ class Home extends React.Component {
   }
 
   contentDisplayed = () => {
-    let data = [];
-    db.get('events').then(function (doc) {
-      //console.log("before: ");
-      //console.log(doc.events);
-      temp = doc.events;
-      //console.log("temp" + temp);
-      temp.forEach((contact)  => {
-        data.push(contact);
-      })
-      //console.log("data after:" + data);
-    }).catch(function (err) {
-      //console.log("error");
-      console.log(err);
-    });
-    //console.log("data :" + data);
     return (
       this.state.events
     )
