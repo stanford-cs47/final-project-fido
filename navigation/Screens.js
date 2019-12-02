@@ -120,6 +120,7 @@ MyEvents.navigationOptions = ({navigation}) => {
 
 const MyEventsStack = createStackNavigator({
   MyEvents: {screen: MyEvents},
+  Map: {screen: Map}
 },
 {
   headerMode: 'float',
@@ -188,6 +189,7 @@ HomeTab.navigationOptions = ({ navigation, db }) => {
 const MyHomeStack = createStackNavigator({
   HomeTab: {screen: HomeTab},
   NotImplemented: {screen: NotImplemented},
+  Map: {screen: Map}
 },
 {
   headerMode: 'float',
