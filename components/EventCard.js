@@ -19,18 +19,25 @@ class EventCard extends React.Component {
     savingBookmark: false,
   }
 
-  _handlePress = () => {
-    this.setState({
-      bookmarked: !this.state.bookmarked
-    });
+  componentDidMount = async () => {
+    try {
+      const { item = {} } = this.props;
+
+      let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+      let bookmark = await bookmarkRef.get();
+
+      if(bookmark.exists) this.setState({bookmarked: true})
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  deleteBookmark = async () => {
+  removeBookmark = async () => {
     this.setState({ savingBookmark: true });
 
     this.setState({bookmarked: !this.state.bookmarked});
-    const { content = {} } = this.props;
-    var bookmarkRef = firestore.doc('bookmarkedEvents/' + content.id);
+    const { item = {} } = this.props;
+    var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     await bookmarkRef.delete();
 
     this.setState({ savingBookmark: false });

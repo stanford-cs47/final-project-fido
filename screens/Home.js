@@ -24,7 +24,13 @@ class Home extends React.Component {
     },
     {
       event: articles[1],
+    },
+    {
+      event: articles[2],
+    },{
+      event: articles[3],
     }],
+
     title: "",
     description: "",
     location: "",
