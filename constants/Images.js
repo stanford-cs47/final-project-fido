@@ -1,5 +1,6 @@
 // local imgs
 const Plus = require("../assets/imgs/plus.png");
+const splash = require("../assets/splash.png");
 const Paw = require("../assets/imgs/pawprint.jpg");
 const NewPaw = require("../assets/imgs/newpaw.png");
 const BG = require("../assets/imgs/coolbackground.png");
@@ -34,6 +35,7 @@ const Products = {
 };
 
 export default {
+  splash,
   Plus,
   NewPaw,
   Paw,

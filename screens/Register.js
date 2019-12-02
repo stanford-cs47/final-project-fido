@@ -6,7 +6,8 @@ import {
   Dimensions,
   StatusBar,
   KeyboardAvoidingView,
-  View
+  View,
+  Alert,
 } from "react-native";
 import { Icon, EventForm } from "../components";
 import { Images } from "../constants";
@@ -16,33 +17,84 @@ const { width, height } = Dimensions.get("screen");
 import {TextInput, Chip, Button} from 'react-native-paper'
 import { Colors, Metrics } from '../Themes';
 
+import firestore from '../firebase';
+import firebase from 'firebase';
+
 class Register extends React.Component {
 
   state = {
     title: "",
     location: "",
+    startButtonPressed: false,
+    startButton: "",
+    durationButtonPressed: false,
+    durationButton: "",
+    inviteButtonPressed: false,
+    inviteButton: "",
+  }
+
+  handlePost = async() => {
+    const {title, location, startButtonPressed, durationButtonPressed, inviteButtonPressed } = this.state;
+    if(title === "" || location === "") {
+      var titlemsg = title === "" ? "Title" : "";
+      var locationmsg = location === "" ? "Location" : "";
+      var two = (title === "" && location === "") ? true : false;
+      var spacing = two ? ", " : "";
+      var result = titlemsg + spacing + locationmsg;
+      Alert.alert(
+        'You have not filled out the following fields',
+        result,
+        [
+          {text: 'Got It!'},
+        ],
+        {cancelable: false},
+      );
+    }
+    else if( !startButtonPressed || !durationButtonPressed || !inviteButtonPressed){
+      var start = startButtonPressed ? "" : "Start Time";
+      var duration = durationButtonPressed ? "" : "Estimated Duration";
+      var invite = inviteButtonPressed ? "" : "Invite";
+      var result = start + ", " + duration + ", " + invite;
+      Alert.alert(
+        'You have not selected an entry for the following fields',
+        result,
+        [
+          {text: 'Got It!'},
+        ],
+        {cancelable: false},
+      );
+    } else {
+      this.props.navigation.navigate('Home');
+    }
+  };
+
+  saveEvent = async() => {
+    this.setState({ savingBookmark: true });
+
+    this.setState({bookmarked: !this.state.bookmarked});
+    const { item = {} } = this.props;
+
+    var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+    await bookmarkRef.set(item);
+
+    this.setState({ savingBookmark: false });
   }
 
   addEvent = () => {
-    let eventsCopy = JSON.parse(JSON.stringify(this.state.events));
-    eventsCopy.push({
-      title: this.state.title,
-      location: this.state.location,
-    });
-    this.props.db.get('events').then(function(doc) {
-      return db.put({
-        _id: 'events',
-        _rev: doc._rev,
-        contacts: eventsCopy,
-      });
-    }).then(function(response) {
-      console.log("added event");
-    }).catch(function (err) {
-      console.log(err);
-    });
+
   };
 
   render() {
+    let nowText = "Now";
+    let in10Text = "In 10 Minutes";
+    let in30Text = "In 30 Minutes";
+    let customText = "Custom";
+    let text30m = "30 Minutes";
+    let text1h = "1 Hour";
+    let text2h = "2 Hour";
+    let publicText = "Public";
+    let friendsText = "Friends Only";
+
     return (
       <View>
         <Image source={Images.Park} style={styles.image}/>
@@ -67,30 +119,63 @@ class Register extends React.Component {
           <View style={styles.inputContainer}>
             <Text size={14}>Start Time</Text>
             <View style={styles.chips}>
-              <Chip onPress={() => console.log('Pressed')}  >Now</Chip>
-              <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>In 10 Minutes</Chip>
-              <Chip onPress={() => console.log('Pressed')}>In 30 Minutes</Chip>
-              <Chip onPress={() => console.log('Pressed')}>Custom</Chip>
+              <Chip
+               onPress={() => console.log('Pressed')}
+               >{nowText}</Chip>
+
+              <Chip
+              textStyle= {styles.textTemp}
+              style= {styles.temp}
+              onPress={() => console.log('Pressed')}
+              >{in10Text}</Chip>
+
+              <Chip
+              onPress={() => console.log('Pressed')}
+              >{in30Text}</Chip>
+
+              <Chip
+              onPress={() => console.log('Pressed')}
+              >{customText}</Chip>
             </View>
           </View>
           <View style={styles.inputContainer}>
             <Text size={14}>Estimate Duration</Text>
             <View style={styles.chips2}>
-              <Chip onPress={() => console.log('Pressed')}  >30 Minutes</Chip>
+              <Chip
+              onPress={() => console.log('Pressed')}
+              >{text30m}</Chip>
               <Text>  </Text>
-              <Chip textStyle= {styles.textTemp} style= {styles.temp} onPress={() => console.log('Pressed')}>1 Hour</Chip>
+
+              <Chip
+              textStyle= {styles.textTemp}
+              style= {styles.temp}
+              onPress={() => console.log('Pressed')}
+              >{text1h}</Chip>
               <Text>  </Text>
-              <Chip onPress={() => console.log('Pressed')}>2 Hours</Chip>
+
+              <Chip
+              onPress={() => console.log('Pressed')}
+              >{text2h}</Chip>
               <Text>  </Text>
-              <Chip onPress={() => console.log('Pressed')}>Custom</Chip>
+
+              <Chip
+              onPress={() => console.log('Pressed')}
+              >{customText}</Chip>
             </View>
           </View>
           <View style={styles.inputContainer}>
           <Text size={14} >Invite</Text>
             <View style={styles.chips2}>
-              <Chip textStyle= {styles.textTemp} style= {styles.temp}  onPress={() => console.log('Pressed')}>Public</Chip>
+              <Chip
+              textStyle= {styles.textTemp}
+              style= {styles.temp}
+              onPress={() => console.log('Pressed')}
+              >{publicText}</Chip>
               <Text>  </Text>
-              <Chip onPress={() => console.log('Pressed')}>Friends Only</Chip>
+
+              <Chip
+              onPress={() => console.log('Pressed')}
+              >{friendsText}</Chip>
             </View>
           </View>
           <View style={styles.buttonContainer}>
@@ -113,8 +198,7 @@ class Register extends React.Component {
                 color={Colors.orange}
                 labelStyle={styles.buttonText}
                 onPress={() => {
-                  this.addEvent();
-                  this.props.navigation.navigate('Home')
+                  this.handlePost();
                 }}
               >
                 Post
