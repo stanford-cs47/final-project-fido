@@ -123,7 +123,7 @@ class ExpandableEventCard extends React.Component {
               {this.state.myEvent ?
                 <Icon
                   family="feather"
-                  size={15}
+                  size={20}
                   name="user"
                   color= {Colors.orange}
                 />
