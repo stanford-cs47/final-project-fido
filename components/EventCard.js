@@ -16,6 +16,8 @@ class EventCard extends React.Component {
   state = {
     bookmarked: true,
     savingBookmark: false,
+    unsubscribe: false,
+    myEventExists: false,
   }
 
   componentDidMount = async () => {
@@ -23,13 +25,20 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
 
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+      let myEventRef = firestore.doc('myEvent/' + item.title);
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
       });
+
+      let unsubscribeTwo = myEventRef.onSnapshot(() => {
+        this.reloadMyEvent();
+      });
+
       this.setState({ unsubscribe });
 
       this.reloadBookmarks();
+      this.reloadMyEvent();
 
     } catch (err) {
       console.log(err);
@@ -38,6 +47,14 @@ class EventCard extends React.Component {
 
   componentWillUnmount() {
     this.state.unsubscribe();
+  }
+
+  reloadMyEvent = async() => {
+    const { item = {} } = this.props;
+    let myEventRef = firestore.doc('myEvent/' + item.title);
+    let myEvent = await myEventRef.get();
+
+    if(myEvent.exists) this.setState({myEventExists: true});
   }
 
   reloadBookmarks = async () => {
@@ -55,9 +72,19 @@ class EventCard extends React.Component {
     //this.setState({ savingBookmark: true });
 
     const { item = {} } = this.props;
+    var bookmarkedEventsRef = firestore.doc('bookmarkedEvents/' + item.title);
+    await bookmarkedEventsRef.delete();
+
+    //this.setState({ savingBookmark: false });
+  }
+
+  deleteBookmark = async () => {
+    //this.setState({ savingBookmark: true });
+
+    const { item = {} } = this.props;
     var allEventsRef = firestore.doc('allEvents/' + item.title);
     var myEventRef = firestore.doc('myEvent/' + item.title);
-    await myEvent.delete();
+    await myEventRef.delete();
     await allEventsRef.delete();
 
     //this.setState({ savingBookmark: false });
@@ -65,7 +92,9 @@ class EventCard extends React.Component {
 
   render() {
     const { item, type } = this.props;
-    if (item === null) {
+    console.log("passed in: ");
+    console.log(item);
+    if (item === undefined) {
       return (
         <View flex style={styles.container}>
         <Text> You do not have an event yet! </Text>
@@ -117,7 +146,7 @@ class EventCard extends React.Component {
               size={25}
               name="trash-2"
               color= {fidoTheme.COLORS.GREY}
-              onPress={() => {console.log('Pressed Bookmark')}}
+              onPress={() => {console.log('Pressed trash')}}
             /> : null
           }
           <View style={styles.bottomButton}>

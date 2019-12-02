@@ -41,6 +41,7 @@ class Register extends React.Component {
       image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
       horizontal: true,
       bookmarked: false,
+      mine: true,
     }
   }
 
@@ -90,11 +91,11 @@ class Register extends React.Component {
 
     const item = newEvent;
 
-    console.log(item);
-    // var allEventsRef = firestore.doc('allEvents/' + item.title);
-    // var myEventRef = firestore.doc('myEvent/' + item.title);
-    // await allEventsRef.set(item);
-    // await myEventRef.set(item);
+    //console.log(item);
+    var allEventsRef = firestore.doc('allEvents/' + item.title);
+    var myEventRef = firestore.doc('myEvent/' + item.title);
+    await allEventsRef.set(item);
+    await myEventRef.set(item);
 
   }
   //{ text: 'Yes', onPress: () => this.props.navigation.goBack() },

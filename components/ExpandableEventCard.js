@@ -51,6 +51,12 @@ class ExpandableEventCard extends React.Component {
 
     if(bookmark.exists) this.setState({bookmarked: true});
     else this.setState({bookmarked: false});
+
+
+    let allRef = firestore.doc('allEvents/' + item.title);
+    let ev = await allRef.get();
+
+    if(ev.exists) this.setState({myEvent: item.mine});
     this.setState({isRefreshing: false});
   }
 
