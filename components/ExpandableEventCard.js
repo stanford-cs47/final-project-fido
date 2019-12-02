@@ -89,8 +89,15 @@ class ExpandableEventCard extends React.Component {
                   size={15}
                   name="bookmark"
                   color= {Colors.orange}
+                  onPress = {this.bookmarkPressed}
                 />
-                : null}
+                : <Icon
+                  family="feather"
+                  size={15}
+                  name="bookmark"
+                  color= {"#A5A5A5"}
+                  onPress = {this.bookmarkPressed}
+                />}
               {this.state.myEvent ?
                 <Icon
                   family="feather"
