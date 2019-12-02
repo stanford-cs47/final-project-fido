@@ -51,11 +51,12 @@ export default [
     horizontal: true
   },
   {
-    title: 'Frisbee at the Park (me)',
-    description: '0.0 mi      active now      1 attending',
-    location: 'Wilbur Field',
-    activity: 'active now',
-    attending: '1 attending',
+    title: 'Frisbee at the Park',
+    description: 'Me + 4 others      Public      0.1 mi',
+    location1: 'Werry Park',
+    location2: 'Stanford, CA 94305',
+    time1: '3:00pm - 4:00pm',
+    time2: '50 minutes left',
     image: 'https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?fit=crop&w=1947&q=80',
     horizontal: true
   },

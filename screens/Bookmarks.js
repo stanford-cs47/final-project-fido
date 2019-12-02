@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, FlatList, View, Text } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
-import { BookmarkCard } from '../components';
+import { EventCard } from '../components';
 import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 import { List, Checkbox } from 'react-native-paper';
@@ -61,7 +61,7 @@ class Bookmarks extends React.Component {
 
   renderBookmarks = (item) => {
     return (
-      <BookmarkCard item={item}/>
+      <EventCard item={item} type={"bookmark"}/>
     )
   }
 

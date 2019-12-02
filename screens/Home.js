@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, FlatList, View } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 
-import { FloatingActionButton, ListItem, EventCard } from '../components';
+import { FloatingActionButton, ListItem, ExpandableEventCard } from '../components';
 import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 import { List, Checkbox } from 'react-native-paper';
@@ -53,7 +53,7 @@ class Home extends React.Component {
 
   listItemRenderer = (item, index) => {
     return (
-      <EventCard item={item.event}/>
+      <ExpandableEventCard item={item.event}/>
     );
   }
 
