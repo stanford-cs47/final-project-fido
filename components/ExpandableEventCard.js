@@ -174,7 +174,7 @@ class ExpandableEventCard extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={styles.buttonText}
-              onPress={() => {console.log('Pressed')}}
+              onPress={() => {this.props.navigation.navigate('Map')}}
             >
               Navigate
             </Button>

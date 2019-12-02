@@ -133,7 +133,7 @@ class EventCard extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={{color: "white", fontSize: 12}}
-              onPress={() => {console.log('Pressed Navigate')}}
+              onPress={() => {this.props.navigation.navigate('Map')}}
             >
               Navigate
             </Button>
