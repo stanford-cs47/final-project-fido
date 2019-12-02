@@ -25,6 +25,7 @@ import Bookmarks from "../screens/Bookmarks";
 import MyEvents from "../screens/MyEvents";
 import HappeningLater from "../screens/HappeningLater";
 import NotImplemented from "../screens/NotImplemented";
+import ExpandedEvent from "../screens/ExpandedEvent";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -80,7 +81,7 @@ const ProfileStack = createStackNavigator(
 
 const BookmarkStack = createStackNavigator({
   Bookmarks: {screen: Bookmarks},
-  Meh2: {screen: MyEvents}
+  ExpandedEvent: {screen: ExpandedEvent}
 },
 {
   headerMode: 'float',
