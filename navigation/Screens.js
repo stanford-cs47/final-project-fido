@@ -82,7 +82,12 @@ const ProfileStack = createStackNavigator(
 
 const BookmarkStack = createStackNavigator({
   Bookmarks: {screen: Bookmarks},
-  ExpandedEvent: {screen: ExpandedEvent},
+  ExpandedEvent: {screen: ExpandedEvent,
+    navigationOptions: () => ({
+      headerTintColor: "white",
+      headerStyle:{backgroundColor: Colors.orange},
+    }),
+  },
   Map: {screen: Map}
 },
 {
@@ -98,7 +103,16 @@ Bookmarks.navigationOptions = ({navigation}) => {
 }
 
 BookmarkStack.navigationOptions = ({ navigation, db }) => {
+  let tabBarVisible = true;
+  if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+      if (route.routeName === "Map") {
+        tabBarVisible = false;
+      }
+    });
+  }
   return {
+    tabBarVisible,
     header: <Header title= "Bookmarks" navigation={navigation} />,
     tabBarLabel: 'Bookmarks',
     tabBarIcon: ({ tintColor }) => (
@@ -128,7 +142,16 @@ const MyEventsStack = createStackNavigator({
 });
 
 MyEventsStack.navigationOptions = ({ navigation, db }) => {
+  let tabBarVisible = true;
+  if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+      if (route.routeName === "Map") {
+        tabBarVisible = false;
+      }
+    });
+  }
   return {
+    tabBarVisible,
     tabBarLabel: 'My Events',
     tabBarIcon: ({ tintColor }) => (
       <Icon
@@ -190,7 +213,12 @@ const MyHomeStack = createStackNavigator({
   HomeTab: {screen: HomeTab},
   NotImplemented: {screen: NotImplemented},
   Map: {screen: Map},
-  ExpandedEvent: {screen: ExpandedEvent}
+  ExpandedEvent: {screen: ExpandedEvent,
+    navigationOptions: () => ({
+      headerTintColor: "white",
+      headerStyle:{backgroundColor: Colors.orange},
+    }),
+  }
 },
 {
   headerMode: 'float',
@@ -198,7 +226,16 @@ const MyHomeStack = createStackNavigator({
 });
 
 MyHomeStack.navigationOptions = ({ navigation, db }) => {
+  let tabBarVisible = true;
+  if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+      if (route.routeName === "Map") {
+        tabBarVisible = false;
+      }
+    });
+  }
   return {
+    tabBarVisible,
     tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => (
       <Icon
