@@ -28,6 +28,7 @@ var sampleMessage = {
 
 // MyEvents Page
 class ExpandedEvent extends React.Component {
+
   renderPeople = () => {
     return (
       <ScrollView
@@ -44,11 +45,12 @@ class ExpandedEvent extends React.Component {
   }
 
   render() {
+    let passedInArticle= this.props.navigation.getParam('item', null);
     return (
       <View flex style={styles.main}>
         <View style={{height: 230, padding: 10}}>
           <Text style={styles.header}>Event Information</Text>
-          <EventCard item={TEMP_ITEM} type={"event"}/>
+          <EventCard item={passedInArticle} type={"event"}/>
         </View>
 
         <View style={styles.section1}>

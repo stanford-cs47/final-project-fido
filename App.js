@@ -22,6 +22,7 @@ const assetImages = [
 articles.map(article => assetImages.push(article.image));
 
 function cacheImages(images) {
+  //const splash = [require('./assets/splash.png')];
   return images.map(image => {
     if (typeof image === 'string') {
       return Image.prefetch(image);
@@ -40,10 +41,11 @@ export default class App extends React.Component {
     if(!this.state.isLoadingComplete) {
       return (
         <AppLoading
-          autoHideSplash={true}
+
           startAsync={this._loadResourcesAsync}
           onError={this._handleLoadingError}
           onFinish={this._handleFinishLoading}
+          autoHideSplash={true}
         />
       );
     } else {

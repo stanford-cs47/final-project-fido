@@ -1,5 +1,6 @@
 // local imgs
 const Plus = require("../assets/imgs/plus.png");
+const splash = require("../assets/splash.png");
 const Paw = require("../assets/imgs/pawprint.jpg");
 const NewPaw = require("../assets/imgs/newpaw.png");
 const BG = require("../assets/imgs/coolbackground.png");
@@ -14,6 +15,7 @@ const ArgonLogo = require("../assets/imgs/argonlogo.png");
 const iOSLogo = require("../assets/imgs/ios.png");
 const androidLogo = require("../assets/imgs/android.png");
 const Map = require("../assets/imgs/map.jpeg");
+const QR = require("../assets/imgs/QR.png");
 
 // internet imgs
 
@@ -33,6 +35,7 @@ const Products = {
 };
 
 export default {
+  splash,
   Plus,
   NewPaw,
   Paw,

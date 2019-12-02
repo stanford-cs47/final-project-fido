@@ -5,6 +5,7 @@ import {
   StyleSheet,
   StatusBar,
   Dimensions,
+  ScrollView,
   View
 } from "react-native";
 import { Colors, Metrics } from '../Themes';
@@ -29,12 +30,12 @@ class Map extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    alignItems: "center"
+    alignItems: "center",
   },
   img: {
-    height: height,
-    width: width
+    position: "absolute",
+    width: "100%",
+    height: "100%",
   }
 });
 
