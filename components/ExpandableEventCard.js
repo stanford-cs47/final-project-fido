@@ -96,6 +96,41 @@ class ExpandableEventCard extends React.Component {
     this.setState({ bookmarked: !this.state.bookmarked });
   }
 
+  getIcon = () => {
+    if (this.state.myEvent) {
+      return (
+        <Icon
+          family="feather"
+          size={20}
+          name="user"
+          color= {Colors.orange}
+        />
+      );
+    } else {
+      if (this.state.bookmarked) {
+        return (
+          <Icon
+            family="feather"
+            size={20}
+            name="bookmark"
+            color= {Colors.orange}
+            onPress = {this.bookmarkPressed}
+          />
+        );
+      } else {
+        return (
+          <Icon
+            family="feather"
+            size={20}
+            name="bookmark"
+            color= {"#A5A5A5"}
+            onPress = {this.bookmarkPressed}
+          />
+        );
+      }
+    }
+  }
+
   render() {
     const { item } = this.props;
 
@@ -109,29 +144,7 @@ class ExpandableEventCard extends React.Component {
           <View>
             <View style={styles.header}>
               <Title style={styles.title} >{item.title}</Title>
-              {this.state.bookmarked ?
-                <Icon
-                  family="feather"
-                  size={20}
-                  name="bookmark"
-                  color= {Colors.orange}
-                  onPress = {this.bookmarkPressed}
-                />
-                : <Icon
-                  family="feather"
-                  size={20}
-                  name="bookmark"
-                  color= {"#A5A5A5"}
-                  onPress = {this.bookmarkPressed}
-                />}
-              {this.state.myEvent ?
-                <Icon
-                  family="feather"
-                  size={20}
-                  name="user"
-                  color= {Colors.orange}
-                />
-                : null}
+              {this.getIcon()}
             </View>
             <Text style={styles.text1}>{item.description}</Text>
           </View>
