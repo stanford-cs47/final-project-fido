@@ -14,7 +14,6 @@ import Icon from '../components/Icon';
 
 // screens
 import Home from "../screens/Home";
-import Home2 from "../screens/Home2";
 import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
@@ -311,26 +310,6 @@ const HomeStack = createStackNavigator(
     //transitionConfig
   }
 );
-
-// Home2.navigationOptions = ({ navigation }) => {
-//   return {
-//     tabBarLabel: 'Active Now',
-//   };
-// };
-
-// HomeTab2.navigationOptions = ({ navigation }) => {
-//   return {
-//     tabBarLabel: 'Home',
-//     tabBarIcon: ({ tintColor }) => (
-//       <Icon
-//         family="feather"
-//         size={30}
-//         name="home"
-//         color= {tintColor}
-//       />
-//     ),
-//   };
-// };
 
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
