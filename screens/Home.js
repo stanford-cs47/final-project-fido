@@ -69,8 +69,6 @@ class Home extends React.Component {
   reloadEvents = async () => {
     this.setState({isRefreshing: true});
     const events = await this.getEvents();
-    // console.log("events : ");
-    // console.log(events);
     this.setState({events: events, isRefreshing: false});
   }
 

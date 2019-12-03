@@ -11,6 +11,9 @@ import { Images } from '../constants/';
 import Icon from '../components/Icon';
 const { width } = Dimensions.get('screen');
 
+import firestore from '../firebase';
+import firebase from 'firebase';
+
 
 // TEMPORARY VARIABLES
 var TEMP_ITEM = articles[5];

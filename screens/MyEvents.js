@@ -11,6 +11,9 @@ import { Images } from '../constants/';
 import Icon from '../components/Icon';
 const { width } = Dimensions.get('screen');
 
+import firestore from '../firebase';
+import firebase from 'firebase';
+
 
 // TEMPORARY VARIABLES
 var TEMP_ITEM = articles[5];
@@ -29,30 +32,64 @@ var sampleMessage = {
 // MyEvents Page
 class MyEvents extends React.Component {
 
+  state = {
+    unsubscribe: false,
+    myEvent: [],
+  }
+
+  componentDidMount() {
+    let myEventsRef = firestore.collection('myEvent/');
+
+    let unsubscribe = myEventsRef.onSnapshot(() => {
+      this.reloadEvent();
+    });
+    this.setState({ unsubscribe });
+
+    this.reloadEvent(); // Initial loading of page
+  };
+
+  componentWillUnmount() {
+    this.state.unsubscribe();
+  };
+
+  reloadEvent = async () => {
+    try {
+      const test = await this.getMyEvent();
+      this.setState({myEvent: test});
+      console.log("reloading event... event: ");
+      console.log(this.state.myEvent);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   deleteEvent = async () => {
-    this.setState({ savingBookmark: true });
+    try {
+      let item = this.getMyEvent();
 
-    this.setState({bookmarked: !this.state.bookmarked});
-    const { item = {} } = this.props;
+      var allEventsRef = firestore.doc('allEvents/' + item.title);
+      var myEventRef = firestore.doc('myEvent/' + item.title);
+      await allEventsRef.delete();
+      await myEventRef.delete();
 
-    var allEventsRef = firestore.doc('allEvents/' + item.title);
-    var myEventsRef = firestore.doc('myEvents/' + item.title);
-    await bookmarkRef.delete();
-
-    this.setState({ savingBookmark: false });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   getMyEvent = async() => {
     try {
+      let myEvent = [];
       let myEventRef = firestore.collection('myEvent/');
-      let myEvent = await myEventRef.get();
-
-
-      return (myEvent ? myEvent : null);
+      let all = await myEventRef.get();
+      all.forEach((currEvent) => {
+        myEvent.push(currEvent.data());
+      });
+      return (myEvent ? myEvent : []);
     } catch (error) {
       console.log(error);
     }
-    return (null);
+    return ([]);
   }
 
   renderPeople = () => {
@@ -71,11 +108,20 @@ class MyEvents extends React.Component {
   }
 
   render() {
+    console.log("this.state.myEvent: ");
+    console.log(this.state.myEvent[0]);
+    if (!this.state.myEvent) {
+      return (
+        <View flex style={styles.main}>
+        <Text> You have not created an event yet! </Text>
+        </View>
+      )
+    } else {
     return (
       <View flex style={styles.main}>
         <View style={{height: 230, padding: 10}}>
           <Text style={styles.header}>Event Information</Text>
-          <EventCard item={TEMP_ITEM} type={"my_event"}/>
+          <EventCard item={this.state.myEvent[0]} type={"my_event"}/>
         </View>
 
         <View style={styles.section1}>
@@ -97,11 +143,13 @@ class MyEvents extends React.Component {
       </View>
     );
   }
+  }
 }
 
 const styles = StyleSheet.create({
   main: {
     justifyContent: 'center',
+    alignItems: 'center',
   },
   section1: {
     borderColor: fidoTheme.COLORS.BORDER,
