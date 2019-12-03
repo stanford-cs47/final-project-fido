@@ -15,7 +15,7 @@ const ArgonLogo = require("../assets/imgs/argonlogo.png");
 const iOSLogo = require("../assets/imgs/ios.png");
 const androidLogo = require("../assets/imgs/android.png");
 const Map = require("../assets/imgs/map.jpeg");
-const QR = require("../assets/imgs/QR.png");
+const Profile = require("../assets/imgs/profile.png");
 
 // internet imgs
 
@@ -53,5 +53,6 @@ export default {
   ArgonLogo,
   iOSLogo,
   androidLogo,
-  Map
+  Map,
+  Profile
 };
