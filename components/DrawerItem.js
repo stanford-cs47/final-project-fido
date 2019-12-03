@@ -16,7 +16,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="home"
             family="feather"
-            size={15}
+            size={20}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -25,16 +25,34 @@ class DrawerItem extends React.Component {
           <Icon
             name="user"
             family="feather"
-            size={15}
+            size={20}
             color={focused ? "white" : Colors.orange}
           />
         );
-      case "Settings":
+      case "Friends":
         return (
           <Icon
-            name="settings"
+            name="users"
             family="feather"
-            size={16}
+            size={20}
+            color={focused ? "white" : Colors.orange}
+          />
+        );
+      case "History":
+        return (
+          <Icon
+            name="calendar"
+            family="feather"
+            size={20}
+            color={focused ? "white" : Colors.orange}
+          />
+        );
+      case "Messages":
+        return (
+          <Icon
+            name="message-square"
+            family="feather"
+            size={20}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -43,16 +61,16 @@ class DrawerItem extends React.Component {
           <Icon
             name="help-circle"
             family="feather"
-            size={16}
+            size={20}
             color={focused ? "white" : Colors.orange}
           />
         );
-      case "Account":
+      case "Settings":
         return (
           <Icon
-            name="calendar-date"
-            family="ArgonExtra"
-            size={12}
+            name="settings"
+            family="feather"
+            size={20}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -75,12 +93,12 @@ class DrawerItem extends React.Component {
 
     return (
       <Block flex row style={containerStyles}>
-        <Block middle flex={0.1} style={{ marginRight: 5 }}>
+        <Block middle flex={0.2} style={{ marginRight: 5 }}>
           {this.renderIcon()}
         </Block>
-        <Block row center flex={0.9}>
+        <Block row center flex={0.8}>
           <Text
-            size={15}
+            size={18}
             bold={focused ? true : false}
             color={focused ? "white" : "rgba(0,0,0,0.75)"}
           >

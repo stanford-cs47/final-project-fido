@@ -336,11 +336,27 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Settings: {
+    Friends: {
       screen: SettingsStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="NotImplemented" title="Settings" />
+          <DrawerItem focused={focused} screen="NotImplemented" title="Friends" />
+        )
+      })
+    },
+    History: {
+      screen: SettingsStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="NotImplemented" title="History" />
+        )
+      })
+    },
+    Messages: {
+      screen: SettingsStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="NotImplemented" title="Messages" />
         )
       })
     },
@@ -352,14 +368,14 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    // Articles: {
-    //   screen: ArticlesStack,
-    //   navigationOptions: navOpt => ({
-    //     drawerLabel: ({ focused }) => (
-    //       <DrawerItem focused={focused} screen="Articles" title="Articles" />
-    //     )
-    //   })
-    // }
+    Settings: {
+      screen: SettingsStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="NotImplemented" title="Settings" />
+        )
+      })
+    },
   },
   Menu
 );
