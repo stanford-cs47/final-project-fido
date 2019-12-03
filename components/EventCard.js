@@ -95,6 +95,7 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
       var bookmarkedEventsRef = firestore.doc('bookmarkedEvents/' + item.title);
       await bookmarkedEventsRef.delete();
+      this.setState({bookmarked: false});
     } catch (err) {
       console.log(err);
     }
@@ -162,7 +163,11 @@ class EventCard extends React.Component {
               size={25}
               name="bookmark"
               color= {book ? Colors.orange : fidoTheme.COLORS.GREY}
-              onPress={() => {console.log('Pressed Bookmark')}}
+              onPress={() => {
+                this.removeBookmark();
+                this.props.navigation.navigate('Home');
+                }
+              }
             /> : null
           }
           {type === "my_event" ?
@@ -183,7 +188,7 @@ class EventCard extends React.Component {
                 style={{marginRight: 5}}
                 color={fidoTheme.COLORS.LIGHT_ORANGE}
                 labelStyle={{color: Colors.orange, fontSize: 12}}
-                onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item})}}
+                onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item, book: this.state.bookmarked})}}
               >
                 More
               </Button> : null

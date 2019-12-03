@@ -58,8 +58,6 @@ class MyEvents extends React.Component {
       const test = await this.getMyEvent();
 
       this.setState({myEvent: test, myEventExistsTest: true});
-      console.log("reloading event... event: ");
-      console.log(this.state.myEvent);
     } catch (err) {
       console.log(err);
     }
