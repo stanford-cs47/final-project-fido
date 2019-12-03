@@ -13,11 +13,14 @@ import firestore from '../firebase';
 import firebase from 'firebase';
 
 class EventCard extends React.Component {
+
   state = {
     bookmarked: true,
     savingBookmark: false,
     unsubscribe: false,
     myEventExists: false,
+    unsubscribeTwo: false,
+    myEvent: [],
   }
 
   componentDidMount = async () => {
@@ -50,44 +53,66 @@ class EventCard extends React.Component {
   }
 
   reloadMyEvent = async() => {
-    const { item = {} } = this.props;
-    let myEventRef = firestore.doc('myEvent/' + item.title);
+    //const { item = {} } = this.props;
+    var item = await this.getMyEvent();
+    console.log("Item in ReloadMyEvent :");
+    console.log(item[0]);
+    let myEventRef = firestore.doc('myEvent/' + item[0].title);
     let myEvent = await myEventRef.get();
 
-    if(myEvent.exists) this.setState({myEventExists: true});
+    if(myEvent.exists) this.setState({myEventExists: true, myEvent: item});
   }
 
   reloadBookmarks = async () => {
-    this.setState({isRefreshing: true});
+
     const { item = {} } = this.props;
     let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     let bookmark = await bookmarkRef.get();
 
     if(bookmark.exists) this.setState({bookmarked: true});
     else this.setState({bookmarked: false});
-    this.setState({isRefreshing: false});
+
+  }
+
+  getMyEvent = async() => {
+    try {
+      let myEvent = [];
+      let myEventRef = firestore.collection('myEvent/');
+      let all = await myEventRef.get();
+      all.forEach((currEvent) => {
+        myEvent.push(currEvent.data());
+      });
+      console.log("my event in event card:");
+      console.log(myEvent);
+      return (myEvent ? myEvent : []);
+    } catch (error) {
+      console.log(error);
+    }
+    return ([]);
   }
 
   removeBookmark = async () => {
-    //this.setState({ savingBookmark: true });
-
-    const { item = {} } = this.props;
-    var bookmarkedEventsRef = firestore.doc('bookmarkedEvents/' + item.title);
-    await bookmarkedEventsRef.delete();
-
-    //this.setState({ savingBookmark: false });
+    try {
+      const { item = {} } = this.props;
+      var bookmarkedEventsRef = firestore.doc('bookmarkedEvents/' + item.title);
+      await bookmarkedEventsRef.delete();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   deleteBookmark = async () => {
-    //this.setState({ savingBookmark: true });
+    try {
+      let item = this.getMyEvent();
 
-    const { item = {} } = this.props;
-    var allEventsRef = firestore.doc('allEvents/' + item.title);
-    var myEventRef = firestore.doc('myEvent/' + item.title);
-    await myEventRef.delete();
-    await allEventsRef.delete();
+      var allEventsRef = firestore.doc('allEvents/' + item.title);
+      var myEventRef = firestore.doc('myEvent/' + item.title);
+      await allEventsRef.delete();
+      await myEventRef.delete();
 
-    //this.setState({ savingBookmark: false });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {

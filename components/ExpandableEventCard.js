@@ -44,20 +44,19 @@ class ExpandableEventCard extends React.Component {
   }
 
   reloadBookmarks = async () => {
-    this.setState({isRefreshing: true});
+    //this.setState({isRefreshing: true});
     const { item = {} } = this.props;
+
     let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     let bookmark = await bookmarkRef.get();
-
     if(bookmark.exists) this.setState({bookmarked: true});
     else this.setState({bookmarked: false});
 
-
     let allRef = firestore.doc('allEvents/' + item.title);
     let ev = await allRef.get();
-
     if(ev.exists) this.setState({myEvent: item.mine});
-    this.setState({isRefreshing: false});
+
+    //this.setState({isRefreshing: false});
   }
 
   saveBookmark = async() => {
