@@ -19,7 +19,6 @@ class EventCard extends React.Component {
     savingBookmark: false,
     unsubscribe: false,
     myEventExists: false,
-    unsubscribeTwo: false,
     myEvent: [],
   }
 
@@ -28,20 +27,20 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
 
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-      let myEventRef = firestore.doc('myEvent/' + item.title);
+      //let myEventRef = firestore.doc('myEvent/' + item.title);
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
       });
 
-      let unsubscribeTwo = myEventRef.onSnapshot(() => {
-        this.reloadMyEvent();
-      });
+      // let unsubscribeTwo = myEventRef.onSnapshot(() => {
+      //   this.reloadMyEvent();
+      // });
 
       this.setState({ unsubscribe });
 
       this.reloadBookmarks();
-      this.reloadMyEvent();
+      //this.reloadMyEvent();
 
     } catch (err) {
       console.log(err);
@@ -52,16 +51,16 @@ class EventCard extends React.Component {
     this.state.unsubscribe();
   }
 
-  reloadMyEvent = async() => {
-    //const { item = {} } = this.props;
-    var item = await this.getMyEvent();
-    console.log("Item in ReloadMyEvent :");
-    console.log(item[0]);
-    let myEventRef = firestore.doc('myEvent/' + item[0].title);
-    let myEvent = await myEventRef.get();
-
-    if(myEvent.exists) this.setState({myEventExists: true, myEvent: item});
-  }
+  // reloadMyEvent = async() => {
+  //   //const { item = {} } = this.props;
+  //   var item = await this.getMyEvent();
+  //   console.log("Item in ReloadMyEvent :");
+  //   console.log(item[0]);
+  //   let myEventRef = firestore.doc('myEvent/' + item[0].title);
+  //   let myEvent = await myEventRef.get();
+  //
+  //   if(myEvent.exists) this.setState({myEventExists: true, myEvent: item});
+  // }
 
   reloadBookmarks = async () => {
 
@@ -101,9 +100,9 @@ class EventCard extends React.Component {
     }
   }
 
-  deleteBookmark = async () => {
+  deleteEvent= async () => {
     try {
-      let item = this.getMyEvent();
+      const { item = {} } = this.props;
 
       var allEventsRef = firestore.doc('allEvents/' + item.title);
       var myEventRef = firestore.doc('myEvent/' + item.title);
@@ -171,7 +170,7 @@ class EventCard extends React.Component {
               size={25}
               name="trash-2"
               color= {fidoTheme.COLORS.GREY}
-              onPress={() => {console.log('Pressed trash')}}
+              onPress={() => this.deleteEvent()}
             /> : null
           }
           <View style={styles.bottomButton}>
