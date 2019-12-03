@@ -21,6 +21,7 @@ class ExpandableEventCard extends React.Component {
     myEvent: false,
     savingBookmark: false,
     unsubscribe: null,
+    unsubscribeTwo: null,
     isRefreshing:false,
   }
 
@@ -28,13 +29,18 @@ class ExpandableEventCard extends React.Component {
     try {
       const { item = {} } = this.props;
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+      let myEventRef = firestore.doc('myEvent/' + item.title);
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
       });
+      let unsubscribeTwo = myEventRef.onSnapshot(() => {
+        this.reloadMine();
+      });
       this.setState({ unsubscribe });
 
       this.reloadBookmarks();
+      this.reloadMine();
     } catch (err) {
       console.log(err);
     }
@@ -42,6 +48,14 @@ class ExpandableEventCard extends React.Component {
 
   componentWillUnmount() {
     this.state.unsubscribe();
+  }
+
+  reloadMine = async() => {
+    const { item = {} } = this.props;
+
+    let allRef = firestore.doc('myEvent/' + item.title);
+    let ev = await allRef.get();
+    if(ev.exists) this.setState({myEvent: item.mine});
   }
 
   reloadBookmarks = async () => {
@@ -52,9 +66,6 @@ class ExpandableEventCard extends React.Component {
     if(bookmark.exists) this.setState({bookmarked: true});
     else this.setState({bookmarked: false});
 
-    let allRef = firestore.doc('allEvents/' + item.title);
-    let ev = await allRef.get();
-    if(ev.exists) this.setState({myEvent: item.mine});
   }
 
   saveBookmark = async() => {
