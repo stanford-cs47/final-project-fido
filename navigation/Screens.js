@@ -106,7 +106,7 @@ BookmarkStack.navigationOptions = ({ navigation, db }) => {
   let tabBarVisible = true;
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === "Map") {
+      if (route.routeName === "Map" || route.routeName === "ExpandedEvent") {
         tabBarVisible = false;
       }
     });
@@ -229,7 +229,7 @@ MyHomeStack.navigationOptions = ({ navigation, db }) => {
   let tabBarVisible = true;
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === "Map") {
+      if (route.routeName === "Map" || route.routeName === "ExpandedEvent") {
         tabBarVisible = false;
       }
     });
