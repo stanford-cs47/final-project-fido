@@ -16,7 +16,7 @@ import firebase from 'firebase';
 class EventCard extends React.Component {
 
   state = {
-    bookmarked: true,
+    bookmarked: false,
     savingBookmark: false,
     unsubscribe: false,
     unsubscribeTwo: false,
@@ -116,9 +116,8 @@ class EventCard extends React.Component {
   }
 
   render() {
-    const { item, type } = this.props;
-    console.log("passed in: ");
-    console.log(item);
+    const { item, type, book } = this.props;
+
     if (item === undefined) {
       return (
         <View flex style={styles.container}>
@@ -161,7 +160,7 @@ class EventCard extends React.Component {
               family="feather"
               size={25}
               name="bookmark"
-              color= {fidoTheme.COLORS.GREY}
+              color= {book ? Colors.orange : fidoTheme.COLORS.GREY}
               onPress={() => {console.log('Pressed Bookmark')}}
             /> : null
           }

@@ -178,7 +178,7 @@ class ExpandableEventCard extends React.Component {
               labelStyle={{color: Colors.orange, fontSize: 12}}
               onPress={() => {
                 this.state.myEvent ?  this.props.navigation.navigate('MyEvents', {item: item})
-                : this.props.navigation.navigate('ExpandedEvent', {item: item})}
+                : this.props.navigation.navigate('ExpandedEvent', {item: item, book: this.state.bookmarked})}
               }
             >
               More

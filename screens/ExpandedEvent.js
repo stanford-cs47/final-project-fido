@@ -49,11 +49,12 @@ class ExpandedEvent extends React.Component {
 
   render() {
     let passedInArticle= this.props.navigation.getParam('item', null);
+    let bookmarked= this.props.navigation.getParam('book', null);
     return (
       <View flex style={styles.main}>
         <View style={{height: 230, padding: 10}}>
           <Text style={styles.header}>Event Information</Text>
-          <EventCard item={passedInArticle} type={"event"}/>
+          <EventCard item={passedInArticle} type={"event"} book ={bookmarked}/>
         </View>
 
         <View style={styles.section1}>
