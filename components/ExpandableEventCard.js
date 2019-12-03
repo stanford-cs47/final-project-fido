@@ -33,8 +33,10 @@ class ExpandableEventCard extends React.Component {
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
+        this.reloadMine();
       });
       let unsubscribeTwo = myEventRef.onSnapshot(() => {
+        this.reloadBookmarks();
         this.reloadMine();
       });
       this.setState({ unsubscribe });
@@ -53,7 +55,7 @@ class ExpandableEventCard extends React.Component {
   reloadMine = async() => {
     const { item = {} } = this.props;
 
-    let allRef = firestore.doc('myEvent/' + item.title);
+    let allRef = firestore.doc('allEvents/' + item.title);
     let ev = await allRef.get();
     if(ev.exists) this.setState({myEvent: item.mine});
   }

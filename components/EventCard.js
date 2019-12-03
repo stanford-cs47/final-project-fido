@@ -29,10 +29,11 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
 
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-      let myEventRef = firestore.doc('myEvent/' + item.title);
+      let myEventRef = firestore.doc('allEvents/' + item.title);
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
+        this.reloadMyEvent();
       });
 
       let unsubscribeTwo = myEventRef.onSnapshot(() => {

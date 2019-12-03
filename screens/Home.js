@@ -45,7 +45,7 @@ class Home extends React.Component {
     });
     this.setState({ unsubscribe });
 
-    this.reloadEvents(); // Initial loading of bookmarks
+    this.reloadEvents(); // Initial loading of events
   }
 
   componentWillUnmount() {
