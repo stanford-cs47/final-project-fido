@@ -9,6 +9,7 @@ import { Images } from '../constants/';
 import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
+import articles from '../constants/articles';
 
 import firestore from '../firebase';
 import firebase from 'firebase';
@@ -44,7 +45,6 @@ class ExpandableEventCard extends React.Component {
   }
 
   reloadBookmarks = async () => {
-    //this.setState({isRefreshing: true});
     const { item = {} } = this.props;
 
     let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
@@ -55,8 +55,6 @@ class ExpandableEventCard extends React.Component {
     let allRef = firestore.doc('allEvents/' + item.title);
     let ev = await allRef.get();
     if(ev.exists) this.setState({myEvent: item.mine});
-
-    //this.setState({isRefreshing: false});
   }
 
   saveBookmark = async() => {
@@ -64,7 +62,6 @@ class ExpandableEventCard extends React.Component {
 
     this.setState({bookmarked: !this.state.bookmarked});
     const { item = {} } = this.props;
-
     var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     await bookmarkRef.set(item);
 

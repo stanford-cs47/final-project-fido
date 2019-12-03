@@ -8,6 +8,7 @@ import { Card, Title, Subheading, Paragraph, Button, Avatar } from 'react-native
 import { Images } from '../constants/';
 import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
+import articles from '../constants/articles';
 
 import firestore from '../firebase';
 import firebase from 'firebase';
@@ -18,6 +19,7 @@ class EventCard extends React.Component {
     bookmarked: true,
     savingBookmark: false,
     unsubscribe: false,
+    unsubscribeTwo: false,
     myEventExists: false,
     myEvent: [],
   }
@@ -27,20 +29,20 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
 
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-      //let myEventRef = firestore.doc('myEvent/' + item.title);
+      let myEventRef = firestore.doc('myEvent/' + item.title);
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
       });
 
-      // let unsubscribeTwo = myEventRef.onSnapshot(() => {
-      //   this.reloadMyEvent();
-      // });
+      let unsubscribeTwo = myEventRef.onSnapshot(() => {
+        this.reloadMyEvent();
+      });
 
       this.setState({ unsubscribe });
 
       this.reloadBookmarks();
-      //this.reloadMyEvent();
+      this.reloadMyEvent();
 
     } catch (err) {
       console.log(err);
@@ -51,19 +53,16 @@ class EventCard extends React.Component {
     this.state.unsubscribe();
   }
 
-  // reloadMyEvent = async() => {
-  //   //const { item = {} } = this.props;
-  //   var item = await this.getMyEvent();
-  //   console.log("Item in ReloadMyEvent :");
-  //   console.log(item[0]);
-  //   let myEventRef = firestore.doc('myEvent/' + item[0].title);
-  //   let myEvent = await myEventRef.get();
-  //
-  //   if(myEvent.exists) this.setState({myEventExists: true, myEvent: item});
-  // }
+  reloadMyEvent = async() => {
+    const { item = {} } = this.props;
+
+    let myEventRef = firestore.doc('myEvent/' + item.title);
+    let myEvent = await myEventRef.get();
+
+    if(myEvent.exists) this.setState({myEventExists: true, myEvent: item});
+  }
 
   reloadBookmarks = async () => {
-
     const { item = {} } = this.props;
     let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     let bookmark = await bookmarkRef.get();
@@ -108,6 +107,8 @@ class EventCard extends React.Component {
       var myEventRef = firestore.doc('myEvent/' + item.title);
       await allEventsRef.delete();
       await myEventRef.delete();
+
+      this.setState({myEventExists: false, myEvent: []})
 
     } catch (err) {
       console.log(err);
