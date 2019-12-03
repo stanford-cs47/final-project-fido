@@ -14,7 +14,7 @@ import Person from './Person'
 
 export {
   Button,
-  Card,
+
   DrawerItem,
   Icon,
   Input,

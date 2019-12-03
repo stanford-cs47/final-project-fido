@@ -16,7 +16,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="home"
             family="feather"
-            size={20}
+            size={25}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -25,7 +25,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="user"
             family="feather"
-            size={20}
+            size={25}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -34,7 +34,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="users"
             family="feather"
-            size={20}
+            size={25}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -43,7 +43,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="calendar"
             family="feather"
-            size={20}
+            size={25}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -52,7 +52,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="message-square"
             family="feather"
-            size={20}
+            size={25}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -61,7 +61,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="help-circle"
             family="feather"
-            size={20}
+            size={25}
             color={focused ? "white" : Colors.orange}
           />
         );
@@ -70,7 +70,7 @@ class DrawerItem extends React.Component {
           <Icon
             name="settings"
             family="feather"
-            size={20}
+            size={25}
             color={focused ? "white" : Colors.orange}
           />
         );

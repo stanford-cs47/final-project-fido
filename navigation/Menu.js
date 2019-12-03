@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Block, theme } from "galio-framework";
 import { Colors, Metrics } from '../Themes'
+import fidoTheme from "../constants/Theme";
 
 import Images from "../constants/Images";
 
@@ -16,11 +17,11 @@ const { width } = Dimensions.get("screen");
 
 const Drawer = props => (
   <Block style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-    <Block flex={0.05} style={styles.header}>
-      {/*<Image source={Images.Paw} styles={styles.photo} />*/}
-      <Text style ={styles.text}>
-       FIDO
-       </Text>
+    <Block flex={0.5} style={styles.header}>
+      <Image source={Images.Profile}/>
+      <Text style={styles.text1}>Doug</Text>
+      <Text style={styles.text2}>@doug-the-dog</Text>
+       <Text style={styles.text3}>Owner: Eddie Arreola</Text>
     </Block>
     <Block flex>
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
@@ -69,21 +70,25 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 28,
     paddingBottom: theme.SIZES.BASE,
-    paddingTop: theme.SIZES.BASE * 3,
-    flexDirection: 'row',
+    paddingTop: theme.SIZES.BASE * 4,
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     resizeMode: 'contain'
   },
-  photo:{
-    resizeMode: 'contain',
-    width: 40,
-    height: 40,
-  },
-  text:{
-    fontSize: 40,
-    color: Colors.orange,
+  text1:{
+    fontSize: 20,
+    marginBottom: 5,
     fontWeight: 'bold'
-  }
+  },
+  text2:{
+    fontSize: 16,
+    marginBottom: 5
+  },
+  text3:{
+    fontSize: 16,
+    marginBottom: 5
+  },
 });
 
 export default Menu;
