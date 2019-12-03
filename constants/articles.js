@@ -1,4 +1,6 @@
 //'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
+
+
 export default [
   {
     title: 'Frisbee!',
@@ -66,4 +68,15 @@ export default [
     horizontal: true,
     bookmarked: false,
   },
+  {
+    title: 'Swim at the beach',
+    description: 'Fido + 2 others      Public      1.1 mi',
+    location1: 'AOERC',
+    location2: 'Stanford, CA 94305',
+    time1: '3:00pm - 4:00pm',
+    time2: '50 minutes left',
+    image: 'https://images.unsplash.com/photo-1499982793426-964bdcabe8d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+    horizontal: true,
+    bookmarked: false,
+  }
 ];
