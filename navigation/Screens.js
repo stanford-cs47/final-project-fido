@@ -15,7 +15,6 @@ import Icon from '../components/Icon';
 // screens
 import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
-import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
@@ -276,15 +275,6 @@ const HomeStack = createStackNavigator(
         //headerTransparent: true,
         //header: <Header search options title="Home" navigation={navigation} />,
       }),
-    },
-    Pro: {
-      screen: Pro,
-      navigationOptions: ({ navigation, db }) => ({
-        // header: (
-        //   {/*<Header left={<Block />} white transparent title="" navigation={navigation} />*/}
-        // ),
-        headerTransparent: true
-      })
     },
     Register: {
       screen: Register,
