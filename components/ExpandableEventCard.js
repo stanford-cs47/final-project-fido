@@ -180,7 +180,10 @@ class ExpandableEventCard extends React.Component {
               style={{marginRight: 5}}
               color={fidoTheme.COLORS.LIGHT_ORANGE}
               labelStyle={{color: Colors.orange, fontSize: 12}}
-              onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item})}}
+              onPress={() => {
+                this.state.myEvent ?  this.props.navigation.navigate('MyEvents', {item: item})
+                : this.props.navigation.navigate('ExpandedEvent', {item: item})}
+              }
             >
               More
             </Button>
