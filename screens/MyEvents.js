@@ -35,6 +35,7 @@ class MyEvents extends React.Component {
   state = {
     unsubscribe: false,
     myEvent: [],
+    myEventExistsTest: false,
   }
 
   componentDidMount() {
@@ -55,7 +56,8 @@ class MyEvents extends React.Component {
   reloadEvent = async () => {
     try {
       const test = await this.getMyEvent();
-      this.setState({myEvent: test});
+
+      this.setState({myEvent: test, myEventExistsTest: true});
       console.log("reloading event... event: ");
       console.log(this.state.myEvent);
     } catch (err) {
@@ -65,7 +67,7 @@ class MyEvents extends React.Component {
 
   deleteEvent = async () => {
     try {
-      let item = this.getMyEvent();
+      let item = this.state.myEvent;
 
       var allEventsRef = firestore.doc('allEvents/' + item.title);
       var myEventRef = firestore.doc('myEvent/' + item.title);
@@ -82,8 +84,8 @@ class MyEvents extends React.Component {
       let myEvent = [];
       let myEventRef = firestore.collection('myEvent/');
       let all = await myEventRef.get();
-      all.forEach((currEvent) => {
-        myEvent.push(currEvent.data());
+      all.forEach((eve) => {
+        myEvent.push(eve.data());
       });
       return (myEvent ? myEvent : []);
     } catch (error) {
@@ -110,7 +112,7 @@ class MyEvents extends React.Component {
   render() {
     console.log("this.state.myEvent: ");
     console.log(this.state.myEvent[0]);
-    if (!this.state.myEvent) {
+    if (this.state.myEventExists) {
       return (
         <View flex style={styles.main}>
         <Text> You have not created an event yet! </Text>
