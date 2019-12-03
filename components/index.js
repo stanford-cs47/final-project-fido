@@ -7,14 +7,13 @@ import Input from './Input';
 import Switch from './Switch';
 import Select from './Select';
 import FloatingActionButton from './FloatingActionButton'
-import ListItem from './ListItem'
 import EventCard from './EventCard'
 import ExpandableEventCard from './ExpandableEventCard'
 import Person from './Person'
 
 export {
   Button,
-
+  Card,
   DrawerItem,
   Icon,
   Input,
@@ -22,7 +21,6 @@ export {
   Switch,
   Select,
   FloatingActionButton,
-  ListItem,
   EventCard,
   ExpandableEventCard,
   Person
