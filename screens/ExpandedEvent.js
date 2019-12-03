@@ -29,7 +29,7 @@ var sampleMessage = {
   icon: false,
 }
 
-// MyEvents Page
+// Expanded Event Page
 class ExpandedEvent extends React.Component {
 
   renderPeople = () => {

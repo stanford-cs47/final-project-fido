@@ -16,7 +16,7 @@ import firebase from 'firebase';
 
 
 // TEMPORARY VARIABLES
-var TEMP_ITEM = articles[5];
+var TEMP_ITEM = articles[3];
 var Jack = {
   image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
   name: 'Jack Nichols',
@@ -112,7 +112,7 @@ class MyEvents extends React.Component {
   render() {
     console.log("this.state.myEvent: ");
     console.log(this.state.myEvent[0]);
-    if (this.state.myEventExists) {
+    if (false) {
       return (
         <View flex style={styles.main}>
         <Text> You have not created an event yet! </Text>
@@ -121,6 +121,7 @@ class MyEvents extends React.Component {
     } else {
     return (
       <View flex style={styles.main}>
+
         <View style={{height: 230, padding: 10}}>
           <Text style={styles.header}>Event Information</Text>
           <EventCard item={this.state.myEvent[0]} type={"my_event"}/>
@@ -151,7 +152,6 @@ class MyEvents extends React.Component {
 const styles = StyleSheet.create({
   main: {
     justifyContent: 'center',
-    alignItems: 'center',
   },
   section1: {
     borderColor: fidoTheme.COLORS.BORDER,
