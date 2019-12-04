@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   View,
   Alert,
+  ScrollView
 } from "react-native";
 import { Icon, EventForm } from "../components";
 import { Images } from "../constants";
@@ -114,7 +115,8 @@ class Register extends React.Component {
     let friendsText = "Friends Only";
 
     return (
-      <View>
+      <ScrollView
+       showsVerticalScrollIndicator={false}>
         <Image source={Images.Park} style={styles.image}/>
         <View style={styles.mainContainer}>
           <Text size={18}>New Event</Text>
@@ -273,7 +275,7 @@ class Register extends React.Component {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -322,7 +324,6 @@ const styles = StyleSheet.create({
   notSelected: {
 
   },
-
 });
 
 export default Register;
