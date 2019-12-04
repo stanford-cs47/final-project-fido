@@ -18,13 +18,13 @@ import firebase from 'firebase';
 // TEMPORARY VARIABLES
 var TEMP_ITEM = articles[3];
 var Jack = {
-  image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
-  name: 'Jack Nichols',
+  image: 'https://i.pinimg.com/originals/77/96/41/779641e5e28ec3444cabe66532558f69.jpg',
+  name: 'Prince (Jack Nichols)',
   icon: true,
 };
 
 var sampleMessage = {
-  image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
+  image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/adorable-cavalier-king-charles-spaniel-puppy-royalty-free-image-523255012-1565106446.jpg?crop=0.448xw:1.00xh;0.370xw,0&resize=480:*',
   name: "Are you guys still there? I'm omw!",
   icon: false,
 }
