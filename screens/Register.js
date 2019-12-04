@@ -137,7 +137,7 @@ class Register extends React.Component {
             <View style={styles.chips}>
               <Chip
               textStyle= {this.state.startButton === nowText ? styles.selectedText : null}
-              style= {this.state.startButton === nowText ? styles.selected : null}
+              style= {[this.state.startButton === nowText ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.startButton === nowText ?
                   this.setState({startButton: "", startButtonPressed: false}) :
                   this.setState({startButton: nowText, startButtonPressed: true})
@@ -146,7 +146,7 @@ class Register extends React.Component {
 
               <Chip
               textStyle= {this.state.startButton === in10Text ? styles.selectedText : null}
-              style= {this.state.startButton === in10Text ? styles.selected : null}
+              style= {[this.state.startButton === in10Text ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.startButton === in10Text ?
                   this.setState({startButton: "", startButtonPressed: false}) :
                   this.setState({startButton: in10Text, startButtonPressed: true})
@@ -155,7 +155,7 @@ class Register extends React.Component {
 
               <Chip
               textStyle= {this.state.startButton === in30Text ? styles.selectedText : null}
-              style= {this.state.startButton === in30Text ? styles.selected : null}
+              style= {[this.state.startButton === in30Text ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.startButton === in30Text ?
                   this.setState({startButton: "", startButtonPressed: false}) :
                   this.setState({startButton: in30Text, startButtonPressed: true})
@@ -174,36 +174,33 @@ class Register extends React.Component {
           </View>
           <View style={styles.inputContainer}>
             <Text size={14}>Estimate Duration</Text>
-            <View style={styles.chips2}>
+            <View style={styles.chips}>
               <Chip
               textStyle= {this.state.durationButton === text30m ? styles.selectedText : null}
-              style= {this.state.durationButton === text30m ? styles.selected : null}
+              style= {[this.state.durationButton === text30m ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.durationButton === text30m ?
                   this.setState({durationButton: "", durationButtonPressed: false}) :
                   this.setState({durationButton: text30m, durationButtonPressed: true})
                 }
               >{text30m}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.durationButton === text1h ? styles.selectedText : null}
-              style= {this.state.durationButton === text1h ? styles.selected : null}
+              style= {[this.state.durationButton === text1h ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.durationButton === text1h ?
                   this.setState({durationButton: "", durationButtonPressed: false}) :
                   this.setState({durationButton: text1h, durationButtonPressed: true})
                 }
               >{text1h}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.durationButton === text2h ? styles.selectedText : null}
-              style= {this.state.durationButton === text2h ? styles.selected : null}
+              style= {[this.state.durationButton === text2h ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.durationButton === text2h ?
                   this.setState({durationButton: "", durationButtonPressed: false}) :
                   this.setState({durationButton: text2h, durationButtonPressed: true})
                 }
               >{text2h}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.durationButton === customTextDuration ? styles.selectedText : null}
@@ -217,16 +214,15 @@ class Register extends React.Component {
           </View>
           <View style={styles.inputContainer}>
           <Text size={14} >Invite</Text>
-            <View style={styles.chips2}>
+            <View style={styles.chips}>
               <Chip
               textStyle= {this.state.inviteButton === publicText ? styles.selectedText : null}
-              style= {this.state.inviteButton === publicText ? styles.selected : null}
+              style= {[this.state.inviteButton === publicText ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.inviteButton === publicText ?
                   this.setState({inviteButton: "", inviteButtonPressed: false}) :
                   this.setState({inviteButton: publicText, inviteButtonPressed: true})
                 }
               >{publicText}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.inviteButton === friendsText ? styles.selectedText : null}
@@ -293,12 +289,8 @@ const styles = StyleSheet.create({
   },
   chips: {
     flexDirection: "row",
-    justifyContent: "space-around",
     marginTop: 5,
-  },
-  chips2: {
-    flexDirection: "row",
-    marginTop: 5,
+    flexWrap: "wrap",
   },
   image: {
     width: width,
