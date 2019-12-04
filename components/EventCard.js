@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { StyleSheet, Dimensions, Image, View } from 'react-native';
+import { StyleSheet, Dimensions, Image, View, Alert } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { Colors, Metrics } from '../Themes';
 import { Card, Title, Subheading, Paragraph, Button, Avatar } from 'react-native-paper';
@@ -154,7 +154,18 @@ class EventCard extends React.Component {
               size={25}
               name="bookmark"
               color= {Colors.orange}
-              onPress={() => this.removeBookmark()}
+              onPress={() => {
+                Alert.alert(
+                  'Remove from Bookmarks?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes', onPress: () => this.removeBookmark()}
+                  ],
+                  {cancelable: false},
+                );
+                }
+              }
             /> : null
           }
           {type === "event" ?
@@ -164,8 +175,18 @@ class EventCard extends React.Component {
               name="bookmark"
               color= {book ? Colors.orange : fidoTheme.COLORS.GREY}
               onPress={() => {
-                this.removeBookmark();
-                this.props.navigation.navigate('Home');
+                Alert.alert(
+                  'Remove from Bookmarks?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes', onPress: () => {
+                      this.removeBookmark();
+                      this.props.navigation.navigate('Home');
+                    }}
+                  ],
+                  {cancelable: false},
+                );
                 }
               }
             /> : null
@@ -176,7 +197,18 @@ class EventCard extends React.Component {
               size={25}
               name="trash-2"
               color= {fidoTheme.COLORS.GREY}
-              onPress={() => this.deleteEvent()}
+              onPress={() => {
+                Alert.alert(
+                  'Delete Event?',
+                  'Don\'t worry, we\'ll notify prospective attendees.',
+                  [
+                    { text: "No" },
+                    { text: 'Yes', onPress: () => this.deleteEvent() },
+                  ],
+                  {cancelable: false},
+                );
+                }
+              }
             /> : null
           }
           <View style={styles.bottomButton}>

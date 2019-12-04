@@ -246,11 +246,11 @@ class Register extends React.Component {
                 color={Colors.orange}
                 onPress={() => {
                   Alert.alert(
-                    'Are you sure you want to go back and lose you event?',
-                    '',
+                    'Discard this event?',
+                    'Your new event won\'t be saved.',
                     [
-                      { text: 'Yes', onPress: () => this.props.navigation.goBack() },
                       { text: "No" },
+                      { text: 'Yes', onPress: () => this.props.navigation.goBack() },
                     ],
                     {cancelable: false},
                   );
@@ -266,9 +266,7 @@ class Register extends React.Component {
                 uppercase={false}
                 color={Colors.orange}
                 labelStyle={styles.buttonText}
-                onPress={() => {
-                  this.handlePost();
-                }}
+                onPress={() => this.handlePost()}
               >
                 Post
               </Button>
