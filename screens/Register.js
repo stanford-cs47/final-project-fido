@@ -38,7 +38,7 @@ class Register extends React.Component {
       location2: 'Stanford, CA 94305',
       time1: '',
       time2: '',
-      image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
+      image: 'https://cdn.pixabay.com/photo/2019/08/19/07/45/pets-4415649__340.jpg',
       horizontal: true,
       bookmarked: false,
       mine: true,
