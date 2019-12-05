@@ -70,7 +70,7 @@ class ExpandedEvent extends React.Component {
            </View>
         </View>
         <View style={styles.section2}>
-          <Text style={styles.header}>Bookmarked By</Text>
+          <Text style={styles.header}>Attending</Text>
           {this.renderPeople()}
         </View>
       </View>

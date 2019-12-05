@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { StyleSheet, Dimensions, Image, View, Animated } from 'react-native';
+import { StyleSheet, Dimensions, Image, View, Animated, Alert } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { Colors, Metrics } from '../Themes';
 import { Card, Title, Subheading, Paragraph, Button, Avatar } from 'react-native-paper';
@@ -203,7 +203,18 @@ class ExpandableEventCard extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={styles.buttonText}
-              onPress={() => {this.props.navigation.navigate('Map')}}
+              onPress={() => {
+                this.props.navigation.navigate('Map');
+                Alert.alert(
+                  'Check in to this event?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes'}
+                  ],
+                  {cancelable: false},
+                );
+              }}
             >
               Navigate
             </Button>
