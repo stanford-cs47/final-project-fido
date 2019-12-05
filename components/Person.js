@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions, Image, Alert } from 'react-native';
 import { Title, Avatar } from 'react-native-paper';
 import { Colors, Metrics } from '../Themes';
 import { Images } from '../constants/';
@@ -27,7 +27,17 @@ class Person extends React.Component {
             name="user-plus"
             color= {fidoTheme.COLORS.GREY}
             style= {{marginRight: 20}}
-            onPress={() => {console.log("PRESSED")}}
+            onPress={() => {
+              Alert.alert(
+                'Send friend request?',
+                '',
+                [
+                  { text: "No" },
+                  { text: 'Yes'}
+                ],
+                {cancelable: false},
+              );
+            }}
           />
         : <View></View>}
         </View>

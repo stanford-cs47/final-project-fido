@@ -1,6 +1,7 @@
 import React from 'react';
 import { EventCard, Person } from '../components'
 import articles from '../constants/articles';
+import people from '../constants/people';
 import { StyleSheet, Text, View, ScrollView, Dimensions, Image } from 'react-native';
 import { Colors, Metrics } from '../Themes';
 import { List, Checkbox } from 'react-native-paper';
@@ -16,15 +17,10 @@ import firebase from 'firebase';
 
 
 // TEMPORARY VARIABLES
-var TEMP_ITEM = articles[5];
-var Jack = {
-  image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
-  name: 'Jack Nichols',
-  icon: true,
-};
+var TEMP_ITEM = articles[3];
 
 var sampleMessage = {
-  image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
+  image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/adorable-cavalier-king-charles-spaniel-puppy-royalty-free-image-523255012-1565106446.jpg?crop=0.448xw:1.00xh;0.370xw,0&resize=480:*',
   name: "Are you guys still there? I'm omw!",
   icon: false,
 }
@@ -38,10 +34,10 @@ class ExpandedEvent extends React.Component {
        showsVerticalScrollIndicator={false}
        contentContainerStyle={styles.articles}>
         <List.Section>
-          <Person person={Jack} />
-          <Person person={Jack} />
-          <Person person={Jack} />
-          <Person person={Jack} />
+          <Person person={people[0]} />
+          <Person person={people[1]} />
+          <Person person={people[2]} />
+          <Person person={people[3]} />
         </List.Section>
       </ScrollView>
     );
@@ -70,7 +66,7 @@ class ExpandedEvent extends React.Component {
            </View>
         </View>
         <View style={styles.section2}>
-          <Text style={styles.header}>Bookmarked By</Text>
+          <Text style={styles.header}>Attending</Text>
           {this.renderPeople()}
         </View>
       </View>

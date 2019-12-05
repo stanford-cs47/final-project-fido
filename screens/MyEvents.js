@@ -1,6 +1,7 @@
 import React from 'react';
 import { EventCard, Person } from '../components'
 import articles from '../constants/articles';
+import people from '../constants/people';
 import { StyleSheet, Text, View, ScrollView, Dimensions, Image } from 'react-native';
 import { Colors, Metrics } from '../Themes';
 import { List, Checkbox } from 'react-native-paper';
@@ -17,17 +18,6 @@ import firebase from 'firebase';
 
 // TEMPORARY VARIABLES
 var TEMP_ITEM = articles[3];
-var Jack = {
-  image: 'https://i.pinimg.com/originals/77/96/41/779641e5e28ec3444cabe66532558f69.jpg',
-  name: 'Prince (Jack Nichols)',
-  icon: true,
-};
-
-var sampleMessage = {
-  image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/adorable-cavalier-king-charles-spaniel-puppy-royalty-free-image-523255012-1565106446.jpg?crop=0.448xw:1.00xh;0.370xw,0&resize=480:*',
-  name: "Are you guys still there? I'm omw!",
-  icon: false,
-}
 
 // MyEvents Page
 class MyEvents extends React.Component {
@@ -98,10 +88,10 @@ class MyEvents extends React.Component {
        showsVerticalScrollIndicator={false}
        contentContainerStyle={styles.articles}>
         <List.Section>
-          <Person person={Jack} />
-          <Person person={Jack} />
-          <Person person={Jack} />
-          <Person person={Jack} />
+          <Person person={people[0]} />
+          <Person person={people[1]} />
+          <Person person={people[2]} />
+          <Person person={people[3]} />
         </List.Section>
       </ScrollView>
     );
@@ -138,7 +128,7 @@ class MyEvents extends React.Component {
            </View>
         </View>
         <View style={styles.section2}>
-          <Text style={styles.header}>Bookmarked By</Text>
+          <Text style={styles.header}>Attending</Text>
           {this.renderPeople()}
         </View>
       </View>

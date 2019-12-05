@@ -231,7 +231,18 @@ class EventCard extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={{color: "white", fontSize: 12}}
-              onPress={() => {this.props.navigation.navigate('Map')}}
+              onPress={() => {
+                this.props.navigation.navigate('Map');
+                Alert.alert(
+                  'Check in to this event?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes'}
+                  ],
+                  {cancelable: false},
+                );
+              }}
             >
               Navigate
             </Button>

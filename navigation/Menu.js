@@ -5,9 +5,10 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-  Text
+  Text,
+  View
 } from "react-native";
-import { Block, theme } from "galio-framework";
+import { theme } from "galio-framework";
 import { Colors, Metrics } from '../Themes'
 import fidoTheme from "../constants/Theme";
 
@@ -16,19 +17,20 @@ import Images from "../constants/Images";
 const { width } = Dimensions.get("screen");
 
 const Drawer = props => (
-  <Block style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-    <Block flex={0.5} style={styles.header}>
+  <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
+    <View flex={0.5} style={styles.header}>
       <Image source={Images.Profile}/>
       <Text style={styles.text1}>Doug</Text>
       <Text style={styles.text2}>@doug-the-dog</Text>
        <Text style={styles.text3}>Owner: Eddie Arreola</Text>
-    </Block>
-    <Block flex>
+    </View>
+    <View flex>
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
         <DrawerItems {...props} />
       </ScrollView>
-    </Block>
-  </Block>
+    </View>
+    <Text style={styles.finePrint}>FIDO        Privacy Policy      Terms and Conditions</Text>
+  </View>
 );
 
 const Menu = {
@@ -65,7 +67,7 @@ const Menu = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   header: {
     paddingHorizontal: 28,
@@ -89,6 +91,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5
   },
+  finePrint: {
+    fontSize: 10,
+    alignSelf: "flex-end",
+    marginBottom: 20,
+    paddingHorizontal: 40,
+  }
 });
 
 export default Menu;
