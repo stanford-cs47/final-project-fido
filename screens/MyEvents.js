@@ -19,6 +19,12 @@ import firebase from 'firebase';
 // TEMPORARY VARIABLES
 var TEMP_ITEM = articles[3];
 
+var sampleMessage = {
+  image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/adorable-cavalier-king-charles-spaniel-puppy-royalty-free-image-523255012-1565106446.jpg?crop=0.448xw:1.00xh;0.370xw,0&resize=480:*',
+  name: "Are you guys still there? I'm omw!",
+  icon: false,
+}
+
 // MyEvents Page
 class MyEvents extends React.Component {
 
