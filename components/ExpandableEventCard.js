@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { StyleSheet, Dimensions, Image, View, Animated } from 'react-native';
+import { StyleSheet, Dimensions, Image, View, Animated, Alert } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { Colors, Metrics } from '../Themes';
 import { Card, Title, Subheading, Paragraph, Button, Avatar } from 'react-native-paper';
@@ -9,6 +9,7 @@ import { Images } from '../constants/';
 import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
+import articles from '../constants/articles';
 
 import firestore from '../firebase';
 import firebase from 'firebase';
@@ -20,6 +21,7 @@ class ExpandableEventCard extends React.Component {
     myEvent: false,
     savingBookmark: false,
     unsubscribe: null,
+    unsubscribeTwo: null,
     isRefreshing:false,
   }
 
@@ -27,13 +29,20 @@ class ExpandableEventCard extends React.Component {
     try {
       const { item = {} } = this.props;
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+      let myEventRef = firestore.doc('myEvent/' + item.title);
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
+        this.reloadMine();
+      });
+      let unsubscribeTwo = myEventRef.onSnapshot(() => {
+        this.reloadBookmarks();
+        this.reloadMine();
       });
       this.setState({ unsubscribe });
 
       this.reloadBookmarks();
+      this.reloadMine();
     } catch (err) {
       console.log(err);
     }
@@ -43,21 +52,22 @@ class ExpandableEventCard extends React.Component {
     this.state.unsubscribe();
   }
 
-  reloadBookmarks = async () => {
-    this.setState({isRefreshing: true});
+  reloadMine = async() => {
     const { item = {} } = this.props;
-    let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-    let bookmark = await bookmarkRef.get();
-
-    if(bookmark.exists) this.setState({bookmarked: true});
-    else this.setState({bookmarked: false});
-
 
     let allRef = firestore.doc('allEvents/' + item.title);
     let ev = await allRef.get();
-
     if(ev.exists) this.setState({myEvent: item.mine});
-    this.setState({isRefreshing: false});
+  }
+
+  reloadBookmarks = async () => {
+    const { item = {} } = this.props;
+
+    let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
+    let bookmark = await bookmarkRef.get();
+    if(bookmark.exists) this.setState({bookmarked: true});
+    else this.setState({bookmarked: false});
+
   }
 
   saveBookmark = async() => {
@@ -65,7 +75,6 @@ class ExpandableEventCard extends React.Component {
 
     this.setState({bookmarked: !this.state.bookmarked});
     const { item = {} } = this.props;
-
     var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     await bookmarkRef.set(item);
 
@@ -96,6 +105,41 @@ class ExpandableEventCard extends React.Component {
     this.setState({ bookmarked: !this.state.bookmarked });
   }
 
+  getIcon = () => {
+    if (this.state.myEvent) {
+      return (
+        <Icon
+          family="feather"
+          size={20}
+          name="user"
+          color= {Colors.orange}
+        />
+      );
+    } else {
+      if (this.state.bookmarked) {
+        return (
+          <Icon
+            family="feather"
+            size={20}
+            name="bookmark"
+            color= {Colors.orange}
+            onPress = {this.bookmarkPressed}
+          />
+        );
+      } else {
+        return (
+          <Icon
+            family="feather"
+            size={20}
+            name="bookmark"
+            color= {"#A5A5A5"}
+            onPress = {this.bookmarkPressed}
+          />
+        );
+      }
+    }
+  }
+
   render() {
     const { item } = this.props;
 
@@ -109,29 +153,7 @@ class ExpandableEventCard extends React.Component {
           <View>
             <View style={styles.header}>
               <Title style={styles.title} >{item.title}</Title>
-              {this.state.bookmarked ?
-                <Icon
-                  family="feather"
-                  size={20}
-                  name="bookmark"
-                  color= {Colors.orange}
-                  onPress = {this.bookmarkPressed}
-                />
-                : <Icon
-                  family="feather"
-                  size={20}
-                  name="bookmark"
-                  color= {"#A5A5A5"}
-                  onPress = {this.bookmarkPressed}
-                />}
-              {this.state.myEvent ?
-                <Icon
-                  family="feather"
-                  size={20}
-                  name="user"
-                  color= {Colors.orange}
-                />
-                : null}
+              {this.getIcon()}
             </View>
             <Text style={styles.text1}>{item.description}</Text>
           </View>
@@ -167,7 +189,10 @@ class ExpandableEventCard extends React.Component {
               style={{marginRight: 5}}
               color={fidoTheme.COLORS.LIGHT_ORANGE}
               labelStyle={{color: Colors.orange, fontSize: 12}}
-              onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item})}}
+              onPress={() => {
+                this.state.myEvent ?  this.props.navigation.navigate('MyEvents', {item: item})
+                : this.props.navigation.navigate('ExpandedEvent', {item: item, book: this.state.bookmarked})}
+              }
             >
               More
             </Button>
@@ -178,7 +203,18 @@ class ExpandableEventCard extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={styles.buttonText}
-              onPress={() => {this.props.navigation.navigate('Map')}}
+              onPress={() => {
+                this.props.navigation.navigate('Map');
+                Alert.alert(
+                  'Check in to this event?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes'}
+                  ],
+                  {cancelable: false},
+                );
+              }}
             >
               Navigate
             </Button>

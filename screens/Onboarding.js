@@ -11,7 +11,7 @@ import { Colors, Metrics } from '../Themes';
 
 const { height, width } = Dimensions.get("screen");
 
-import argonTheme from "../constants/Theme";
+import fidoTheme from "../constants/Theme";
 import Images from "../constants/Images";
 
 class Onboarding extends React.Component {

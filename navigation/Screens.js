@@ -14,9 +14,7 @@ import Icon from '../components/Icon';
 
 // screens
 import Home from "../screens/Home";
-import Home2 from "../screens/Home2";
 import Onboarding from "../screens/Onboarding";
-import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
@@ -106,7 +104,7 @@ BookmarkStack.navigationOptions = ({ navigation, db }) => {
   let tabBarVisible = true;
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === "Map") {
+      if (route.routeName === "Map" || route.routeName === "ExpandedEvent") {
         tabBarVisible = false;
       }
     });
@@ -229,7 +227,7 @@ MyHomeStack.navigationOptions = ({ navigation, db }) => {
   let tabBarVisible = true;
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === "Map") {
+      if (route.routeName === "Map" || route.routeName === "ExpandedEvent") {
         tabBarVisible = false;
       }
     });
@@ -278,15 +276,6 @@ const HomeStack = createStackNavigator(
         //header: <Header search options title="Home" navigation={navigation} />,
       }),
     },
-    Pro: {
-      screen: Pro,
-      navigationOptions: ({ navigation, db }) => ({
-        // header: (
-        //   {/*<Header left={<Block />} white transparent title="" navigation={navigation} />*/}
-        // ),
-        headerTransparent: true
-      })
-    },
     Register: {
       screen: Register,
       navigationOptions: ({ navigation, db }) => ({
@@ -311,26 +300,6 @@ const HomeStack = createStackNavigator(
     //transitionConfig
   }
 );
-
-// Home2.navigationOptions = ({ navigation }) => {
-//   return {
-//     tabBarLabel: 'Active Now',
-//   };
-// };
-
-// HomeTab2.navigationOptions = ({ navigation }) => {
-//   return {
-//     tabBarLabel: 'Home',
-//     tabBarIcon: ({ tintColor }) => (
-//       <Icon
-//         family="feather"
-//         size={30}
-//         name="home"
-//         color= {tintColor}
-//       />
-//     ),
-//   };
-// };
 
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
@@ -357,11 +326,27 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Settings: {
+    Friends: {
       screen: SettingsStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="NotImplemented" title="Settings" />
+          <DrawerItem focused={focused} screen="NotImplemented" title="Friends" />
+        )
+      })
+    },
+    History: {
+      screen: SettingsStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="NotImplemented" title="History" />
+        )
+      })
+    },
+    Messages: {
+      screen: SettingsStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="NotImplemented" title="Messages" />
         )
       })
     },
@@ -373,14 +358,14 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    // Articles: {
-    //   screen: ArticlesStack,
-    //   navigationOptions: navOpt => ({
-    //     drawerLabel: ({ focused }) => (
-    //       <DrawerItem focused={focused} screen="Articles" title="Articles" />
-    //     )
-    //   })
-    // }
+    Settings: {
+      screen: SettingsStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="NotImplemented" title="Settings" />
+        )
+      })
+    },
   },
   Menu
 );

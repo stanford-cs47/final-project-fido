@@ -1,23 +1,27 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { StyleSheet, Dimensions, Image, View } from 'react-native';
+import { StyleSheet, Dimensions, Image, View, Alert } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { Colors, Metrics } from '../Themes';
 import { Card, Title, Subheading, Paragraph, Button, Avatar } from 'react-native-paper';
 import { Images } from '../constants/';
 import fidoTheme from "../constants/Theme";
 import Icon from './Icon';
+import articles from '../constants/articles';
 
 import firestore from '../firebase';
 import firebase from 'firebase';
 
 class EventCard extends React.Component {
+
   state = {
-    bookmarked: true,
+    bookmarked: false,
     savingBookmark: false,
     unsubscribe: false,
+    unsubscribeTwo: false,
     myEventExists: false,
+    myEvent: [],
   }
 
   componentDidMount = async () => {
@@ -25,10 +29,11 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
 
       let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
-      let myEventRef = firestore.doc('myEvent/' + item.title);
+      let myEventRef = firestore.doc('allEvents/' + item.title);
 
       let unsubscribe = bookmarkRef.onSnapshot(() => {
         this.reloadBookmarks();
+        this.reloadMyEvent();
       });
 
       let unsubscribeTwo = myEventRef.onSnapshot(() => {
@@ -51,49 +56,70 @@ class EventCard extends React.Component {
 
   reloadMyEvent = async() => {
     const { item = {} } = this.props;
+
     let myEventRef = firestore.doc('myEvent/' + item.title);
     let myEvent = await myEventRef.get();
 
-    if(myEvent.exists) this.setState({myEventExists: true});
+    if(myEvent.exists) this.setState({myEventExists: true, myEvent: item});
   }
 
   reloadBookmarks = async () => {
-    this.setState({isRefreshing: true});
     const { item = {} } = this.props;
     let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     let bookmark = await bookmarkRef.get();
 
     if(bookmark.exists) this.setState({bookmarked: true});
     else this.setState({bookmarked: false});
-    this.setState({isRefreshing: false});
+
+  }
+
+  getMyEvent = async() => {
+    try {
+      let myEvent = [];
+      let myEventRef = firestore.collection('myEvent/');
+      let all = await myEventRef.get();
+      all.forEach((currEvent) => {
+        myEvent.push(currEvent.data());
+      });
+      console.log("my event in event card:");
+      console.log(myEvent);
+      return (myEvent ? myEvent : []);
+    } catch (error) {
+      console.log(error);
+    }
+    return ([]);
   }
 
   removeBookmark = async () => {
-    //this.setState({ savingBookmark: true });
-
-    const { item = {} } = this.props;
-    var bookmarkedEventsRef = firestore.doc('bookmarkedEvents/' + item.title);
-    await bookmarkedEventsRef.delete();
-
-    //this.setState({ savingBookmark: false });
+    try {
+      const { item = {} } = this.props;
+      var bookmarkedEventsRef = firestore.doc('bookmarkedEvents/' + item.title);
+      await bookmarkedEventsRef.delete();
+      //this.setState({bookmarked: false});
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  deleteBookmark = async () => {
-    //this.setState({ savingBookmark: true });
+  deleteEvent= async () => {
+    try {
+      const { item = {} } = this.props;
 
-    const { item = {} } = this.props;
-    var allEventsRef = firestore.doc('allEvents/' + item.title);
-    var myEventRef = firestore.doc('myEvent/' + item.title);
-    await myEventRef.delete();
-    await allEventsRef.delete();
+      var allEventsRef = firestore.doc('allEvents/' + item.title);
+      var myEventRef = firestore.doc('myEvent/' + item.title);
+      await allEventsRef.delete();
+      await myEventRef.delete();
 
-    //this.setState({ savingBookmark: false });
+      this.setState({myEventExists: false, myEvent: []})
+
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
-    const { item, type } = this.props;
-    console.log("passed in: ");
-    console.log(item);
+    const { item, type, book } = this.props;
+
     if (item === undefined) {
       return (
         <View flex style={styles.container}>
@@ -128,7 +154,18 @@ class EventCard extends React.Component {
               size={25}
               name="bookmark"
               color= {Colors.orange}
-              onPress={() => this.removeBookmark()}
+              onPress={() => {
+                Alert.alert(
+                  'Remove from Bookmarks?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes', onPress: () => this.removeBookmark()}
+                  ],
+                  {cancelable: false},
+                );
+                }
+              }
             /> : null
           }
           {type === "event" ?
@@ -136,8 +173,22 @@ class EventCard extends React.Component {
               family="feather"
               size={25}
               name="bookmark"
-              color= {fidoTheme.COLORS.GREY}
-              onPress={() => {console.log('Pressed Bookmark')}}
+              color= {book ? Colors.orange : fidoTheme.COLORS.GREY}
+              onPress={() => {
+                Alert.alert(
+                  'Remove from Bookmarks?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes', onPress: () => {
+                      this.removeBookmark();
+                      this.props.navigation.navigate('Home');
+                    }}
+                  ],
+                  {cancelable: false},
+                );
+                }
+              }
             /> : null
           }
           {type === "my_event" ?
@@ -146,7 +197,18 @@ class EventCard extends React.Component {
               size={25}
               name="trash-2"
               color= {fidoTheme.COLORS.GREY}
-              onPress={() => {console.log('Pressed trash')}}
+              onPress={() => {
+                Alert.alert(
+                  'Delete Event?',
+                  'Don\'t worry, we\'ll notify prospective attendees.',
+                  [
+                    { text: "No" },
+                    { text: 'Yes', onPress: () => this.deleteEvent() },
+                  ],
+                  {cancelable: false},
+                );
+                }
+              }
             /> : null
           }
           <View style={styles.bottomButton}>
@@ -158,7 +220,7 @@ class EventCard extends React.Component {
                 style={{marginRight: 5}}
                 color={fidoTheme.COLORS.LIGHT_ORANGE}
                 labelStyle={{color: Colors.orange, fontSize: 12}}
-                onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item})}}
+                onPress={() => {this.props.navigation.navigate('ExpandedEvent', {item: item, book: this.state.bookmarked})}}
               >
                 More
               </Button> : null
@@ -169,7 +231,18 @@ class EventCard extends React.Component {
               uppercase={false}
               color={Colors.orange}
               labelStyle={{color: "white", fontSize: 12}}
-              onPress={() => {this.props.navigation.navigate('Map')}}
+              onPress={() => {
+                this.props.navigation.navigate('Map');
+                Alert.alert(
+                  'Check in to this event?',
+                  '',
+                  [
+                    { text: "No" },
+                    { text: 'Yes'}
+                  ],
+                  {cancelable: false},
+                );
+              }}
             >
               Navigate
             </Button>

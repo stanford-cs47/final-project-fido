@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   View,
   Alert,
+  ScrollView
 } from "react-native";
 import { Icon, EventForm } from "../components";
 import { Images } from "../constants";
@@ -38,7 +39,7 @@ class Register extends React.Component {
       location2: 'Stanford, CA 94305',
       time1: '',
       time2: '',
-      image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
+      image: 'https://cdn.pixabay.com/photo/2019/08/19/07/45/pets-4415649__340.jpg',
       horizontal: true,
       bookmarked: false,
       mine: true,
@@ -86,7 +87,7 @@ class Register extends React.Component {
     newEvent.title = this.state.title;
     newEvent.location1 = this.state.location;
     newEvent.time1 = this.state.startButton;
-    newEvent.time2 = this.state.durationButton;
+    newEvent.time2 = this.state.durationButton + " left";
     newEvent.description = 'Lucky + 4 others      '+ this.state.inviteButton+ '      0.3 mi';
 
     const item = newEvent;
@@ -114,7 +115,8 @@ class Register extends React.Component {
     let friendsText = "Friends Only";
 
     return (
-      <View>
+      <ScrollView
+       showsVerticalScrollIndicator={false}>
         <Image source={Images.Park} style={styles.image}/>
         <View style={styles.mainContainer}>
           <Text size={18}>New Event</Text>
@@ -137,7 +139,7 @@ class Register extends React.Component {
             <View style={styles.chips}>
               <Chip
               textStyle= {this.state.startButton === nowText ? styles.selectedText : null}
-              style= {this.state.startButton === nowText ? styles.selected : null}
+              style= {[this.state.startButton === nowText ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.startButton === nowText ?
                   this.setState({startButton: "", startButtonPressed: false}) :
                   this.setState({startButton: nowText, startButtonPressed: true})
@@ -146,7 +148,7 @@ class Register extends React.Component {
 
               <Chip
               textStyle= {this.state.startButton === in10Text ? styles.selectedText : null}
-              style= {this.state.startButton === in10Text ? styles.selected : null}
+              style= {[this.state.startButton === in10Text ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.startButton === in10Text ?
                   this.setState({startButton: "", startButtonPressed: false}) :
                   this.setState({startButton: in10Text, startButtonPressed: true})
@@ -155,7 +157,7 @@ class Register extends React.Component {
 
               <Chip
               textStyle= {this.state.startButton === in30Text ? styles.selectedText : null}
-              style= {this.state.startButton === in30Text ? styles.selected : null}
+              style= {[this.state.startButton === in30Text ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.startButton === in30Text ?
                   this.setState({startButton: "", startButtonPressed: false}) :
                   this.setState({startButton: in30Text, startButtonPressed: true})
@@ -174,36 +176,33 @@ class Register extends React.Component {
           </View>
           <View style={styles.inputContainer}>
             <Text size={14}>Estimate Duration</Text>
-            <View style={styles.chips2}>
+            <View style={styles.chips}>
               <Chip
               textStyle= {this.state.durationButton === text30m ? styles.selectedText : null}
-              style= {this.state.durationButton === text30m ? styles.selected : null}
+              style= {[this.state.durationButton === text30m ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.durationButton === text30m ?
                   this.setState({durationButton: "", durationButtonPressed: false}) :
                   this.setState({durationButton: text30m, durationButtonPressed: true})
                 }
               >{text30m}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.durationButton === text1h ? styles.selectedText : null}
-              style= {this.state.durationButton === text1h ? styles.selected : null}
+              style= {[this.state.durationButton === text1h ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.durationButton === text1h ?
                   this.setState({durationButton: "", durationButtonPressed: false}) :
                   this.setState({durationButton: text1h, durationButtonPressed: true})
                 }
               >{text1h}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.durationButton === text2h ? styles.selectedText : null}
-              style= {this.state.durationButton === text2h ? styles.selected : null}
+              style= {[this.state.durationButton === text2h ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.durationButton === text2h ?
                   this.setState({durationButton: "", durationButtonPressed: false}) :
                   this.setState({durationButton: text2h, durationButtonPressed: true})
                 }
               >{text2h}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.durationButton === customTextDuration ? styles.selectedText : null}
@@ -217,16 +216,15 @@ class Register extends React.Component {
           </View>
           <View style={styles.inputContainer}>
           <Text size={14} >Invite</Text>
-            <View style={styles.chips2}>
+            <View style={styles.chips}>
               <Chip
               textStyle= {this.state.inviteButton === publicText ? styles.selectedText : null}
-              style= {this.state.inviteButton === publicText ? styles.selected : null}
+              style= {[this.state.inviteButton === publicText ? styles.selected : null, {marginRight: Metrics.smallMargin}]}
               onPress={() => this.state.inviteButton === publicText ?
                   this.setState({inviteButton: "", inviteButtonPressed: false}) :
                   this.setState({inviteButton: publicText, inviteButtonPressed: true})
                 }
               >{publicText}</Chip>
-              <Text>  </Text>
 
               <Chip
               textStyle= {this.state.inviteButton === friendsText ? styles.selectedText : null}
@@ -248,11 +246,11 @@ class Register extends React.Component {
                 color={Colors.orange}
                 onPress={() => {
                   Alert.alert(
-                    'Are you sure you want to go back and lose you event?',
-                    '',
+                    'Discard this event?',
+                    'Your new event won\'t be saved.',
                     [
-                      { text: 'Yes', onPress: () => this.props.navigation.goBack() },
                       { text: "No" },
+                      { text: 'Yes', onPress: () => this.props.navigation.goBack() },
                     ],
                     {cancelable: false},
                   );
@@ -268,16 +266,14 @@ class Register extends React.Component {
                 uppercase={false}
                 color={Colors.orange}
                 labelStyle={styles.buttonText}
-                onPress={() => {
-                  this.handlePost();
-                }}
+                onPress={() => this.handlePost()}
               >
                 Post
               </Button>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -293,12 +289,8 @@ const styles = StyleSheet.create({
   },
   chips: {
     flexDirection: "row",
-    justifyContent: "space-around",
     marginTop: 5,
-  },
-  chips2: {
-    flexDirection: "row",
-    marginTop: 5,
+    flexWrap: "wrap",
   },
   image: {
     width: width,
@@ -330,7 +322,6 @@ const styles = StyleSheet.create({
   notSelected: {
 
   },
-
 });
 
 export default Register;
