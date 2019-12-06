@@ -88,7 +88,12 @@ class Register extends React.Component {
     newEvent.location1 = this.state.location;
     newEvent.time1 = this.state.startButton;
     newEvent.time2 = this.state.durationButton + " left";
-    newEvent.description = 'Lucky + 4 others      '+ this.state.inviteButton+ '      0.3 mi';
+    if (this.state.inviteButton === 'Friends Only') {
+      newEvent.description = 'Lucky + 4 others   Friends   0.3 mi';
+    } else {
+      newEvent.description = 'Lucky + 4 others      '+ this.state.inviteButton+ '      0.3 mi';
+    }
+
 
     const item = newEvent;
 

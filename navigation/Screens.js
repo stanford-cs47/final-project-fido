@@ -211,10 +211,11 @@ const MyHomeStack = createStackNavigator({
   HomeTab: {screen: HomeTab},
   NotImplemented: {screen: NotImplemented},
   Map: {screen: Map},
-  ExpandedEvent: {screen: ExpandedEvent,
+  ExpandedEvent: {screen: ExpandedEvent, headerMode: 'none',
     navigationOptions: () => ({
       headerTintColor: "white",
       headerStyle:{backgroundColor: Colors.orange},
+
     }),
   }
 },
