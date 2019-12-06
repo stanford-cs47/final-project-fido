@@ -106,9 +106,9 @@ class MyEvents extends React.Component {
   render() {
     console.log("this.state.myEvent: ");
     console.log(this.state.myEvent[0]);
-    if (false) {
+    if (this.state.myEvent[0] === undefined) {
       return (
-        <View flex style={styles.main}>
+        <View flex style={{justifyContent: 'center', alignItems: 'center', tintColor: Colors.orange}}>
         <Text> You have not created an event yet! </Text>
         </View>
       )

@@ -110,7 +110,7 @@ class EventCard extends React.Component {
       await allEventsRef.delete();
       await myEventRef.delete();
 
-      this.setState({myEventExists: false, myEvent: []})
+      //this.setState({myEventExists: false, myEvent: []})
 
     } catch (err) {
       console.log(err);

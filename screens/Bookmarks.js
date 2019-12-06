@@ -76,11 +76,6 @@ class Bookmarks extends React.Component {
          keyExtractor={this._keyExtractor}
          ItemSeparatorComponent = {() => (<View style={{height: 10}}/>)}
        />
-       {/*<BookmarkCard item={articles[0]}/>
-       <BookmarkCard item={articles[1]}/>
-       <BookmarkCard item={articles[2]}/>
-       <BookmarkCard item={articles[3]}/>
-       <BookmarkCard item={articles[4]}/>*/}
       </ScrollView>
     );
   }
@@ -90,14 +85,22 @@ class Bookmarks extends React.Component {
     if (!this.state.bookmarks[0]) {
       emptyList = (<Text style={{marginTop: Metrics.navBarHeight}}>You have not bookmarked events yet!</Text>);
     }
-    return (
-      <Block flex>
-        <Block style={styles.home}>
-          {emptyList}
-          {this.renderArticles()}
+    if (this.state.bookmarks[0] === undefined) {
+      return (
+        <View flex style={{justifyContent: 'center', alignItems: 'center', tintColor: Colors.orange}}>
+        <Text> You have not bookmarked events yet! </Text>
+        </View>
+      )
+    } else {
+      return (
+        <Block flex>
+          <Block style={styles.home}>
+            {emptyList}
+            {this.renderArticles()}
+          </Block>
         </Block>
-      </Block>
-    );
+      );
+    }
   }
 }
 

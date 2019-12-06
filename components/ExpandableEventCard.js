@@ -65,9 +65,12 @@ class ExpandableEventCard extends React.Component {
 
     let bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     let bookmark = await bookmarkRef.get();
+    let allRef = firestore.doc('allEvents/' + item.title);
+    let ev = await allRef.get();
+    if(ev.exists) this.setState({myEvent: item.mine});
     if(bookmark.exists) this.setState({bookmarked: true});
     else this.setState({bookmarked: false});
-
+    //if(ev.exists) this.setState({myEvent: item.mine});
   }
 
   saveBookmark = async() => {
@@ -90,7 +93,8 @@ class ExpandableEventCard extends React.Component {
     var bookmarkRef = firestore.doc('bookmarkedEvents/' + item.title);
     await bookmarkRef.delete();
 
-    this.setState({ savingBookmark: false });
+    this.setState({ savingBookmark: false});
+    //this.reloadBookmarks();
   }
 
   bookmarkPressed = async () => {
