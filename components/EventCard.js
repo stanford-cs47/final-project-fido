@@ -192,24 +192,33 @@ class EventCard extends React.Component {
             /> : null
           }
           {type === "my_event" ?
-            <Icon
-              family="feather"
-              size={25}
-              name="trash-2"
-              color= {fidoTheme.COLORS.GREY}
-              onPress={() => {
-                Alert.alert(
-                  'Delete Event?',
-                  'Don\'t worry, we\'ll notify prospective attendees.',
-                  [
-                    { text: "No" },
-                    { text: 'Yes', onPress: () => this.deleteEvent() },
-                  ],
-                  {cancelable: false},
-                );
+            <View flex style={{flexDirection: "row"}}>
+              <Icon
+                family="feather"
+                size={25}
+                name="edit-2"
+                style={{marginRight: 10}}
+                color= {fidoTheme.COLORS.GREY}/>
+              <Icon
+                family="feather"
+                size={25}
+                name="trash-2"
+                color= {fidoTheme.COLORS.GREY}
+                onPress={() => {
+                  Alert.alert(
+                    'Delete Event?',
+                    'Don\'t worry, we\'ll notify prospective attendees.',
+                    [
+                      { text: "No" },
+                      { text: 'Yes', onPress: () => this.deleteEvent() },
+                    ],
+                    {cancelable: false},
+                  );
+                  }
                 }
-              }
-            /> : null
+              />
+            </View>
+            : null
           }
           <View style={styles.bottomButton}>
             {type === "bookmark" ?
