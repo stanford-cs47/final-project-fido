@@ -95,7 +95,7 @@ class EventCard extends React.Component {
       const { item = {} } = this.props;
       var bookmarkedEventsRef = firestore.doc('bookmarkedEvents/' + item.title);
       await bookmarkedEventsRef.delete();
-      this.setState({bookmarked: false});
+      //this.setState({bookmarked: false});
     } catch (err) {
       console.log(err);
     }
