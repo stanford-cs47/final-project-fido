@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, FlatList, View } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, FlatList, View, StatusBar } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 
 import { FloatingActionButton, ListItem, ExpandableEventCard } from '../components';
@@ -107,12 +107,17 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Block flex>
-        <Block style={styles.home}>
-          {this.renderArticles()}
+      //<View>
+
+        <Block flex>
+        <StatusBar backgroundColor="blue" barStyle="light-content" />
+          <Block style={styles.home}>
+            {this.renderArticles()}
+          </Block>
+          <FloatingActionButton navigation= {this.props.navigation} db = {db}/>
         </Block>
-        <FloatingActionButton navigation= {this.props.navigation} db = {db}/>
-      </Block>
+      //</View>
+
     );
   }
 }

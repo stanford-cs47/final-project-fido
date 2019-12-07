@@ -80,7 +80,7 @@ const ProfileStack = createStackNavigator(
 
 const BookmarkStack = createStackNavigator({
   Bookmarks: {screen: Bookmarks},
-  ExpandedEvent: {screen: ExpandedEvent,
+  ExpandedEvent: {screen: ExpandedEvent, headerMode: 'float',
     navigationOptions: () => ({
       headerTintColor: "white",
       headerStyle:{backgroundColor: Colors.orange},
