@@ -110,7 +110,7 @@ class Home extends React.Component {
       //<View>
 
         <Block flex>
-        <StatusBar backgroundColor="blue" barStyle="light-content" />
+        <StatusBar backgroundColor={Colors.orange} barStyle="light-content" />
           <Block style={styles.home}>
             {this.renderArticles()}
           </Block>
