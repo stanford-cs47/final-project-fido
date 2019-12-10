@@ -15,4 +15,4 @@ screens/MyEvents.js
 screens/HappeningLater.js
 
 Notes:
-Drawer navigation, and other unlisted files, from argon-react-native template
+Drawer navigation, and some (unlisted) files, adapted from argon-react-native template
